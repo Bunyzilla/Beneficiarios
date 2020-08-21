@@ -23,6 +23,7 @@ import { Approutes } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { LoginComponent } from './views/login/login.component';
+import { LandingPageComponent } from './views/landing-page/landing-page.component';
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import { LoginComponent } from './views/login/login.component';
         SidebarComponent,
         //Pages
         LoginComponent,
+        LandingPageComponent,
     ],
     imports: [
         CommonModule,

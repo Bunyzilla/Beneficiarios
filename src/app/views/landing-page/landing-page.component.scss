@@ -1,0 +1,360 @@
+.main-landing{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('/assets/images/landing-background-web.svg');
+  background-size: contain;
+  background-position-x: right;
+  background-position-y: top;
+  background-repeat: no-repeat;
+}
+.box{
+  position: relative;
+  width: auto;
+  height: 100%;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  max-width: 1440px;
+  margin: auto;
+}
+.logo{
+  max-width: 120px;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: .8em;
+  left: 1.875em;
+}
+.dot{
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: #5847BC;
+}
+.footer{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+/*BIG BUTTON*/
+.login-btn{
+  display: block;
+  max-width: 400px;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  text-decoration: none;
+  color: #1F1835;
+  border: 2px solid #1F1835;
+  border-radius: 10px;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.login-btn span{
+  position: relative;
+  z-index: 2;
+}
+
+.login-btn:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #02537E 0%, #874BCB 101.85%);
+  transition: all .35s;
+}
+
+.login-btn:hover{
+  color: #fff;
+}
+
+.login-btn:hover:after{
+  width: 100%;
+}
+.none{
+  display: none;
+}
+.navbar{
+  position: sticky;
+  top: 0;
+  left: 0;
+  background: #FFFFFF;
+  height: 80px;
+  .main-navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  img{
+    max-height: 70px;
+    height: 100%;
+    width: auto;
+  }
+}
+
+.border-gradient {
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 4px;
+  background: transparent;
+  color: #1F1835;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+  outline: none;
+  padding: 5px 40px;
+  border-radius: 10px;
+  transition: .4s ease-in-out;
+  &:hover{
+    background: linear-gradient(90deg, #874BCB 0%,  #02537E 101.85%);
+    color: #FFFFFF;
+  }
+}
+.border-gradient-purple {
+  border-image-source: linear-gradient(90deg, #874BCB 0%,  #02537E 101.85%);
+}
+.img-movil{
+  width: 100%;
+  height: 200px;
+  background: url("/assets/images/landing-background-movil.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.none{
+  min-height: 100%;
+  position: relative;
+}
+.body{
+  padding-bottom: 50px;
+}
+.footer-movil{
+  padding: 5px 30px;
+  font-family: 'Noto Sans', sans-serif;
+  color: #1F1835;
+  font-size: 1em;
+  font-weight: 700;
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+/*MENU*/
+* {
+  box-sizing: border-box;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+  text-decoration: none;
+}
+.outer-menu {
+  position: fixed;
+  top: 0;
+  right: 4em;
+  z-index: 1;
+}
+
+.outer-menu .checkbox-toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  opacity: 0;
+}
+
+.outer-menu .checkbox-toggle:checked+.hamburger>div {
+  transform: rotate(135deg);
+  background: #fff;
+}
+
+.outer-menu .checkbox-toggle:checked+.hamburger>div:before,
+.outer-menu .checkbox-toggle:checked+.hamburger>div:after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+.outer-menu .checkbox-toggle:checked+.hamburger>div:after {
+  opacity: 0;
+}
+
+.outer-menu .checkbox-toggle:checked~.menu {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.outer-menu .checkbox-toggle:checked~.menu>div {
+  transform: scale(1);
+  transition-duration: .75s;
+}
+
+.outer-menu .checkbox-toggle:checked~.menu>div>div {
+  opacity: 1;
+  transition: opacity .4s ease .4s;
+}
+
+
+.outer-menu .checkbox-toggle:checked:hover+.hamburger>div {
+  transform: rotate(225deg);
+}
+
+.hamburger {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+  padding: .5em 1em;
+  background-image: transparent;
+  border-radius: 0 .12em .12em 0;
+  cursor: pointer;
+  transition: box-shadow .4s ease;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger>div {
+  position: relative;
+  flex: none;
+  width: 100%;
+  height: 2px;
+  background: #824CC8;
+  transition: all .4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger>div:before,
+.hamburger>div:after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: calc(-60px / 6);
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: inherit;
+  transition: all .4s ease;
+}
+
+.hamburger>div:after {
+  top: 10px;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  visibility: hidden;
+  overflow: hidden;
+  backface-visibility: hidden;
+  outline: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu>div {
+  width: 100%;
+  height: 100vh;
+  color: #FEFEFE;
+  background: #065381;
+  transition: all .4s ease;
+  flex: none;
+  transform: scale(0);
+  backface-visibility: hidden;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu>div>div {
+  text-align: center;
+  max-width: 90vw;
+  max-height: 100vh;
+  opacity: 0;
+  transition: opacity .4s ease;
+  overflow-y: auto;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu>div>div>ul {
+  list-style: none;
+  padding: 0 1em;
+  margin: 0;
+  display: block;
+  max-height: 100vh;
+}
+
+.menu>div>div>ul>li {
+  padding: 0;
+  margin: 1em;
+  font-size: 24px;
+  display: block;
+}
+
+.menu>div>div>ul>li>a {
+  position: relative;
+  display: inline;
+  cursor: pointer;
+  opacity: .7;
+  transition: .4s ease-in-out;
+}
+
+.menu>div>div>ul>li>a:hover {
+  opacity: 1;
+}
+
+.menu>div>div>ul>li>a :hover :after {
+  width: 100%;
+}
+
+
+.menu>div>div>ul>li>a:after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  bottom: -.15em;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: darken(#FEFEFE,
+          10%);
+  transition: width .4s ease;
+}
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked{
+  pointer-events: all;
+}
+
