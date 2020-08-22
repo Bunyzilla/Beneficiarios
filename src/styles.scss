@@ -1,136 +1,190 @@
 /* You can add global styles to this file, and also import other style files */
-body, p, h1, h2, h3{
+body,
+p,
+h1,
+h2,
+h3 {
   margin: 0;
 }
+.main-login, .main-forgotpas {
+  /* label color */
+  .input-field label {
+    font-family: "Noto Sans", sans-serif;
+    color: #1F1835;
+    font-weight: 600;
+  }
+  .input-field input[type="email"], .input-field input[type="password"]{
+    border-bottom: 1px solid #1F1835;
+    box-shadow: 0 1px 0 0 #1F1835;
+  }
+  /* label focus color */
+  .input-field input[type="email"]:focus + label, .input-field input[type="password"]:focus + label {
+    color: #065381;
+  }
+  /* label underline focus color */
+  .input-field input[type="email"]:focus, .input-field input[type="password"]:focus {
+    border-bottom: 1px solid #065381;
+    box-shadow: 0 1px 0 0 #000;
+  }
+  /* valid color */
+  .input-field input[type="email"].valid, .input-field input[type="password"].valid {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+  }
+  /* invalid color */
+  .input-field input[type="email"].invalid, .input-field input[type="password"].invalid {
+    border-bottom: 1px solid #CB1111;
+    box-shadow: 0 1px 0 0 #CB1111;
+  }
+}
 /*display-flex*/
-.just-between{
+.just-center {
+  display: flex;
+  justify-content: center;
+}
+.just-between {
   display: flex;
   justify-content: space-between;
 }
-.just-flexend{
+.just-flexend {
   display: flex;
   justify-content: flex-end;
 }
-.alitems-center{
+.alitems-center {
   display: flex;
   align-items: center;
 }
 /*WIDTH & HEIGHT*/
-.max-width-430{
+.max-width-430 {
   max-width: 430px;
   width: 100%;
 }
-.wd-50p{
+.wd-50p {
   width: 50%;
 }
 /*BUTTONS*/
-.login-btn-lan{
-  background: linear-gradient(90deg, #02537E 0%, #874BCB 101.85%);
+.login-btn-lan {
+  background: #1f1835;
   border: none;
+  border-radius: 5px;
   outline: none;
-  padding: .8em 10em;
-  font-family: 'Noto Sans', sans-serif;
+  padding: 10px 15px;
+  font-family: "Noto Sans", sans-serif;
   color: white;
   font-size: 1em;
   font-weight: 700;
   cursor: pointer;
-  transition: .3s ease-in-out;
-  &:hover{
-    background: linear-gradient(90deg, #874BCB 0%,  #02537E 101.85%);
+  transition: 0.3s ease-in-out;
+  &:hover {
+    background: #02537e;
   }
 }
 /*TEXT*/
-.fw-700{
+.fw-700 {
   font-weight: 700;
 }
-.text-al-center{
+.text-al-center {
   text-align: center;
 }
-.blu-50{
-  font-family: 'Noto Sans', sans-serif;
-  color: #02537E;
+.blu-50 {
+  font-family: "Noto Sans", sans-serif;
+  color: #02537e;
   font-size: 50px;
 }
-.black-24{
-  font-family: 'Noto Sans', sans-serif;
-  color: #1F1835;
+.black-24 {
+  font-family: "Noto Sans", sans-serif;
+  color: #1f1835;
   font-size: 24px;
 }
-.black-18{
-  font-family: 'Noto Sans', sans-serif;
-  color: #1F1835;
+.black-18 {
+  font-family: "Noto Sans", sans-serif;
+  color: #1f1835;
   font-size: 18px;
 }
-.a-link-black{
+.black-16 {
+  font-family: "Noto Sans", sans-serif;
+  color: #1f1835;
+  font-size: 16px;
+}
+.a-link-black {
   text-decoration: none;
-  transition: .3s ease-in-out;
-  &:hover{
-    color: #5847BC;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    color: #5847bc;
   }
 }
 /*PADDING & MARGINS*/
-.p-b-50{
+.p-b-50 {
   padding-bottom: 50px;
 }
-.p-b-30{
+.p-b-30 {
   padding-bottom: 30px;
 }
-.p-l-30{
+.p-l-30 {
   padding-left: 30px;
 }
-.p-r-30{
+.p-r-30 {
   padding-right: 30px;
 }
-.p-t-20{
+.p-t-20 {
   padding-top: 20px;
 }
-.p-b-20{
+.p-b-20 {
   padding-bottom: 20px;
 }
-.p-0-30{
+.p-t-10{
+  padding-top: 10px;
+}
+.p-0-30 {
   padding: 0 30px;
 }
-.m-r-60{
+.m-r-60 {
   margin-right: 60px;
 }
-.m-t-50{
+.m-t-50 {
   margin-top: 50px;
 }
-.m-r-10{
+.m-r-10 {
   margin-right: 10px;
 }
-.m-auto{
+.m-auto {
   margin: auto;
 }
 /*MEDIA QUERIES*/
-@media screen and (max-width: 1500px){
-  .main-landing{
+@media screen and (max-width: 1500px) {
+  .main-landing {
     background-size: 80% !important;
   }
 }
-@media screen and (max-width: 1200px){
-  .route-link{
+@media screen and (max-width: 1200px) {
+  .route-link {
     font-size: 18px !important;
   }
 }
-@media screen and (max-width: 992px){
-  .main-landing{
+@media screen and (max-width: 992px) {
+  .main-landing {
     background: none !important;
-    .box{
+    .box {
       display: none !important;
     }
   }
-  .none{
+  .none {
     display: block !important;
   }
 }
-@media screen and(max-width: 576px){
-  .border-gradient{
+@media screen and(max-width: 576px) {
+  .border-gradient {
     padding: 5px 18px !important;
-    font-size: .8em !important;
+    font-size: 0.8em !important;
   }
-  .blu-50{
+  .blu-50 {
     font-size: 25px;
     font-weight: 700;
+  }
+  .main-login .box{
+    padding: 30px !important;
+  }
+  .main-forgotpas .box .img-pas{
+    display: none;
   }
 }
