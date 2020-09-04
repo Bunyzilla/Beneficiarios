@@ -50,7 +50,7 @@ import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.c
         FormsModule,
         HttpClientModule,
         ToastrModule.forRoot(),
-        RouterModule.forRoot(Approutes, { useHash: false }),
+        RouterModule.forRoot(Approutes, { useHash: false })
         //NgMultiSelectDropDownModule.forRoot(),
     ],
     providers: [

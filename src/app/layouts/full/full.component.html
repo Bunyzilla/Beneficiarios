@@ -1,6 +1,27 @@
-<app-navigation ></app-navigation>
-<app-sidebar></app-sidebar>
-<app-breadcrumb></app-breadcrumb>
-
 <!-- En este componente se renderizan las vistas -->
-<router-outlet></router-outlet>
+<!--<app-breadcrumb></app-breadcrumb>-->
+<!--<div class="row">
+  <app-sidebar></app-sidebar>
+  <div class="col s10">
+    <app-navigation ></app-navigation>
+    <div class="row">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>-->
+
+<div class="display-flex">
+  <div>
+    <app-sidebar></app-sidebar>
+  </div>
+  <div [class]="'wd-100p main-box '+ utilitiesService.navbarClass.toString()">
+    <div>
+      <router-outlet>
+        <app-navigation ></app-navigation>
+        <div class="movil-tittle">
+          <p class="wht-20">Control de Beneficiarios</p>
+        </div>
+      </router-outlet>
+    </div>
+  </div>
+</div>

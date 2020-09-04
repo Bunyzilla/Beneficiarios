@@ -1,0 +1,18 @@
+.search-box {
+  border-radius: 10px;
+  border: solid 2px #02537e;
+  padding: 10px 20px;
+}
+.circular-landscape {
+  display: inline-block;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  img {
+    width: auto;
+    height: 100%;
+    margin-left: -30px;
+  }
+}

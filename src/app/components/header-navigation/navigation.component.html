@@ -1,4 +1,27 @@
 <!-- ============================================================== -->
 <!-- toggle and nav items -->
 <!-- ============================================================== -->
-header
+
+<nav class=" navegador just-between alitems-center">
+    <div class="just-center alitems-center p-l-20">
+      <div class="h-60px">
+        <button class="white-btn" (click)="utilitiesService.showSidebar()">
+          <i class="large material-icons">dehaze</i>
+        </button>
+      </div>
+      <div class="tittle">
+        <p class="wht-20">Control de Beneficiarios</p>
+      </div>
+    </div>
+    <div class="p-r-30">
+      <div class="dropdown">
+        <button class="transparent-btn just-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="large material-icons p-r-5">person</i>Juan Perez
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/#/dashboard/settings">Ajustes</a>
+          <a class="dropdown-item" href="#">salir</a>
+        </div>
+      </div>
+    </div>
+</nav>

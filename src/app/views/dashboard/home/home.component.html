@@ -1,0 +1,196 @@
+<section class="main input-class">
+  <div class="text-al-center p-b-20 ">
+    <p class="black-24 fw-700">Registro de despensa</p>
+  </div>
+  <div class="search-box">
+    <div class="row">
+      <div class="col-md-6  col-12">
+        <div class="search-input">
+          <input id="box-input" placeholder="Buscar beneficiario..." type="text" class="validate">
+          <button class="search-btn"><i class="small material-icons p-l-5">search</i></button>
+        </div>
+      </div>
+      <div class="col-md-2  col-12"></div>
+      <div class="col-md-4  col-12 alitems-center just-flexend web-btn">
+        <button class="outline-blu-btn">Generar reporte <i class="small material-icons p-l-5">print</i></button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <div class="row">
+          <div class="col-6">
+            <select class="browser-default">
+              <option value="" disabled selected>Mes</option>
+              <option value="1">Enero</option>
+              <option value="2">Febrero</option>
+              <option value="3">Marzo</option>
+              <option value="4">Abril</option>
+              <option value="5">Mayo</option>
+              <option value="6">Junio</option>
+              <option value="7">Julio</option>
+              <option value="8">Agosto</option>
+              <option value="9">Septiembre</option>
+              <option value="10">Octubre</option>
+              <option value="11">Noviembre</option>
+              <option value="12">Diciembre</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <select class="browser-default">
+              <option value="" disabled selected>Año</option>
+              <option value="1">2011</option>
+              <option value="2">2012</option>
+              <option value="3">2013</option>
+              <option value="4">2014</option>
+              <option value="5">2015</option>
+              <option value="6">2016</option>
+              <option value="7">2017</option>
+              <option value="8">2018</option>
+              <option value="9">2019</option>
+              <option value="10">2020</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2  col-12"></div>
+      <div class="col-md-4  col-12 alitems-center just-flexend web-btn">
+        <button class="blu-btn" data-toggle="modal" data-target="#reg-assi">Registrar asistencia</button>
+      </div>
+    </div>
+    <!--VISTA MOVIL-->
+    <div class="movile-btn row">
+      <div class="col-6">
+        <button class="outline-blu-btn">Generar reporte <i class="small material-icons p-l-5">print</i></button>
+      </div>
+      <div class="col-6  alitems-center">
+        <button class="blu-btn" data-toggle="modal" data-target="#reg-assi">Registrar asistencia</button>
+      </div>
+    </div>
+    <!--END VISTA MOVIL-->
+  </div>
+  <div class="p-t-20">
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <th scope="row">Beneficiario</th>
+          <td>01/01/20</td>
+          <td>01/01/20</td>
+          <td>01/01/20</td>
+          <td>01/01/20</td>
+          <td>01/01/20</td>
+          <td>01/01/20</td>
+          <td>01/01/20</td>
+          <td>01/01/20</td>
+          <td>01/01/20</td>
+          <td>01/01/20</td>
+          <td>01/01/20</td>
+          <td>01/01/20</td>
+        </tr>
+        <tr>
+          <td><a class="a-link-black black-16 alitems-center"><i class="small material-icons p-r-5">account_box</i>
+              Maria Perez</a></td>
+          <td><i class="small material-icons p-l-5">check</i></td>
+          <td><i class="small material-icons p-l-5">clear</i></td>
+          <td><i class="small material-icons p-l-5">check</i></td>
+          <td><i class="small material-icons p-l-5">check</i></td>
+          <td><i class="small material-icons p-l-5">check</i></td>
+          <td><i class="small material-icons p-l-5">remove_circle_outline</i></td>
+          <td><i class="small material-icons p-l-5">check</i></td>
+        </tr>
+        <tr>
+          <td><a class="a-link-black black-16 alitems-center"><i class="small material-icons p-r-5">account_box</i>
+              Maria Perez</a></td>
+          <td><i class="small material-icons p-l-5">check</i></td>
+          <td><i class="small material-icons p-l-5">clear</i></td>
+          <td><i class="small material-icons p-l-5">check</i></td>
+          <td><i class="small material-icons p-l-5">check</i></td>
+          <td><i class="small material-icons p-l-5">check</i></td>
+          <td><i class="small material-icons p-l-5">remove_circle_outline</i></td>
+          <td><i class="small material-icons p-l-5">check</i></td>
+        </tr>
+        <tr>
+          <td><a class="a-link-black black-16 alitems-center"><i class="small material-icons p-r-5">account_box</i>
+              Maria Perez</a></td>
+          <td><i class="small material-icons p-l-5">check</i></td>
+          <td><i class="small material-icons p-l-5">clear</i></td>
+          <td><i class="small material-icons p-l-5">check</i></td>
+          <td><i class="small material-icons p-l-5">check</i></td>
+          <td><i class="small material-icons p-l-5">check</i></td>
+          <td><i class="small material-icons p-l-5">remove_circle_outline</i></td>
+          <td><i class="small material-icons p-l-5">check</i></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <!--MODALS-->
+<div class="modal fade" id="reg-assi" tabindex="-1" aria-labelledby="reg-assi" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header just-center">
+        <h5 class="modal-title black-20 fw-700" id="exampleModalLabel">Registrar asistencia</h5>
+      </div>
+      <div class="modal-body">
+        <div class="search-input">
+          <input id="box-input" placeholder="Buscar beneficiario..." type="text" class="validate">
+          <button class="search-btn"><i class="small material-icons p-l-5">search</i></button>
+        </div>
+        <div class="row p-t-30">
+          <div class="col-md-4 col-12 text-al-center ">
+            <div class="circular-landscape">
+              <img class="modal-img" src="/assets/images/dummy-profile.svg">
+            </div>
+          </div>
+          <div class="col-md-8 col-12 alitems-center flex-wrap">
+            <div class="">
+              <div class="wd-100p">
+                <p class="black-16 fw-700">Maria Perez</p>
+              </div>
+              <div class="wd-100p p-t-10">
+                <p class="black-14">Folio de beneficiario: 353535</p>
+              </div>
+              <div class="wd-100p">
+                <p class="black-14">Folio de estudio: 0145</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <!--TO DO: Si la persona no asistio a recoger la despensa se debe mostrar el campo de justificación-->
+          <div class="radio-inputs">
+            <p class="black-16 p-b-5">¿Asistió a recoger la despensa?</p>
+            <div class="display-flex">
+              <div class="input-box">
+                <input type="radio" id="b8-si" name="drone" value="huey" checked>
+                <label for="b8-si">Si</label>
+              </div>
+              <div class="input-box p-l-15">
+                <input type="radio" id="b8-no" name="drone" value="dewey">
+                <label for="b8-no">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-t-20">
+          <p class="black-16 p-b-5">¿Quién recogió la despensa?</p>
+          <select class="browser-default">
+            <option value="" disabled selected>Escoge una persona</option>
+            <option value="1">Maria</option>
+            <option value="2">José</option>
+            <option value="3">Ana</option>
+          </select>
+        </div>
+        <div class="p-t-20">
+          <p class="black-16 p-b-5">Añadir justificación</p>
+          <textarea></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="blu-btn p-5-25">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</section>
+

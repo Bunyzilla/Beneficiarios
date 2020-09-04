@@ -1,0 +1,35 @@
+.trash-btn{
+  background: #CC1313;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: 0.2s ease-in-out;
+  &:focus{
+    outline: none;
+  }
+  &:hover{
+    background: #BA1212;
+  }
+}
+.edit-btn{
+  background: #6341CA;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: 0.2s ease-in-out;
+  &:focus{
+    outline: none;
+  }
+  &:hover{
+    background: #5235A9;
+  }
+}
+.profile-img{
+  max-width: 190px;
+  width: 100%;
+  height: auto;
+}

@@ -1,5 +1,42 @@
-<nav class="sidebar-nav">
-    <ul id="sidebarnav">
-        menu
-    </ul>
-</nav>
+<div [class]="'side-sidebar ' + utilitiesService.sidebarClass.toString()">
+  <div class="p-30">
+    <div class="row just-center">
+      <img class="logo-side" src="/assets/images/black-logo.svg">
+    </div>
+    <div>
+      <div class="row alitems-center p-t-10">
+        <div class="wd-30px">
+          <img src="/assets/images/lista-icon.svg">
+        </div>
+        <div class="p-l-15">
+          <a href="/#/dashboard/home" class="black-18 fw-700 a-link-black"> Registro de despensa</a>
+        </div>
+      </div>
+      <div class="row alitems-center p-t-10 ">
+        <div class="">
+          <img src="/assets/images/books-icon.svg">
+        </div>
+        <div class="p-l-15">
+          <a href="/#/dashboard/records" class="black-18 fw-700 a-link-black">Expedientes</a>
+        </div>
+      </div>
+      <div class="row alitems-center p-t-10 ">
+        <div class="">
+          <img src="/assets/images/add-icon.svg">
+        </div>
+        <div class="p-l-15">
+          <a href="/#/dashboard/add-profile" class="black-18 fw-700 a-link-black">Añadir un beneficiario</a>
+        </div>
+      </div>
+      <div class="side-line"></div>
+      <div class="row alitems-center p-t-10 ">
+        <div class="">
+          <img src="/assets/images/settings-icon.svg">
+        </div>
+        <div class="p-l-15">
+          <a href="/#/dashboard/settings" class="black-18 fw-700 a-link-black">Ajustes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

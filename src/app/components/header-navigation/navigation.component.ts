@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, EventEmitter, Output } from '@angular/core';
 import { DataSessionService } from '../../services/dataSession/data-session.service';
+import { UtilitiesService } from '../../services/utilities/utilities.service';
 declare var $: any;
 
 @Component({
@@ -8,7 +9,9 @@ declare var $: any;
 })
 export class NavigationComponent implements AfterViewInit {
 
-  constructor(public dataSessionService: DataSessionService) {}
+
+
+  constructor(public dataSessionService: DataSessionService, public utilitiesService : UtilitiesService) {}
 
   ngAfterViewInit() {}
 

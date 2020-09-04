@@ -6,7 +6,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardRoutes } from './dashboard.routing';
 
 //Views - Administrator Dashboard
-import { HomeComponent } from './admin/home/home.component';
+import { HomeComponent } from './home/home.component';
+import { RecordsComponent } from './records/records.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AddProfileComponent } from './add-profile/add-profile.component';
+import { SettingsComponent } from './settings/settings.component';
 
 //Components
 
@@ -20,9 +24,13 @@ import { HomeComponent } from './admin/home/home.component';
     declarations: [
         //Views - Administrator Dashboard
         HomeComponent,
-        
+        RecordsComponent,
+        ProfileComponent,
+        AddProfileComponent,
+        SettingsComponent,
+
         //Componentes del dashboard
-        
+
     ]
 })
 export class DashboardModule { }

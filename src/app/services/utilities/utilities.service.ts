@@ -5,13 +5,19 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root'
 })
 export class UtilitiesService {
-  constructor(private toastr: ToastrService) {}
+  sidebarClass : String;
+  navbarClass : String;
+
+  constructor(private toastr: ToastrService) {
+    this.sidebarClass = "";
+    this.navbarClass = "";
+  }
 
   //TOAST
   showSuccessToast(message : string , title : string) {
     this.toastr.success(message, title);
   }
-  
+
   showErrorToast(message : string , title : string) {
     this.toastr.error(message, title);
   }
@@ -24,4 +30,17 @@ export class UtilitiesService {
     this.toastr.info(message);
   }
   //END. TOAST
+  showSidebar(){
+    if(this.sidebarClass == "ShowMenu"){
+      this.sidebarClass = "";
+    } else{
+      this.sidebarClass = "ShowMenu";
+    }
+
+    if(this.navbarClass == "ExpandNavBar"){
+       this.navbarClass = "";
+    }else{
+      this.navbarClass = "ExpandNavBar";
+    }
+  }
 }

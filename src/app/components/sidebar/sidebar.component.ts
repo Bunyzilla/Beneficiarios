@@ -1,6 +1,6 @@
 import { User } from './../../classes/user.class';
-import { Component, AfterViewInit, OnInit } from '@angular/core';
-import { DataSessionService } from '../../services/dataSession/data-session.service';
+import { Component, AfterViewInit, OnInit, Input } from '@angular/core';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 declare var $: any;
 
 @Component({
@@ -9,33 +9,19 @@ declare var $: any;
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  showMenu = '';
-  showSubMenu = '';
-  public sidebarnavItems: any[];
-  userData : User;
 
-  constructor(
-    private dataSessionService : DataSessionService
-  ) {}
+
+  constructor(public utilitiesService : UtilitiesService) {
+
+  }
 
   // End open close
-  ngOnInit() {
-    this.userData = this.dataSessionService.user;
+  ngOnInit(): void {
+
   }
 
-  // this is for the open close
-  addExpandClass(element: any) {
-    if (element === this.showMenu) {
-      this.showMenu = '0';
-    } else {
-      this.showMenu = element;
-    }
+  changeClassOpenMenu(){
+
   }
-  addActiveClass(element: any) {
-    if (element === this.showSubMenu) {
-      this.showSubMenu = '0';
-    } else {
-      this.showSubMenu = element;
-    }
-  }
+
 }

@@ -1,0 +1,772 @@
+<section class="main input-class">
+  <div class="text-al-center p-b-20 ">
+    <p class="black-24 fw-700">Añadir beneficiario</p>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-12">
+      <p class="black-16 fw-700">Datos personales</p>
+      <div class="img-box">
+        <label for="img" class="fake-btn-img">
+          <img src="/assets/images/upload-img.svg">
+        </label>
+        <div class="input-box">
+          <input type="file" id="img" name="img" accept="image/*">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <input placeholder="" id="first_name" type="text" class="validate">
+          <label for="first_name">Nombre(s)</label>
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <input placeholder="" id="paterno" type="text" class="validate">
+          <label for="paterno">Apellido paterno</label>
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <input placeholder="" id="materno" type="text" class="validate">
+          <label for="materno">Apellido materno</label>
+        </div>
+      </div>
+      <div class="radio-inputs">
+        <p class="black-16 fw-700">Sexo</p>
+        <div class="display-flex">
+          <div class="input-box">
+            <input type="radio" id="huey" name="drone" value="huey" checked>
+            <label for="huey">Femenino</label>
+          </div>
+          <div class="input-box p-l-15">
+            <input type="radio" id="dewey" name="drone" value="dewey">
+            <label for="dewey">Masculino</label>
+          </div>
+        </div>
+      </div>
+      <div class="p-t-10">
+        <div class="input-box">
+          <label class="black-16 fw-700">Fecha de nacimiento</label>
+          <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <input id="icon_telephone1" type="tel" class="validate">
+          <label for="icon_telephone1">Teléfono 1</label>
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <input id="icon_telephone" type="tel" class="validate">
+          <label for="icon_telephone">Teléfono 2</label>
+        </div>
+      </div>
+      <div>
+        <label class="black-16 fw-700">Estado civil</label>
+        <select class="browser-default">
+          <option value="" disabled selected>Escoge una opción</option>
+          <option value="1">Soltero/a</option>
+          <option value="2">Casado/a</option>
+          <option value="3">Viudo/a</option>
+          <option value="4">Divorciado/a</option>
+          <option value="5">Compromiso</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="col-sm-6 col-12">
+      <div class="p-t-20">
+        <div class="input-field">
+          <input placeholder="" id="ocupación" type="text" class="validate">
+          <label for="ocupación">Ocupación</label>
+        </div>
+      </div>
+      <div>
+        <label class="black-16 fw-700">Escolaridad</label>
+        <select class="browser-default">
+          <option value="" disabled selected>Escoge una opción</option>
+          <option value="1">Educación primaria</option>
+          <option value="2">Educación secundaria</option>
+          <option value="3">Educación media superior</option>
+          <option value="4">Educación superior</option>
+        </select>
+      </div>
+      <div>
+        <div class="input-field">
+          <input placeholder="" id="curp" type="text" class="validate">
+          <label for="curp">CURP</label>
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <input placeholder="" id="rfc" type="text" class="validate">
+          <label for="rfc">RFC</label>
+        </div>
+      </div>
+      <div>
+        <label class="black-16 fw-700">Servicio médico</label>
+        <select class="browser-default">
+          <option value="" disabled selected>Escoge una opción</option>
+          <option value="1">IMSS</option>
+          <option value="2">ISSSTE</option>
+          <option value="3">INSABI</option>
+          <option value="4">IMPEr</option>
+          <option value="5">ICHISA</option>
+          <option value="6">Ninguno</option>
+        </select>
+      </div>
+      <div class="radio-inputs">
+        <p class="black-16 fw-700">Discapacidad</p>
+        <div class="display-flex">
+          <div class="input-box">
+            <input type="radio" id="si-disc" name="drone" value="huey" checked>
+            <label for="si-disc">Si</label>
+          </div>
+          <div class="input-box p-l-15">
+            <input type="radio" id="no-disc" name="drone" value="dewey">
+            <label for="no-disc">No</label>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <input placeholder="" id="c-dis" type="text" class="validate">
+          <label for="c-dis">Causa discapacidad</label>
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <input placeholder="" id="t-dis" type="text" class="validate">
+          <label for="t-dis">Tiempo de discapacidad</label>
+        </div>
+      </div>
+      <div class="radio-inputs">
+        <p class="black-16 fw-700">Enfermedad crónica</p>
+        <div class="display-flex">
+          <div class="input-box">
+            <input type="radio" id="si-enfc" name="drone" value="huey" checked>
+            <label for="si-enfc">Si</label>
+          </div>
+          <div class="input-box p-l-15">
+            <input type="radio" id="no-enfc" name="drone" value="dewey">
+            <label for="no-enfc">No</label>
+          </div>
+        </div>
+      </div>
+      <div class="p-t-10">
+        <label class="black-16 fw-700">Tipo de enfermedad crónica</label>
+        <select class="browser-default">
+          <option value="" disabled selected>Escoge una opción</option>
+          <option value="1">Cáncer</option>
+          <option value="2">Diabetes</option>
+          <option value="3">Hipertensión</option>
+          <option value="4">Epilepsia</option>
+          <option value="5">Esquizofrenia</option>
+          <option value="6">Otro</option>
+        </select>
+      </div>
+      <!--TO DO: En caso de que se seleccioné la opción de otro se debe mostrar este input
+      para que se llené el campo de otro tipo de enfermedad crónica-->
+      <div class="p-t-20">
+        <input class="empty-input" placeholder="Escribe el otro tipo de enfermedad crónica..." type="text">
+      </div>
+    </div>
+  </div>
+  <div class="side-line"></div>
+  <div class="row p-t-20">
+    <div class="col-sm-6 col-12">
+      <p class="black-16 fw-700">Domicilio</p>
+      <div class="input-field">
+        <input placeholder="" id="colonia" type="text" class="validate">
+        <label for="colonia">Colonia</label>
+      </div>
+      <div class="input-field">
+        <input placeholder="" id="calle" type="text" class="validate">
+        <label for="calle">Calle</label>
+      </div>
+      <div class="input-field">
+        <input placeholder="" id="ncasa" type="number" class="validate">
+        <label for="ncasa">Número de casa</label>
+      </div>
+    </div>
+    <div class="col-sm-6 col-12 p-t-20">
+      <div class="input-field">
+        <input placeholder="" id="c-postal" type="number" class="validate">
+        <label for="c-postal">Código postal</label>
+      </div>
+      <div class="input-field">
+        <input placeholder="" id="ref" type="text" class="validate">
+        <label for="ref">Referencias</label>
+      </div>
+    </div>
+  </div>
+  <div class="side-line"></div>
+  <div class="p-b-20 p-t-20">
+    <p class="black-16 fw-700 p-b-10">Familiares</p>
+    <button class="outline-blu-btn" data-toggle="modal" data-target="#add-familiar">
+      <i class="small material-icons"> add</i>Añadir familiar
+    </button>
+  </div>
+  <div class="table-responsive">
+    <table class="table">
+      <tr>
+        <th></th>
+        <th scope="row"> Nombre</th>
+        <th>Edad</th>
+        <th>Año de nacimiento</th>
+        <th>Sexo</th>
+        <th>Escolaridad</th>
+        <th>Estado civil</th>
+        <th>Ocupación</th>
+        <th>Parentesco</th>
+        <th>Aportación</th>
+      </tr>
+      <tr>
+        <td class="p-5-0"><button class="trash-btn"><i class="small material-icons">delete</i></button></td>
+        <td>Maria</td>
+        <td>15</td>
+        <td>19/08/2005</td>
+        <td>Femenino</td>
+        <td>Secundaria</td>
+        <td>Soltera</td>
+        <td>Estudiante</td>
+        <td>Hija</td>
+        <td>Ninguna</td>
+      </tr>
+    </table>
+  </div>
+  <div class="side-line"></div>
+  <div class="row p-t-20">
+    <div class="col-sm-6 col-12">
+      <p class="black-16 fw-700">Vivienda</p>
+      <label class="black-16 fw-700">Tipo de vivienda</label>
+      <select class="browser-default">
+        <option value="" disabled selected>Escoge una opción</option>
+        <option value="1">Educación primaria</option>
+        <option value="2">Educación secundaria</option>
+        <option value="3">Educación media superior</option>
+        <option value="4">Educación superior</option>
+      </select>
+      <div>
+        <div class="input-field">
+          <input placeholder="" id="n-room" type="number" class="validate">
+          <label for="n-room">Número de cuartos</label>
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <input placeholder="" id="n-bath" type="number" class="validate">
+          <label for="n-bath">Número de baños</label>
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <input placeholder="" id="n-bed" type="number" class="validate">
+          <label for="n-bed">Número de recamaras</label>
+        </div>
+      </div>
+      <div class="p-t-10">
+        <label class="black-16 fw-700">Condiciones de la vivienda</label>
+        <select class="browser-default">
+          <option value="" disabled selected>Escoge una opción</option>
+          <option value="1">Educación primaria</option>
+          <option value="2">Educación secundaria</option>
+          <option value="3">Educación media superior</option>
+          <option value="4">Educación superior</option>
+        </select>
+      </div>
+      <div class="p-t-10">
+        <label class="black-16 fw-700">Piso</label>
+        <select class="browser-default">
+          <option value="" disabled selected>Escoge una opción</option>
+          <option value="1">Educación primaria</option>
+          <option value="2">Educación secundaria</option>
+          <option value="3">Educación media superior</option>
+          <option value="4">Educación superior</option>
+        </select>
+      </div>
+      <div class="p-t-10">
+        <label class="black-16 fw-700">Techo</label>
+        <select class="browser-default">
+          <option value="" disabled selected>Escoge una opción</option>
+          <option value="1">Educación primaria</option>
+          <option value="2">Educación secundaria</option>
+          <option value="3">Educación media superior</option>
+          <option value="4">Educación superior</option>
+        </select>
+      </div>
+      <div class="p-t-10">
+        <label class="black-16 fw-700">Condiciones de los muebles</label>
+        <select class="browser-default">
+          <option value="" disabled selected>Escoge una opción</option>
+          <option value="1">Educación primaria</option>
+          <option value="2">Educación secundaria</option>
+          <option value="3">Educación media superior</option>
+          <option value="4">Educación superior</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-6 col-12">
+      <div>
+        <div class="p-t-10">
+          <label class="black-16 fw-700">Tiempo de vivir en el domicilio</label>
+          <select class="browser-default">
+            <option value="" disabled selected>Escoge una opción</option>
+            <option value="1">Educación primaria</option>
+            <option value="2">Educación secundaria</option>
+            <option value="3">Educación media superior</option>
+            <option value="4">Educación superior</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <p class="black-16 fw-700">Bienes familiares</p>
+        <div class="radio-inputs">
+          <p class="black-16 fw-700">Estufa o parrilla eléctrica</p>
+          <div class="display-flex">
+            <div class="input-box">
+              <input type="radio" id="b1-si" name="drone" value="huey" checked>
+              <label for="b1-si">Si</label>
+            </div>
+            <div class="input-box p-l-15">
+              <input type="radio" id="b1-no" name="drone" value="dewey">
+              <label for="b1-no">No</label>
+            </div>
+          </div>
+        </div>
+        <div class="radio-inputs">
+          <p class="black-16 fw-700">Automóvil</p>
+          <div class="display-flex">
+            <div class="input-box">
+              <input type="radio" id="b2-si" name="drone" value="huey" checked>
+              <label for="b2-si">Si</label>
+            </div>
+            <div class="input-box p-l-15">
+              <input type="radio" id="b2-no" name="drone" value="dewey">
+              <label for="b2-no">No</label>
+            </div>
+          </div>
+        </div>
+        <div class="radio-inputs">
+          <p class="black-16 fw-700">Refrigerador</p>
+          <div class="display-flex">
+            <div class="input-box">
+              <input type="radio" id="b3-si" name="drone" value="huey" checked>
+              <label for="b3-si">Si</label>
+            </div>
+            <div class="input-box p-l-15">
+              <input type="radio" id="b3-no" name="drone" value="dewey">
+              <label for="b3-no">No</label>
+            </div>
+          </div>
+        </div>
+        <div class="radio-inputs">
+          <p class="black-16 fw-700">Horno de microondas</p>
+          <div class="display-flex">
+            <div class="input-box">
+              <input type="radio" id="b4-si" name="drone" value="huey" checked>
+              <label for="b4-si">Si</label>
+            </div>
+            <div class="input-box p-l-15">
+              <input type="radio" id="b4-no" name="drone" value="dewey">
+              <label for="b4-no">No</label>
+            </div>
+          </div>
+        </div>
+        <div class="radio-inputs">
+          <p class="black-16 fw-700">Lavadora</p>
+          <div class="display-flex">
+            <div class="input-box">
+              <input type="radio" id="b5-si" name="drone" value="huey" checked>
+              <label for="b5-si">Si</label>
+            </div>
+            <div class="input-box p-l-15">
+              <input type="radio" id="b5-no" name="drone" value="dewey">
+              <label for="b5-no">No</label>
+            </div>
+          </div>
+        </div>
+        <div class="radio-inputs">
+          <p class="black-16 fw-700">Computadora</p>
+          <div class="display-flex">
+            <div class="input-box">
+              <input type="radio" id="b6-si" name="drone" value="huey" checked>
+              <label for="b6-si">Si</label>
+            </div>
+            <div class="input-box p-l-15">
+              <input type="radio" id="b6-no" name="drone" value="dewey">
+              <label for="b6-no">No</label>
+            </div>
+          </div>
+        </div>
+        <div class="radio-inputs">
+          <p class="black-16 fw-700">Televisión</p>
+          <div class="display-flex">
+            <div class="input-box">
+              <input type="radio" id="b7-si" name="drone" value="huey" checked>
+              <label for="b7-si">Si</label>
+            </div>
+            <div class="input-box p-l-15">
+              <input type="radio" id="b7-no" name="drone" value="dewey">
+              <label for="b7-no">No</label>
+            </div>
+          </div>
+        </div>
+        <div class="radio-inputs">
+          <p class="black-16 fw-700">Aire acondicionado</p>
+          <div class="display-flex">
+            <div class="input-box">
+              <input type="radio" id="b8-si" name="drone" value="huey" checked>
+              <label for="b8-si">Si</label>
+            </div>
+            <div class="input-box p-l-15">
+              <input type="radio" id="b8-no" name="drone" value="dewey">
+              <label for="b8-no">No</label>
+            </div>
+          </div>
+        </div>
+        <div class="p-t-20">
+          <button class="outline-blu-btn" data-toggle="modal" data-target="#add-evidence">
+            <i class="small material-icons">add</i>Añadir evidencias
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="just-center p-t-20">
+    <button class="blu-btn fs-20px ">Guardar</button>
+  </div>
+  <!--Modal Añadir un familiar-->
+  <div class="modal fade" id="add-familiar" tabindex="-1" aria-labelledby="add-familiar" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header just-center">
+          <h5 class="modal-title black-20 fw-700" id="exampleModalLabel">Añadir familiar</h5>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 col-12">
+              <div>
+                <div class="input-field">
+                  <input placeholder="" id="first_name-fam" type="text" class="validate">
+                  <label for="first_name-fam">Nombre(s)</label>
+                </div>
+              </div>
+              <div>
+                <div class="input-field">
+                  <input placeholder="" id="last_name-fam" type="text" class="validate">
+                  <label for="last_name-fam">Apellido paterno</label>
+                </div>
+              </div>
+              <div class="radio-inputs">
+                <p class="black-16 fw-700">Sexo</p>
+                <div class="display-flex">
+                  <div class="input-box">
+                    <input type="radio" id="s-fam-f" name="drone" value="huey" checked>
+                    <label for="s-fam-f">Femenino</label>
+                  </div>
+                  <div class="input-box p-l-15">
+                    <input type="radio" id="s-fam-m" name="drone" value="dewey">
+                    <label for="s-fam-m">Masculino</label>
+                  </div>
+                </div>
+              </div>
+              <div class="input-box p-t-20">
+                <label class="black-16 fw-700">Fecha de nacimiento</label>
+                <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div>
+                <div class="input-field">
+                  <input placeholder="" id="ocupación" type="text" class="validate">
+                  <label for="ocupación">Ocupación</label>
+                </div>
+              </div>
+              <div>
+                <label class="black-16 fw-700">Estado civil</label>
+                <select class="browser-default">
+                  <option value="" disabled selected>Escoge una opción</option>
+                  <option value="1">Soltero/a</option>
+                  <option value="2">Casado/a</option>
+                  <option value="3">Viudo/a</option>
+                  <option value="4">Divorciado/a</option>
+                  <option value="5">Compromiso</option>
+                </select>
+              </div>
+              <div>
+                <label class="black-16 fw-700">Parentesco</label>
+                <select class="browser-default">
+                  <option value="" disabled selected>Escoge una opción</option>
+                  <option value="1">Hijo/a</option>
+                  <option value="2">Padre</option>
+                  <option value="3">Madre</option>
+                  <option value="4">Abuelo/a</option>
+                  <option value="5">Nieto/a</option>
+                  <option value="5">Hermano/a</option>
+                  <option value="5">Suegro/a</option>
+                </select>
+              </div>
+              <div>
+                <label class="black-16 fw-700">Aportación</label>
+                <select class="browser-default">
+                  <option value="" disabled selected>Escoge una opción</option>
+                  <option value="1">Hijo/a</option>
+                  <option value="2">Padre</option>
+                  <option value="3">Madre</option>
+                  <option value="4">Abuelo/a</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="blu-btn">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Modal add evidence-->
+  <div class="modal fade" id="add-evidence" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header just-center">
+          <h5 class="modal-title  black-20 fw-700" id="exampleModalLabel">Añadir evidencia</h5>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="p-10-0">
+                <p class="black-16 fw-700 p-b-5">Fotos del estudio</p>
+                <div class="upload-img">
+                  <div class="row m-0">
+                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        <img src="/assets/images/dummy-profile.svg">
+                        <div class="trash-box">
+                          <button class="trash-btn">
+                            <i class="small material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        <img src="/assets/images/dummy-profile.svg">
+                        <div class="trash-box">
+                          <button class="trash-btn">
+                            <i class="small material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        <img src="/assets/images/dummy-profile.svg">
+                        <div class="trash-box">
+                          <button class="trash-btn">
+                            <i class="small material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        <img src="/assets/images/dummy-profile.svg">
+                        <div class="trash-box">
+                          <button class="trash-btn">
+                            <i class="small material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-t-20">
+                  <div>
+                    <input class="upload-input" type="file" id="img" name="img" accept="image/*">
+                  </div>
+                  <div class="p-t-10">
+                    <button class="purple-btn">Subir foto</button>
+                  </div>
+                </div>
+              </div>
+              <div class="p-10-0">
+                <p class="black-16 fw-700 p-b-5">Fotos del beneficiario</p>
+                <div class="upload-img">
+                  <div class="row m-0">
+                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        <img src="/assets/images/dummy-profile.svg">
+                        <div class="trash-box">
+                          <button class="trash-btn">
+                            <i class="small material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        <img src="/assets/images/dummy-profile.svg">
+                        <div class="trash-box">
+                          <button class="trash-btn">
+                            <i class="small material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        <img src="/assets/images/dummy-profile.svg">
+                        <div class="trash-box">
+                          <button class="trash-btn">
+                            <i class="small material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        <img src="/assets/images/dummy-profile.svg">
+                        <div class="trash-box">
+                          <button class="trash-btn">
+                            <i class="small material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-t-20">
+                  <div>
+                    <input class="upload-input" type="file" id="img" name="img" accept="image/*">
+                  </div>
+                  <div class="p-t-10">
+                    <button class="purple-btn">Subir foto</button>
+                  </div>
+                </div>
+              </div>
+              <div class="p-10-0">
+                <p class="black-16 fw-700 p-b-5">Fotos de la vivienda</p>
+                <div class="upload-img">
+                  <div class="row m-0">
+                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        <img src="/assets/images/dummy-profile.svg">
+                        <div class="trash-box">
+                          <button class="trash-btn">
+                            <i class="small material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        <img src="/assets/images/dummy-profile.svg">
+                        <div class="trash-box">
+                          <button class="trash-btn">
+                            <i class="small material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        <img src="/assets/images/dummy-profile.svg">
+                        <div class="trash-box">
+                          <button class="trash-btn">
+                            <i class="small material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        <img src="/assets/images/dummy-profile.svg">
+                        <div class="trash-box">
+                          <button class="trash-btn">
+                            <i class="small material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-t-20">
+                  <div>
+                    <input class="upload-input" type="file" id="img" name="img" accept="image/*">
+                  </div>
+                  <div class="p-t-10">
+                    <button class="purple-btn">Subir foto</button>
+                  </div>
+                </div>
+              </div>
+              <div class="p-10-0">
+                <p class="black-16 fw-700 p-b-5">Fotos de los comprobantes</p>
+                <div class="upload-img">
+                  <div class="row m-0">
+                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        <img src="/assets/images/dummy-profile.svg">
+                        <div class="trash-box">
+                          <button class="trash-btn">
+                            <i class="small material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        <img src="/assets/images/dummy-profile.svg">
+                        <div class="trash-box">
+                          <button class="trash-btn">
+                            <i class="small material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        <img src="/assets/images/dummy-profile.svg">
+                        <div class="trash-box">
+                          <button class="trash-btn">
+                            <i class="small material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        <img src="/assets/images/dummy-profile.svg">
+                        <div class="trash-box">
+                          <button class="trash-btn">
+                            <i class="small material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class=" p-t-20">
+                  <div>
+                    <input class="upload-input" type="file" id="img" name="img" accept="image/*">
+                  </div>
+                  <div class="p-t-10">
+                    <button class="purple-btn">Subir foto</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="blu-btn">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
