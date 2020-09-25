@@ -16,3 +16,43 @@
     margin-left: -30px;
   }
 }
+.select-month{
+  border: solid 1px #b5b5b5 !important;
+  padding: 5px 10px !important;
+}
+td:hover{
+  background-color: #F0F0F0;
+}
+.info-modal-btn{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  transition: .3s ease-in-out;
+}
+.info-modal-btn:focus{
+  outline: none;
+  background: #2F2E41;
+  color: white;
+}
+.circular-landscape-small{
+  display: inline-block;
+  position: relative;
+  width: 90px;
+  height: 90px;
+  overflow: hidden;
+  border-radius: 50%;
+  img {
+    width: auto;
+    height: 100%;
+    margin-left: -15px;
+  }
+}
+.select-ben{
+  transition: .3s ease-in-out;
+  padding: 10px;
+  cursor: pointer;
+}
+.select-ben:hover{
+  background-color: #F0F0F0;
+}

@@ -5,6 +5,7 @@ import { RecordsComponent } from './records/records.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddProfileComponent } from './add-profile/add-profile.component';
 import { SettingsComponent } from './settings/settings.component';
+import { UsersComponent } from './users/users.component';
 
 export const DashboardRoutes: Routes = [
   { path: '', redirectTo: '/dashboard/admin/home', pathMatch: 'full' },
@@ -53,6 +54,17 @@ export const DashboardRoutes: Routes = [
           urls: [
             { title: 'nuevoperfil', url: '/dashboard/add-profile' },
             { title: 'nuevoperfil'}
+          ]
+        }
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+        data: {
+          title: 'users',
+          urls: [
+            { title: 'users', url: '/dashboard/users' },
+            { title: 'users'}
           ]
         }
       },
