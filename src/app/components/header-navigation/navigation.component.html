@@ -16,11 +16,11 @@
     <div class="p-r-30">
       <div class="dropdown">
         <button class="transparent-btn just-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="large material-icons p-r-5">person</i>Juan Perez
+          <i class="large material-icons p-r-5">person</i>{{dataSessionService.user.name}}
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="/#/dashboard/settings">Ajustes</a>
-          <a class="dropdown-item" href="#">salir</a>
+          <button (click)="logOut()" class="dropdown-item" >Salir</button>
         </div>
       </div>
     </div>

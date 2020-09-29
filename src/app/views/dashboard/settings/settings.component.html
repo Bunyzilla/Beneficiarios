@@ -6,33 +6,60 @@
     <div class="col-lg-6 col-md-12 col-12">
       <div>
         <div class="img-box">
-          <label for="img" class="fake-btn-img">
-            <img src="/assets/images/upload-img.svg">
-            <div class="overlay">
-              <p class="wht-20">subir foto</p>
-            </div>
-          </label>
-          <div class="input-box">
-            <input type="file" id="img" name="img" accept="image/*">
+          <div *ngIf="userData.haveImage == false" class="input-group mb-3"
+            style="    justify-content: center;">
+            <!-- file input, accepts images only. Detect when file has been picked/changed with Angular's native (change) event listener -->
+
+            <label *ngIf="source.length == 0">
+              <input (change)="updateSource($event)" type="file" id="img" name="img" accept="image/*"
+                class="input-box">
+              <label for="img" class="fake-btn-img">
+                <img src="/assets/images/upload-img.svg">
+                <div class="overlay">
+                  <p class="wht-20">subir foto</p>
+                </div>
+              </label>
+            </label>
+
+
+            <!-- img placeholder when a file has been picked. shows only when 'source' is not empty -->
+            <label *ngIf="source.length > 0">
+              <div class="">
+                <img *ngIf="source.length > 0" [src]="source">
+              </div>
+              <div class="">
+                <button  (click)="cancelImage()" class="">
+                    Eliminar</button>
+              </div>
+            </label>
           </div>
 
+          <div *ngIf="userData.haveImage == true" class="input-group mb-3" >
+            <div class="">
+              <img [src]="userData.imageBlob">
+            </div>
+            <div class="">
+              <button (click)="cancelImage()" class="">
+                Eliminar</button>
+            </div>
+          </div>
         </div>
       </div>
       <div>
         <div class="input-field">
-          <input placeholder="" id="first_name" type="text" class="validate">
+          <input [(ngModel)]="userData.name" placeholder="" id="first_name" type="text" class="validate">
           <label for="first_name">Nombre</label>
         </div>
       </div>
       <div>
         <div class="input-field">
-          <input id="password1" type="password" class="validate">
+          <input [(ngModel)]="password" id="password1" type="password" class="validate">
           <label for="password1">Contraseña</label>
         </div>
       </div>
       <div>
         <div class="input-field">
-          <input id="password2" type="password" class="validate">
+          <input [(ngModel)]="confirmPassword" id="password2" type="password" class="validate">
           <label for="password2">Repetir contraseña</label>
         </div>
       </div>
@@ -42,7 +69,7 @@
     </div>
   </div>
   <div class="just-center p-t-50 ">
-    <button class="blu-btn">Guardar</button>
+    <button (click)="saveData()" class="blu-btn">Guardar</button>
   </div>
 
 </section>
