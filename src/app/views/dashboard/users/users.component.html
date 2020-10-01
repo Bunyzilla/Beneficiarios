@@ -6,14 +6,15 @@
     <div class="col-md-6 col-12 p-t-10">
       <div>
         <div class="search-input">
-          <input id="box-input" placeholder="Buscar beneficiario..." type="text" class="validate">
+          <input [(ngModel)]="searchValue"
+          (ngModelChange)="filterByUserName($event)" id="box-input" placeholder="Buscar beneficiario..." type="text" class="validate">
           <button class="search-btn"><i class="small material-icons p-l-5">search</i></button>
         </div>
       </div>
     </div>
     <div class="col-md-6 col-12 p-t-10">
       <div class="just-flexend">
-        <button class="outline-blu-btn" data-toggle="modal" data-target="#add-user"><i
+        <button class="outline-blu-btn" data-toggle="modal" data-target="#add-user" (click)="openAddUser()"><i
             class="small material-icons">add</i> Añadir usuario</button>
       </div>
     </div>
@@ -26,20 +27,24 @@
           <th>Correo</th>
           <th>Acciones</th>
         </tr>
-        <tr>
+        <tr *ngIf="usersList.length == 0">
+          Sin Usuarios
+        </tr>
+        <tr *ngFor="let user of usersListFiltered">
           <td>
-            <p>Juan Perez</p>
+            <p>{{user.name}}</p>
           </td>
           <td>
-            <p>juanp@gmail.com</p>
+            <p>{{user.email}}</p>
           </td>
           <td>
             <div class="display-flex">
               <div>
-                <button class="edit-btn" data-toggle="modal" data-target="#edit-user"><i class="tiny material-icons">create</i></button>
+                <button (click)="openEditUser(user)" class="edit-btn" data-toggle="modal" data-target="#edit-user"><i
+                    class="tiny material-icons">create</i></button>
               </div>
               <div class="p-l-15">
-                <button class="delete-btn" data-toggle="modal" data-target="#delete-modal"><i
+                <button (click)="selectUserForDelete(user)" class="delete-btn" data-toggle="modal" data-target="#delete-modal"><i
                     class="tiny material-icons">delete</i></button>
               </div>
             </div>
@@ -48,61 +53,196 @@
       </table>
     </div>
   </div>
-  <!--MODAL-->
-  <div class="modal fade" id="add-user" tabindex="-1" aria-labelledby="add-user" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header just-center">
-          <h5 class="modal-title black-20 fw-700" id="exampleModalLabel">Añadir usuario</h5>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-6 col-12 alitems-center just-center">
-              <div>
-                <div class="img-box">
-                  <label for="img" class="fake-btn-img">
-                    <img src="/assets/images/upload-img.svg">
-                    <div class="overlay">
-                      <p class="wht-20">subir foto</p>
+</section>
+
+<!-- Modals -->
+
+<!--add user-->
+<div class="modal fade" id="add-user" tabindex="-1" aria-labelledby="add-user" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header just-center">
+        <h5 class="modal-title black-20 fw-700" id="exampleModalLabel">Añadir usuario</h5>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6 col-12 alitems-center just-center">
+            <div>
+              <!-- <div class="img-box">
+                <label for="img" class="fake-btn-img">
+                  <img src="/assets/images/upload-img.svg">
+                  <div class="overlay">
+                    <p class="wht-20">subir foto</p>
+                  </div>
+                </label>
+                <div class="input-box">
+                  <input type="file" id="img" name="img" accept="image/*">
+                </div>
+              </div> -->
+
+              <div class="img-box">
+                <div *ngIf="selectedUser.haveImage == false" class="input-group mb-3"
+                  style="    justify-content: center;">
+                  <!-- file input, accepts images only. Detect when file has been picked/changed with Angular's native (change) event listener -->
+
+                  <label *ngIf="source.length == 0">
+                    <input (change)="updateSource($event)" type="file" id="img" name="img" accept="image/*"
+                      class="input-box">
+                    <label for="img" class="fake-btn-img">
+                      <img src="/assets/images/upload-img.svg">
+                      <div class="overlay">
+                        <p class="wht-20">subir foto</p>
+                      </div>
+                    </label>
+                  </label>
+
+
+                  <!-- img placeholder when a file has been picked. shows only when 'source' is not empty -->
+                  <label *ngIf="source.length > 0">
+                    <div class="">
+                      <img *ngIf="source.length > 0" [src]="source">
+                    </div>
+                    <div class="">
+                      <button *ngIf="source.length > 0" (click)="cancelImage()" class="">
+                          Eliminar</button>
                     </div>
                   </label>
-                  <div class="input-box">
-                    <input type="file" id="img" name="img" accept="image/*">
+                </div>
+
+                <div *ngIf="selectedUser.haveImage == true" class="input-group mb-3">
+                  <div class="">
+                    <img [src]="selectedUser.imageBlob">
+                  </div>
+                  <div class="">
+                    <button (click)="cancelImage()" class="">
+                      Eliminar</button>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6 col-12">
-              <div>
-                <div class="input-field">
-                  <input placeholder="" id="first_name" type="text" class="validate">
-                  <label for="first_name">Nombre</label>
+          </div>
+          <div class="col-md-6 col-12">
+            <div>
+              <div class="input-field">
+                <input [(ngModel)]="selectedUser.name" placeholder="" id="first_name" type="text" class="validate">
+                <label for="first_name">Nombre</label>
+              </div>
+            </div>
+            <div>
+              <div class="input-field">
+                <input [(ngModel)]="selectedUser.email" placeholder="" id="email" type="text" class="validate">
+                <label for="email">Correo</label>
+              </div>
+            </div>
+            <div>
+              <div class="input-field">
+                <input [(ngModel)]="password" id="password" type="password" class="validate">
+                <label for="password">Contraseña</label>
+              </div>
+            </div>
+            <div>
+              <div class="input-field">
+                <input [(ngModel)]="confirmPassword" id="password2" type="password" class="validate">
+                <label for="password2">Repetir contraseña</label>
+              </div>
+            </div>
+            <div>
+              <label class="black-16 fw-700">Puede añadir beneficiarios</label>
+              <div class="switch">
+                <label>
+                  No
+                  <input [(ngModel)]="selectedUser.canCreateBen" type="checkbox">
+                  <span class="lever"></span>
+                  Si
+                </label>
+              </div>
+            </div>
+            <div>
+              <label class="black-16 fw-700">Puede visualizar expedientes</label>
+              <div class="switch">
+                <label>
+                  No
+                  <input [(ngModel)]="selectedUser.canSeeExp" type="checkbox">
+                  <span class="lever"></span>
+                  Si
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button #closeAddUserBtn type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
+        <button (click)="saveData()" type="button" class="blu-btn">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- edit user -->
+<div class="modal fade" id="edit-user" tabindex="-1" aria-labelledby="add-user" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header just-center">
+        <h5 class="modal-title black-20 fw-700" id="exampleModalLabel">Editar usuario</h5>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6 col-12 alitems-center just-center">
+            <div>
+              <div class="img-box">
+                <div *ngIf="selectedUser.haveImage == false" class="input-group mb-3"
+                  style="    justify-content: center;">
+                  <!-- file input, accepts images only. Detect when file has been picked/changed with Angular's native (change) event listener -->
+
+                  <label *ngIf="source.length == 0">
+                    <input (change)="updateSource($event)" type="file" id="img" name="img" accept="image/*"
+                      class="input-box">
+                    <label for="img" class="fake-btn-img">
+                      <img src="/assets/images/upload-img.svg">
+                      <div class="overlay">
+                        <p class="wht-20">subir foto</p>
+                      </div>
+                    </label>
+                  </label>
+
+
+                  <!-- img placeholder when a file has been picked. shows only when 'source' is not empty -->
+                  <label *ngIf="source.length > 0">
+                    <div class="">
+                      <img *ngIf="source.length > 0" [src]="source">
+                    </div>
+                    <div class="">
+                      <button *ngIf="source.length > 0" (click)="cancelImage()" class="">
+                          Eliminar</button>
+                    </div>
+                  </label>
+                </div>
+
+                <div *ngIf="selectedUser.haveImage == true" class="input-group mb-3" >
+                  <div class="">
+                    <img [src]="selectedUser.imageBlob">
+                  </div>
+                  <div class="">
+                    <button (click)="cancelImage()" class="">
+                      Eliminar</button>
+                  </div>
                 </div>
               </div>
-              <div>
-                <div class="input-field">
-                  <input placeholder="" id="email" type="text" class="validate">
-                  <label for="email">Correo</label>
-                </div>
-              </div>
-              <div>
-                <div class="input-field">
-                  <input id="password" type="password" class="validate">
-                  <label for="password">Contraseña</label>
-                </div>
-              </div>
-              <div>
-                <div class="input-field">
-                  <input id="password2" type="password" class="validate">
-                  <label for="password2">Repetir contraseña</label>
-                </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div>
+              <div class="input-field">
+                <input [(ngModel)]="selectedUser.name" placeholder="" id="first_namen" type="text" class="validate">
+                <label for="first_namen">Nombre</label>
               </div>
               <div>
                 <label class="black-16 fw-700">Puede añadir beneficiarios</label>
                 <div class="switch">
                   <label>
                     No
-                    <input type="checkbox">
+                    <input [(ngModel)]="selectedUser.canCreateBen" type="checkbox">
                     <span class="lever"></span>
                     Si
                   </label>
@@ -113,7 +253,7 @@
                 <div class="switch">
                   <label>
                     No
-                    <input type="checkbox">
+                    <input [(ngModel)]="selectedUser.canSeeExp" type="checkbox">
                     <span class="lever"></span>
                     Si
                   </label>
@@ -122,91 +262,29 @@
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="blu-btn">Guardar</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button #closeEditUserBtn type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
+        <button (click)="saveData()" type="button" class="blu-btn">Guardar</button>
       </div>
     </div>
   </div>
-  <!--Modal-edit-->
-  <div class="modal fade" id="edit-user" tabindex="-1" aria-labelledby="add-user" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header just-center">
-          <h5 class="modal-title black-20 fw-700" id="exampleModalLabel">Editar usuario</h5>
+</div>
+
+<!-- confirm delete user -->
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="text-al-center">¿Seguro que deseas eleminar este usuario?</h3>
+        <div class="just-center p-t-10">
+          <img class="delete-img" src="/assets/images/sad_face.svg">
         </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-6 col-12 alitems-center just-center">
-              <div>
-                <div class="img-box">
-                  <label for="img" class="fake-btn-img">
-                    <img src="/assets/images/upload-img.svg">
-                    <div class="overlay">
-                      <p class="wht-20">subir foto</p>
-                    </div>
-                  </label>
-                  <div class="input-box">
-                    <input type="file" id="img" name="img" accept="image/*">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-12">
-              <div>
-                <div class="input-field">
-                  <input placeholder="" id="first_name" type="text" class="validate">
-                  <label for="first_name">Nombre</label>
-                </div>
-                <div>
-                  <label class="black-16 fw-700">Puede añadir beneficiarios</label>
-                  <div class="switch">
-                    <label>
-                      No
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Si
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <label class="black-16 fw-700">Puede visualizar expedientes</label>
-                  <div class="switch">
-                    <label>
-                      No
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Si
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="blu-btn">Guardar</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button #closeDeleteUserBtn type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
+        <button (click)="confirmDelete()" type="button" class="blu-btn">Aceptar</button>
       </div>
     </div>
   </div>
-  <!--Modal-delete-->
-  <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <h3 class="text-al-center">¿Seguro que deseas eleminar este usuario?</h3>
-          <div class="just-center p-t-10">
-            <img class="delete-img" src="/assets/images/sad_face.svg">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="blu-btn">Aceptar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+</div>

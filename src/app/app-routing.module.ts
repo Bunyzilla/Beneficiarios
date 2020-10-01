@@ -9,7 +9,6 @@ import { BlankComponent } from './layouts/blank/blank.component';
 import { LoginComponent } from './views/login/login.component';
 import { NotfoundComponent } from './views/404/not-found.component';
 import { LandingPageComponent } from './views/landing-page/landing-page.component';
-import { MainLoginComponent } from './views/main-login/main-login.component';
 import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.component';
 
 
@@ -34,10 +33,6 @@ export const Approutes: Routes = [
       {
         path: 'landing-page',
         component: LandingPageComponent
-      },
-      {
-        path: 'main-login',
-        component: MainLoginComponent
       },
       {
         path: 'forgotpassword',

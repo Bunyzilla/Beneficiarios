@@ -35,42 +35,30 @@ export class DataSessionService {
           //console.log(response);
           if (response.error == true) {
             console.log(response);
-            
           } else {
+            this.user = new User();
             this.user.idUser = response.data.user.idUser;
-            this.user.username = response.data.user.username;
             this.user.name = response.data.user.name;
-            this.user.type = response.data.user.type;
             this.user.email = response.data.user.email;
-            this.user.haveImage = response.data.user.haveImage;
+            this.user.password = response.data.user.password;
+            this.user.canCreateBen = response.data.user.canCreateBen;
+            this.user.canSeeExp = response.data.user.canSeeExp;
             this.user.role = response.data.user.role;
-            this.user.description = response.data.user.description;
+            this.user.haveImage = response.data.user.haveImage;
 
-            if (this.user.type == 0 ) {
-              console.log("cargando datos del live");
-              /* this.getBandsLed((response) => {
-                //console.log(this.elementsLed.bands);
-                this.getSetsLed((message) => {
-                  //this.showNotification(0, message, 3000, () => { });
-                  //this.setsListFiltered = Array.from(this.dataSessionService.elementsLed.setsList);
-                }, (messageError) => {
-                  //this.showNotification(1, messageError, 3000, () => { });
-                });
-              }, (err) => {
-                console.log(err);
-              }); */
-            } else if (this.user.type == 1 || this.user.type == 2){
-              /* this.getBandsManager((response) => {
-                //console.log(this.elementsManager.bands);
-              }, (err) => {
-                console.log(err);
-              }); */
-            }else{
+            if (this.user.role == 0 || this.user.role == 1) {
+
+              //posible TO DO : En caso de que se carguen cosas extras que se usen ent odo el sistema aquí es la parte
+              //donde se deberían de cargar
+              //console.log("carga de datos del usuario");
+              
+            } else{
 
             }
-            /* console.log(this.user); */
+            //console.log(this.user);
           }
         }, (error) => {
+          console.log("error")
           console.log(error);
         });
         
@@ -97,17 +85,19 @@ export class DataSessionService {
             this.navigateByUrl("/login");
             errorCallBack(new LogedResponse(false, response.message))
           } else {
+            this.user = new User();
             this.user.idUser = response.data.user.idUser;
-            this.user.username = response.data.user.username;
             this.user.name = response.data.user.name;
-            this.user.type = response.data.user.type;
             this.user.email = response.data.user.email;
-            this.user.haveImage = response.data.user.haveImage;
+            this.user.password = response.data.user.password;
+            this.user.canCreateBen = response.data.user.canCreateBen;
+            this.user.canSeeExp = response.data.user.canSeeExp;
             this.user.role = response.data.user.role;
-            this.user.description = response.data.user.description;
+            this.user.haveImage = response.data.user.haveImage;
 
             if (this.user.haveImage) {
-              /* this.apiDataService.getImage(this.baseURL.toString() +
+               // TO DO : completar correctamente la implementación en el servidor
+              this.apiDataService.getImage(this.baseURL.toString() +
                 'uploads/user-image/' + this.user.idUser.toString()).then((image) => {
                   this.user.imageBlob = image;
                   succesCallBack(new LogedResponse(false, "Con token y usario actualizado"));
@@ -115,7 +105,7 @@ export class DataSessionService {
                   console.log(error);
                   this.user.imageBlob = "";
                   errorCallBack(new LogedResponse(true, "A ocurrido un error obteniendo la imagen del usuario"));
-                }); */
+                });
                 succesCallBack(new LogedResponse(false, "Con token y usario actualizado"));
             } else {
               succesCallBack(new LogedResponse(false, "Con token y usario actualizado"));
@@ -123,12 +113,15 @@ export class DataSessionService {
             /* console.log(this.user); */
           }
         }, (error) => {
+          console.log("error 2");
+          
           console.log(error);
           errorCallBack(new LogedResponse(true, "A ocurrido un error"));
         });
       } else {
         if(this.user.haveImage == true){
-          /* this.apiDataService.getImage(this.baseURL.toString() +
+          // TO DO : completar correctamente la implementación en el servidor
+          this.apiDataService.getImage(this.baseURL.toString() +
           'uploads/user-image/' + this.user.idUser.toString()).then((image: string) => {
             this.user.imageBlob = image;
             //console.log(image);
@@ -137,7 +130,7 @@ export class DataSessionService {
             console.log(error);
             this.user.imageBlob = "";
             errorCallBack(new LogedResponse(true, "A ocurrido un error obteniendo la imagen del usuario"));
-          }); */
+          });
           succesCallBack(new LogedResponse(false, "Con token y usario actualizado"));
         }else{
           succesCallBack(new LogedResponse(false, "Sesion Con token e informacion de usuario"));
@@ -168,6 +161,6 @@ export class DataSessionService {
   logOut() {
     localStorage.setItem('token', "");
     this.token = localStorage.getItem('token');
-    this.route.navigateByUrl('/')
+    this.route.navigateByUrl('/login')
   }
 }

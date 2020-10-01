@@ -24,7 +24,6 @@ import { AppComponent } from './app.component';
 
 import { LoginComponent } from './views/login/login.component';
 import { LandingPageComponent } from './views/landing-page/landing-page.component';
-import { MainLoginComponent } from './views/main-login/main-login.component';
 import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.component';
 
 @NgModule({
@@ -40,7 +39,6 @@ import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.c
         //Pages
         LoginComponent,
         LandingPageComponent,
-        MainLoginComponent,
         ForgotpasswordComponent,
     ],
     imports: [
