@@ -3,23 +3,23 @@
     <p class="black-24 fw-700">Registro de despensa</p>
   </div>
   <div class="search-box">
-    <div class="row">
+    <div class="row p-b-20">
       <div class="col-md-6  col-12">
         <div class="search-input">
           <input id="box-input" placeholder="Buscar beneficiario..." type="text" class="validate">
-          <button class="search-btn"><i class="small material-icons p-l-5">search</i></button>
+          <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
       </div>
       <div class="col-md-2  col-12"></div>
       <div class="col-md-4  col-12 alitems-center just-flexend web-btn">
-        <button class="outline-blu-btn">Generar reporte <i class="small material-icons p-l-5">print</i></button>
+        <button class="outline-blu-btn">Generar reporte <i class="fas fa-print p-l-5"></i></button>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 col-12">
         <div class="row">
           <div class="col-md-6 col-12">
-            <select class="browser-default">
+            <!--<select class="browser-default">
               <option value="" disabled selected>Año</option>
               <option value="1">2011</option>
               <option value="2">2012</option>
@@ -31,7 +31,11 @@
               <option value="8">2018</option>
               <option value="9">2019</option>
               <option value="10">2020</option>
-            </select>
+            </select>-->
+            <ng-multiselect-dropdown [placeholder]="'Buscar por año'" [data]="dropdownList"
+              [(ngModel)]="selectedItems" [settings]="dropdownyearSettings" (onSelect)="onItemSelect($event)"
+              (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
           </div>
         </div>
       </div>
@@ -71,101 +75,101 @@
         </tr>
         <tr>
           <td><a class="a-link-black black-16 alitems-center" routerLink="/dashboard/profile"><i
-                class="small material-icons p-r-5">account_box</i>
+                class="fas fa-id-card-alt p-r-5"></i>
               Maria Perez</a></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">check</i>
+              <i class="fas fa-check"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">clear</i>
+              <i class="fas fa-times"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">check</i>
+              <i class="fas fa-check"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">check</i>
+              <i class="fas fa-check"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">check</i>
+              <i class="fas fa-check"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">remove_circle_outline</i>
+              <i class="fas fa-minus-circle"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">check</i>
+              <i class="fas fa-check"></i>
             </button></td>
         </tr>
         <tr>
           <td><a class="a-link-black black-16 alitems-center" routerLink="/dashboard/profile"><i
-                class="small material-icons p-r-5">account_box</i>
+                class="fas fa-id-card-alt p-r-5"></i>
               Maria Perez</a></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">check</i>
+              <i class="fas fa-check"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">clear</i>
+              <i class="fas fa-times"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">check</i>
+              <i class="fas fa-check"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">check</i>
+              <i class="fas fa-check"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">check</i>
+              <i class="fas fa-check"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">remove_circle_outline</i>
+              <i class="fas fa-minus-circle"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">check</i>
+              <i class="fas fa-check"></i>
             </button></td>
         </tr>
         <tr>
           <td><a class="a-link-black black-16 alitems-center" routerLink="/dashboard/profile"><i
-                class="small material-icons p-r-5">account_box</i>
+                class="fas fa-id-card-alt p-r-5"></i>
               Maria Perez</a></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">check</i>
+              <i class="fas fa-check"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">clear</i>
+              <i class="fas fa-times"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">check</i>
+              <i class="fas fa-check"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">check</i>
+              <i class="fas fa-check"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">check</i>
+              <i class="fas fa-check"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">remove_circle_outline</i>
+              <i class="fas fa-minus-circle"></i>
             </button></td>
           <td>
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">check</i>
+              <i class="fas fa-check"></i>
             </button></td>
         </tr>
       </table>
@@ -196,31 +200,31 @@
         </tr>
         <tr>
           <td><a class="a-link-black black-16 alitems-center" routerLink="/dashboard/profile"><i
-                class="small material-icons p-r-5">account_box</i>
+                class="fas fa-id-card-alt"></i>
               Maria Perez</a></td>
           <td class="text-al-center">
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">check</i>
+              <i class="fas fa-check"></i>
             </button>
           </td>
         </tr>
         <tr>
           <td><a class="a-link-black black-16 alitems-center" routerLink="/dashboard/profile"><i
-                class="small material-icons p-r-5">account_box</i>
+                class="fas fa-id-card-alt"></i>
               Maria Perez</a></td>
           <td class="text-al-center">
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">clear</i>
+              <i class="fas fa-times"></i>
             </button>
           </td>
         </tr>
         <tr>
           <td><a class="a-link-black black-16 alitems-center" routerLink="/dashboard/profile"><i
-                class="small material-icons p-r-5">account_box</i>
+                class="fas fa-id-card-alt"></i>
               Maria Perez</a></td>
           <td class="text-al-center">
             <button class="info-modal-btn">
-              <i class="small material-icons p-l-5">remove_circle_outline</i>
+              <i class="fas fa-minus-circle"></i>
             </button>
           </td>
         </tr>
@@ -234,10 +238,10 @@
         <div class="modal-header just-center">
           <h5 class="modal-title black-20 fw-700" id="exampleModalLabel">Registrar asistencia</h5>
         </div>
-        <div class="modal-body">
+        <div class="modal-body p-10-30">
           <div class="search-input">
             <input id="box-input" placeholder="Buscar beneficiario..." type="text" class="validate">
-            <button class="search-btn"><i class="small material-icons p-l-5">search</i></button>
+            <button class="search-btn"><i class="fas fa-search"></i></button>
           </div>
           <div class="p-t-30">
             <div class="row m-0">
@@ -322,12 +326,16 @@
           </div>
           <div class="p-t-20">
             <p class="black-16 p-b-5">¿Quién recogió la despensa?</p>
-            <select class="browser-default">
+            <!--<select class="browser-default">
               <option value="" disabled selected>Escoge una persona</option>
               <option value="1">Maria</option>
               <option value="2">José</option>
               <option value="3">Ana</option>
-            </select>
+            </select>-->
+            <ng-multiselect-dropdown [placeholder]="'Buscar persona'" [data]="dropdownList"
+              [(ngModel)]="selectedItems" [settings]="dropdownpersonSettings" (onSelect)="onItemSelect($event)"
+              (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
           </div>
           <div class="p-t-20">
             <p class="black-16 p-b-5">Añadir justificación</p>

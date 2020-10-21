@@ -48,7 +48,7 @@
   background-color: white;
   color: #02537e;
   border: solid 2px #02537e;
-  padding: 5px;
+  padding: 5px 10px;
   border-radius: 10px;
   transition: .3s ease-in-out;
   &:hover{
@@ -64,7 +64,7 @@
   background-color: white;
   color: red;
   border: solid 2px red;
-  padding: 5px;
+  padding: 5px 10px;
   border-radius: 10px;
   transition: .3s ease-in-out;
   &:hover{
@@ -81,3 +81,5 @@
   width: 100%;
   height: auto;
 }
+
+

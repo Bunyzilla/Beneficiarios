@@ -8,27 +8,32 @@
     </div>
     <div class="col-sm-6 col-12 just-flexend alitems-center btn-crud">
       <div class="p-r-10">
-        <select class="browser-default">
+        <!--<select class="browser-default">
           <option value="" disabled selected>Escoge un formulario</option>
           <option value="1">Formulario 2015</option>
           <option value="2">Formulario 2016</option>
           <option value="3">Formulario 2017</option>
           <option value="4">Formulario 2018</option>
           <option value="5">Formulario 2019</option>
-        </select>
+        </select>-->
+        <ng-multiselect-dropdown [placeholder]="'Buscar formulario'" [data]="dropdownList" [(ngModel)]="selectedItems"
+          [settings]="dropdownformSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+        </ng-multiselect-dropdown>
       </div>
       <div class="p-r-10">
-        <button class="edit-btn" data-toggle="modal" data-target="#edit-modal"><i
-            class="small material-icons">create</i></button>
+        <button class="edit-btn" data-toggle="modal" data-target="#edit-modal">
+          <i class="fas fa-edit"></i>
+        </button>
       </div>
       <div class="p-r-10">
-        <button class="trash-btn" data-toggle="modal" data-target="#delete-modal"><i
-            class="small material-icons">delete</i></button>
+        <button class="trash-btn" data-toggle="modal" data-target="#delete-modal">
+          <i class="fas fa-trash"></i>
+        </button>
       </div>
     </div>
   </div>
-  <div class="side-line"></div>
-  <div class="row p-t-20">
+  <hr>
+  <div class="row">
     <div class="col-sm-4 col-12">
       <img class="profile-img" src="/assets/images/dummy-profile.svg">
     </div>
@@ -38,7 +43,8 @@
       <p class="black-16"><span class="fw-700">Apellido materno:</span>Rosales</p>
       <p class="black-16"><span class="fw-700">Ocupación:</span>Estudiante</p>
       <div class="tittle">
-        <button class="outline-blu-btn" data-toggle="modal" data-target="#evidence-modal">Ver evidencias</button>
+        <button class="outline-blu-btn" data-toggle="modal" data-target="#evidence-modal"><i
+            class="fas fa-image p-r-5"></i> Ver evidencias </button>
       </div>
     </div>
     <div class="col-sm-4 col-12">
@@ -48,11 +54,12 @@
       <p class="black-16"><span class="fw-700">Fecha del último estudio:</span>20/07/2020</p>
     </div>
     <div class="col-sm-4 col-12 movil-btn">
-      <button>Ver evidencias</button>
+      <button class="outline-blu-btn" data-toggle="modal" data-target="#evidence-modal"><i
+          class="fas fa-image p-r-5"></i> Ver evidencias</button>
     </div>
   </div>
-  <div class="side-line"></div>
-  <div class="row p-t-20">
+  <hr>
+  <div class="row">
     <div class="col-sm-4 col-12">
       <p class="black-16"><span class="fw-700">Sexo:</span> Masculino</p>
       <p class="black-16"><span class="fw-700">Teléfono 1:</span>6141234567</p>
@@ -67,8 +74,8 @@
       <p class="black-16"><span class="fw-700">Adulto mayor(60 años):</span>No</p>
     </div>
   </div>
-  <div class="side-line"></div>
-  <div class="row p-t-20">
+  <hr>
+  <div class="row">
     <div class="col-sm-4 col-12">
       <p class="black-16"><span class="fw-700">Servicio médico:</span> ISSTE</p>
       <p class="black-16"><span class="fw-700">Enfermedades crónicas:</span>Diabetis, tiroides</p>
@@ -80,8 +87,8 @@
       <p class="black-16"><span class="fw-700">Tipo de enfermedad:</span>Diabetis, tiroides</p>
     </div>
   </div>
-  <div class="side-line"></div>
-  <div class="row p-t-20">
+  <hr>
+  <div class="row">
     <div class="col-sm-4 col-12">
       <p class="black-16"><span class="fw-700">Domicilio:</span> Monte Everest 12345 Quintas Carolinas</p>
       <p class="black-16"><span class="fw-700">CURP:</span>SKDU6F56FDC56</p>
@@ -115,7 +122,7 @@
       <p class="black-16"><span class="fw-700">Otros:</span>$1600</p>
     </div>
   </div>
-  <div>
+  <div class="p-t-20">
     <p class="black-18 fw-700">Familiares</p>
   </div>
   <div>
@@ -146,17 +153,17 @@
       </table>
     </div>
   </div>
-  <div class="row p-t-20">
+  <div class="row">
     <div class="col-sm-4 col-12">
       <p class="black-18 fw-700">Bienes familiares</p>
-      <p><span><i class="small material-icons">check</i></span>Estuda o parrilla eléctrica</p>
-      <p><span><i class="small material-icons">clear</i></span>Refrigerador</p>
-      <p><span><i class="small material-icons">clear</i></span>Horno de microondas</p>
-      <p><span><i class="small material-icons">clear</i></span>Lavadora</p>
-      <p><span><i class="small material-icons">check</i></span>Automóvil</p>
-      <p><span><i class="small material-icons">check</i></span>Computadora</p>
-      <p><span><i class="small material-icons">clear</i></span>Televisión</p>
-      <p><span><i class="small material-icons">check</i></span>Aire acondicionado</p>
+      <p><span><i class="fas fa-check p-r-5"></i></span>Estuda o parrilla eléctrica</p>
+      <p><span><i class="fas fa-times p-r-5"></i></span>Refrigerador</p>
+      <p><span><i class="fas fa-times p-r-5"></i></span>Horno de microondas</p>
+      <p><span><i class="fas fa-times p-r-5"></i></span>Lavadora</p>
+      <p><span><i class="fas fa-check p-r-5"></i></span>Automóvil</p>
+      <p><span><i class="fas fa-check p-r-5"></i></span>Computadora</p>
+      <p><span><i class="fas fa-times p-r-5"></i></span>Televisión</p>
+      <p><span><i class="fas fa-check p-r-5"></i></span>Aire acondicionado</p>
     </div>
     <div class="col-sm-4 col-12">
       <p class="black-16"><span class="fw-700">Tipo de vivienda:</span>Propia</p>
@@ -166,8 +173,8 @@
       <p class="black-16"><span class="fw-700">Tiempo de vivir en la vivienda:</span>1 año</p>
     </div>
   </div>
-  <div class="side-line"></div>
-  <div class="row p-t-20">
+  <hr>
+  <div class="row">
     <div class="col-sm-4 col-12">
       <p class="black-18 fw-700">Condiciones de la vivienda</p>
       <p class="black-16"><span class="fw-700">Muros:</span>Ladrillos</p>
@@ -176,21 +183,35 @@
       <p class="black-16"><span class="fw-700">Condiciones de los muebles:</span>Regular</p>
     </div>
     <div class="col-sm-8 col-12">
-      <p class="black-16 fw-700">Descripción de la casa</p>
+      <p class="black-16 fw-700"><i class="fas fa-house-user p-r-5"></i> Descripción de la casa</p>
       <p class="black-14">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pretium at sem ut euismod.
         Aenean venenatis sed lacus in iaculis. Vestibulum non nisl id magna blandit fermentum et ut dolor. Proin
         placerat, orci sit amet tempus accumsan, libero mi pharetra est, at venenatis turpis lorem ultrices sem. </p>
     </div>
   </div>
-  <div>
-    <ul class="collapsible">
-      <li>
-        <div class="collapsible-header">
-          <i class="material-icons">arrow_drop_down</i>Diagnóstico del estudio socioeconómico
+  <div class="p-t-20">
+    <div class="accordion" id="accordionExample">
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+              data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <i class="fas fa-folder"></i> Diagnostico de estudio socio economico
+            </button>
+          </h2>
         </div>
-        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-      </li>
-    </ul>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
+            officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3
+            wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+            Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
+            excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt
+            you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!--delete-modal-->
   <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -232,20 +253,20 @@
               </div>
               <div class="p-t-30">
                 <div class="input-field">
+                  <label class="p-t-5" for="first_name">Nombre(s)</label>
                   <input placeholder="" id="first_name" type="text" class="validate">
-                  <label for="first_name">Nombre(s)</label>
                 </div>
               </div>
               <div>
                 <div class="input-field">
+                  <label class="p-t-5" for="paterno">Apellido paterno</label>
                   <input placeholder="" id="paterno" type="text" class="validate">
-                  <label for="paterno">Apellido paterno</label>
                 </div>
               </div>
               <div>
                 <div class="input-field">
+                  <label class="p-t-5" for="materno">Apellido materno</label>
                   <input placeholder="" id="materno" type="text" class="validate">
-                  <label for="materno">Apellido materno</label>
                 </div>
               </div>
             </div>
@@ -254,7 +275,10 @@
               <div class="p-t-10">
                 <div class="input-box">
                   <label class="black-16 fw-700">Fecha de nacimiento</label>
-                  <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+                  <div>
+                    <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01"
+                      max="2018-12-31">
+                  </div>
                 </div>
               </div>
               <div class="radio-inputs">
@@ -272,37 +296,44 @@
               </div>
               <div class="p-t-10">
                 <label class="black-16 fw-700">Estado civil</label>
-                <select class="browser-default">
+                <!--<select class="browser-default">
                   <option value="" disabled selected>Escoge una opción</option>
                   <option value="1">Soltero/a</option>
                   <option value="2">Casado/a</option>
                   <option value="3">Viudo/a</option>
                   <option value="4">Divorciado/a</option>
                   <option value="5">Compromiso</option>
-                </select>
+                </select>-->
+                <ng-multiselect-dropdown [placeholder]="'Buscar estado civil'" [data]="dropdownList"
+                  [(ngModel)]="selectedItems" [settings]="dropdowncivilstateSettings" (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown>
               </div>
               <div>
                 <div class="input-field">
+                  <label class="p-t-5" for="icon_telephone1">Teléfono 1</label>
                   <input id="icon_telephone1" type="tel" class="validate">
-                  <label for="icon_telephone1">Teléfono 1</label>
                 </div>
               </div>
               <div>
                 <div class="input-field">
+                  <label class="p-t-5" for="icon_telephone">Teléfono 2</label>
                   <input id="icon_telephone" type="tel" class="validate">
-                  <label for="icon_telephone">Teléfono 2</label>
                 </div>
               </div>
               <div>
-                <label class="black-16 fw-700">Activo</label>
-                <div class="switch">
-                  <label>
-                    No
-                    <input type="checkbox">
-                    <span class="lever"></span>
-                    Si
-                  </label>
+                <div>
+                  <label class="black-16 fw-700">Activo</label>
                 </div>
+                <div class="alitems-center">
+                  <label class="p-r-5 m-0">No</label>
+                  <div class="custom-control custom-switch">
+
+                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                    <label class="custom-control-label" for="customSwitch1">Si</label>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -321,13 +352,17 @@
         <div class="modal-body">
           <h3 class="text-al-center">Evidencias</h3>
           <div class="p-t-10">
-            <select class="browser-default">
+            <!--<select class="browser-default">
               <option value="" disabled selected>Escoge el tipo de evidencia</option>
               <option value="1">Fotos del estudio</option>
               <option value="2">Fotos del beneficiario</option>
               <option value="3">Fotos de la vivienda </option>
               <option value="4">Fotos de comprobantes</option>
-            </select>
+            </select>-->
+            <ng-multiselect-dropdown [placeholder]="'Buscar tipo de evidencia'" [data]="dropdownList"
+              [(ngModel)]="selectedItems" [settings]="dropdownevidenceSettings" (onSelect)="onItemSelect($event)"
+              (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
           </div>
           <div class="p-t-20">
             <p class="black-16">Cantidad de fotos: 3</p>

@@ -40,3 +40,19 @@
 .fake-btn-img:hover .overlay{
   opacity: 1 !important;
 }
+
+.delete-btn{
+  background-color: white;
+  color: red;
+  border: solid 2px red;
+  padding: 5px 10px;
+  border-radius: 10px;
+  transition: .3s ease-in-out;
+  &:hover{
+    color: white;
+    background-color: red;
+  }
+  &:focus{
+    outline: none;
+  }
+}

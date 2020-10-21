@@ -12,7 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AddProfileComponent } from './add-profile/add-profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { UsersComponent } from './users/users.component';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 //Components
 
 
@@ -21,6 +21,7 @@ import { UsersComponent } from './users/users.component';
         FormsModule,
         CommonModule,
         RouterModule.forChild(DashboardRoutes),
+        NgMultiSelectDropDownModule.forRoot()
     ],
     declarations: [
         //Views - Administrator Dashboard

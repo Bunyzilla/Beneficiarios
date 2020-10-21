@@ -25,10 +25,10 @@
             <!-- img placeholder when a file has been picked. shows only when 'source' is not empty -->
             <label *ngIf="source.length > 0">
               <div class="">
-                <img *ngIf="source.length > 0" [src]="source">
+                <img class="profile-img" *ngIf="source.length > 0" [src]="source">
               </div>
-              <div class="">
-                <button  (click)="cancelImage()" class="">
+              <div class="p-t-20 just-center">
+                <button  (click)="cancelImage()" class="delete-btn">
                     Eliminar</button>
               </div>
             </label>
@@ -36,10 +36,10 @@
 
           <div *ngIf="userData.haveImage == true" class="input-group mb-3" >
             <div class="">
-              <img [src]="userData.imageBlob">
+              <img class="profile-img" [src]="userData.imageBlob">
             </div>
-            <div class="">
-              <button (click)="cancelImage()" class="">
+            <div class="p-t-20 just-center">
+              <button (click)="cancelImage()" class="delete-btn">
                 Eliminar</button>
             </div>
           </div>
@@ -47,20 +47,20 @@
       </div>
       <div>
         <div class="input-field">
-          <input [(ngModel)]="userData.name" placeholder="" id="first_name" type="text" class="validate">
           <label for="first_name">Nombre</label>
+          <input [(ngModel)]="userData.name" placeholder="" id="first_name" type="text" class="validate">
         </div>
       </div>
       <div>
         <div class="input-field">
+          <label class="p-t-10" for="password1">Contraseña</label>
           <input [(ngModel)]="password" id="password1" type="password" class="validate">
-          <label for="password1">Contraseña</label>
         </div>
       </div>
       <div>
         <div class="input-field">
+          <label class="p-t-10" for="password2">Repetir contraseña</label>
           <input [(ngModel)]="confirmPassword" id="password2" type="password" class="validate">
-          <label for="password2">Repetir contraseña</label>
         </div>
       </div>
     </div>

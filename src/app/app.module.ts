@@ -26,6 +26,7 @@ import { LoginComponent } from './views/login/login.component';
 import { LandingPageComponent } from './views/landing-page/landing-page.component';
 import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.component';
 
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 @NgModule({
     declarations: [
         AppComponent,
@@ -48,8 +49,8 @@ import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.c
         FormsModule,
         HttpClientModule,
         ToastrModule.forRoot(),
-        RouterModule.forRoot(Approutes, { useHash: false })
-        //NgMultiSelectDropDownModule.forRoot(),
+        RouterModule.forRoot(Approutes, { useHash: false }),
+        NgMultiSelectDropDownModule.forRoot()
     ],
     providers: [
         {

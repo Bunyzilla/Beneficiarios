@@ -1,66 +1,67 @@
-.trash-btn{
-  background: #CC1313;
-  color: #FFFFFF;
+.trash-btn {
+  background: #cc1313;
+  color: #ffffff;
   border: none;
   border-radius: 10px;
-  padding: 5px;
+  padding: 5px 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   transition: 0.2s ease-in-out;
-  &:focus{
+  &:focus {
     outline: none;
   }
-  &:hover{
-    background: #BA1212;
+  &:hover {
+    background: #ba1212;
   }
 }
-.edit-btn{
-  background: #6341CA;
-  color: #FFFFFF;
+.edit-btn {
+  background: #6341ca;
+  color: #ffffff;
   border: none;
   border-radius: 10px;
-  padding: 5px;
+  padding: 5px 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   transition: 0.2s ease-in-out;
-  &:focus{
+  &:focus {
     outline: none;
   }
-  &:hover{
-    background: #5235A9;
+  &:hover {
+    background: #5235a9;
   }
 }
-.profile-img{
-  max-width: 190px;
+.profile-img {
+  max-width: 200px;
   width: 100%;
   height: auto;
 }
-.carousel{
+.carousel {
   background-color: black;
 }
-.carousel-inner{
+.carousel-inner {
   height: 100% !important;
 }
-.carousel .carousel-item{
+.carousel .carousel-item {
   visibility: visible !important;
   width: 100%;
   height: 100%;
-  img{
+  img {
     height: 100%;
   }
 }
-.carousel-control-prev, .carousel-control-next{
+.carousel-control-prev,
+.carousel-control-next {
   background: black;
-  color: #000!important;
+  color: #000 !important;
 }
 
-.img-box{
+.img-box {
   display: flex;
   justify-content: center;
   position: relative;
-  input{
-    width:142px;
+  input {
+    width: 142px;
     overflow: hidden;
   }
-  .input-box{
+  .input-box {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -68,13 +69,13 @@
     opacity: 0;
     z-index: 0;
   }
-  .fake-btn-img{
+  .fake-btn-img {
     position: relative;
     cursor: pointer;
     z-index: 1;
   }
 }
-.overlay{
+.overlay {
   position: absolute;
   bottom: 50%;
   left: 50%;
@@ -83,13 +84,26 @@
   height: 50%;
   width: 100%;
   opacity: 0;
-  transition: .5s ease;
+  transition: 0.5s ease;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 0 0 150px 150px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.fake-btn-img:hover .overlay{
+.fake-btn-img:hover .overlay {
   opacity: 1 !important;
+}
+
+.card-header {
+  background-color: transparent !important;
+}
+.btn-link {
+  color: #02537e;
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+.modal-body{
+  padding: 20px 30px;
 }

@@ -4,19 +4,19 @@
 
 <nav class=" navegador just-between alitems-center">
     <div class="just-center alitems-center p-l-20">
-      <div class="h-60px">
+      <div class="h-60px alitems-center">
         <button class="white-btn" (click)="utilitiesService.showSidebar()">
-          <i class="large material-icons">dehaze</i>
+          <i class="fas fa-bars"></i>
         </button>
       </div>
       <div class="tittle">
-        <p class="wht-20">Control de Beneficiarios</p>
+        <p class="wht-20 p-l-5">Control de Beneficiarios</p>
       </div>
     </div>
     <div class="p-r-30">
       <div class="dropdown">
         <button class="transparent-btn just-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="large material-icons p-r-5">person</i>{{dataSessionService.user.name}}
+          <i class="fas fa-user p-r-5"></i><span>{{dataSessionService.user.name}}</span>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="/#/dashboard/settings">Ajustes</a>

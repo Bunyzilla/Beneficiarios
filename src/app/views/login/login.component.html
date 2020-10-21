@@ -6,17 +6,25 @@
         </div>
         <div>
           <div class="input-field">
-            <input [(ngModel)]="email" id="email" type="email" class="validate">
-            <label for="email">Correo</label>
+            <div>
+              <label for="email">Correo</label>
+            </div>
+            <div>
+              <input [(ngModel)]="email" id="email" type="email" class="validate">
+            </div>
           </div>
         </div>
-        <div class="p-t-10">
+        <div class="p-t-20">
           <div class="input-field">
-            <input [(ngModel)]="password"  id="password" type="password" class="validate">
-            <label for="password">Contraseña</label>
+            <div>
+              <label for="password">Contraseña</label>
+            </div>
+            <div>
+              <input [(ngModel)]="password"  id="password" type="password" class="validate">
+            </div>
           </div>
         </div>
-        <div class="just-flexend p-b-50">
+        <div class="just-flexend p-b-50 p-t-20">
           <a routerLink="/forgotpassword" class="a-link-pas">¿Olvidaste tu contraseña?</a>
         </div>
         <div class="just-center">
@@ -25,9 +33,9 @@
       </div>
       <div class="back-btn">
         <a routerLink="/landing-page">
-          <i class="large material-icons">arrow_back</i>
+          <i class="fas fa-arrow-left"></i>
         </a>
       </div>
     </div>
 </section>
-  
+
