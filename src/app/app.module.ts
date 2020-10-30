@@ -27,6 +27,12 @@ import { LandingPageComponent } from './views/landing-page/landing-page.componen
 import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.component';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgbModule , NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
+
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+ 
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+ 
 @NgModule({
     declarations: [
         AppComponent,
@@ -50,7 +56,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
         HttpClientModule,
         ToastrModule.forRoot(),
         RouterModule.forRoot(Approutes, { useHash: false }),
-        NgMultiSelectDropDownModule.forRoot()
+        NgMultiSelectDropDownModule.forRoot(),
+        NgxMaskModule.forRoot(),
+        NgbModule,
     ],
     providers: [
         {

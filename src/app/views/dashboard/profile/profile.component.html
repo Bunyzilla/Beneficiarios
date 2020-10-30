@@ -1,25 +1,16 @@
 <section class="main input-class">
   <div class="text-al-center p-b-20 ">
-    <p class="black-24 fw-700">Expediente de Juan Perez</p>
+    <p class="black-24 fw-700">Expediente de {{dataSessionService.openBeneficiary.name}}
+      {{dataSessionService.openBeneficiary.lastName}}</p>
   </div>
   <div class="row">
     <div class="col-sm-6 col-12 alitems-center">
-      <p class="black-20 fw-700">Activo</p>
+      <p class="black-20 fw-700">
+        <span *ngIf="dataSessionService.openBeneficiary.active == true">Activo</span>
+        <span *ngIf="dataSessionService.openBeneficiary.active == false">Inactivo</span>
+      </p>
     </div>
     <div class="col-sm-6 col-12 just-flexend alitems-center btn-crud">
-      <div class="p-r-10">
-        <!--<select class="browser-default">
-          <option value="" disabled selected>Escoge un formulario</option>
-          <option value="1">Formulario 2015</option>
-          <option value="2">Formulario 2016</option>
-          <option value="3">Formulario 2017</option>
-          <option value="4">Formulario 2018</option>
-          <option value="5">Formulario 2019</option>
-        </select>-->
-        <ng-multiselect-dropdown [placeholder]="'Buscar formulario'" [data]="dropdownList" [(ngModel)]="selectedItems"
-          [settings]="dropdownformSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
-        </ng-multiselect-dropdown>
-      </div>
       <div class="p-r-10">
         <button class="edit-btn" data-toggle="modal" data-target="#edit-modal">
           <i class="fas fa-edit"></i>
@@ -34,202 +25,464 @@
   </div>
   <hr>
   <div class="row">
-    <div class="col-sm-4 col-12">
+    <div *ngIf="dataSessionService.openBeneficiary.haveImage == false" class="col-sm-4 col-12">
       <img class="profile-img" src="/assets/images/dummy-profile.svg">
     </div>
-    <div class="col-sm-4 col-12">
-      <p class="black-16"><span class="fw-700">Nombre(s):</span> Juan</p>
-      <p class="black-16"><span class="fw-700">Apellido paterno:</span>Perez</p>
-      <p class="black-16"><span class="fw-700">Apellido materno:</span>Rosales</p>
-      <p class="black-16"><span class="fw-700">Ocupación:</span>Estudiante</p>
-      <div class="tittle">
-        <button class="outline-blu-btn" data-toggle="modal" data-target="#evidence-modal"><i
-            class="fas fa-image p-r-5"></i> Ver evidencias </button>
-      </div>
+    <div *ngIf="dataSessionService.openBeneficiary.haveImage == true" class="col-sm-4 col-12">
+      <img class="profile-img" [src]="dataSessionService.openBeneficiary.imageBlob">
     </div>
     <div class="col-sm-4 col-12">
-      <p class="black-16"><span class="fw-700">Folio del beneficiario:</span> 353535</p>
+      <p class="black-16"><span class="fw-700">Nombre(s):</span> {{dataSessionService.openBeneficiary.name}}</p>
+      <p class="black-16"><span class="fw-700">Apellido paterno:</span>{{dataSessionService.openBeneficiary.lastName}}
+      </p>
+      <p class="black-16"><span class="fw-700">Apellido
+          materno:</span>{{dataSessionService.openBeneficiary.motherLastName}}</p>
+      <p class="black-16">
+        <span class="fw-700">Ocupación:</span>
+        {{dataSessionService.openBeneficiary.occupation}}
+      </p>
+
+    </div>
+    <div class="col-sm-4 col-12">
+      <p class="black-16"><span class="fw-700">Folio del beneficiario:</span>
+        {{dataSessionService.openBeneficiary.idBeneficiary}}</p>
       <p class="black-16"><span class="fw-700">Folio del estudio:</span>353535</p>
+      <!-- TO DO -->
       <p class="black-16"><span class="fw-700">Fecha de primer despensa:</span>20/07/2020</p>
+      <!-- TO DO -->
       <p class="black-16"><span class="fw-700">Fecha del último estudio:</span>20/07/2020</p>
     </div>
     <div class="col-sm-4 col-12 movil-btn">
-      <button class="outline-blu-btn" data-toggle="modal" data-target="#evidence-modal"><i
-          class="fas fa-image p-r-5"></i> Ver evidencias</button>
+
     </div>
   </div>
   <hr>
   <div class="row">
     <div class="col-sm-4 col-12">
-      <p class="black-16"><span class="fw-700">Sexo:</span> Masculino</p>
-      <p class="black-16"><span class="fw-700">Teléfono 1:</span>6141234567</p>
-      <p class="black-16"><span class="fw-700">Teléfono 2:</span>6141234567</p>
-      <p class="black-16"><span class="fw-700">Estado civil:</span>Soltero</p>
-      <p class="black-16"><span class="fw-700">Escolaridad:</span>Secundaria terminada</p>
-      <p class="black-16"><span class="fw-700">Apoyos adicionales:</span>...</p>
+      <p class="black-16">
+        <span class="fw-700">Sexo:</span>
+        <span *ngIf="dataSessionService.openBeneficiary.gender == 0">Femenino</span>
+        <span *ngIf="dataSessionService.openBeneficiary.gender == 1">Masculino</span>
+      </p>
+      <p class="black-16"><span class="fw-700">Teléfono
+          1:</span>{{dataSessionService.openBeneficiary.phone1 | mask: '(000) 000-0000'}}</p>
+      <p class="black-16"><span class="fw-700">Teléfono
+          2:</span>{{dataSessionService.openBeneficiary.phone2 | mask: '(000) 000-0000'}}</p>
+      <p class="black-16">
+        <span class="fw-700">Estado civil:</span>
+        <span *ngIf="dataSessionService.openBeneficiary.civilStatus == -1">Sin escoger</span>
+        <span *ngIf="dataSessionService.openBeneficiary.civilStatus == 0">Soltero/a</span>
+        <span *ngIf="dataSessionService.openBeneficiary.civilStatus == 1">Casado/a</span>
+        <span *ngIf="dataSessionService.openBeneficiary.civilStatus == 2">Viudo/a</span>
+        <span *ngIf="dataSessionService.openBeneficiary.civilStatus == 3">Divorciado/a</span>
+        <span *ngIf="dataSessionService.openBeneficiary.civilStatus == 4">Compromiso</span>
+      </p>
+      <p class="black-16">
+        <span class="fw-700">Escolaridad:</span>
+        <span *ngIf="dataSessionService.openBeneficiary.scholarship == -1">Sin escoger</span>
+        <span *ngIf="dataSessionService.openBeneficiary.scholarship == 0">Educación primaria</span>
+        <span *ngIf="dataSessionService.openBeneficiary.scholarship == 1">Educación secundaria</span>
+        <span *ngIf="dataSessionService.openBeneficiary.scholarship == 2">Educación media superior</span>
+        <span *ngIf="dataSessionService.openBeneficiary.scholarship == 3">Educación superior</span>
+      </p>
+      <!-- <p class="black-16"><span class="fw-700">Apoyos adicionales:</span>...</p> -->
     </div>
     <div class="col-sm-4 col-12">
-      <p class="black-16"><span class="fw-700">Fecha de nacimiento:</span> 24/05/1984</p>
-      <p class="black-16"><span class="fw-700">Edad:</span>58</p>
-      <p class="black-16"><span class="fw-700">Adulto mayor(60 años):</span>No</p>
+      <p class="black-16"><span class="fw-700">CURP:</span>{{dataSessionService.openBeneficiary.curp}}</p>
+      <p class="black-16"><span class="fw-700">RFC:</span>{{dataSessionService.openBeneficiary.rfc}}</p>
+      <p class="black-16">
+        <span class="fw-700">Fecha de nacimiento:</span>
+        {{dataSessionService.openBeneficiary.birthDay.getUTCDate()}}/{{dataSessionService.openBeneficiary.birthDay.getUTCMonth()+1}}/{{dataSessionService.openBeneficiary.birthDay.getUTCFullYear()}}
+      </p>
+      <p class="black-16"><span class="fw-700">Edad:</span>
+        {{utilitiesService.edad(dataSessionService.openBeneficiary.birthDay)}}
+      </p>
+      <p class="black-16"><span class="fw-700">Adulto mayor(60 años):</span>
+        <span *ngIf="utilitiesService.edad(dataSessionService.openBeneficiary.birthDay) > 60">Si</span>
+        <span *ngIf="utilitiesService.edad(dataSessionService.openBeneficiary.birthDay) <= 60">No</span>
+      </p>
     </div>
   </div>
   <hr>
+
   <div class="row">
-    <div class="col-sm-4 col-12">
-      <p class="black-16"><span class="fw-700">Servicio médico:</span> ISSTE</p>
-      <p class="black-16"><span class="fw-700">Enfermedades crónicas:</span>Diabetis, tiroides</p>
-      <p class="black-16"><span class="fw-700">Persona con capacidades diferentes:</span>Si</p>
-      <p class="black-16"><span class="fw-700">Tipo de discapacidad:</span> silla de ruedas</p>
+    <div class="col-sm-6 col-12 alitems-center">
+      <p class="black-20 fw-700">
+        <span *ngIf="selectedForm.idEconomicStudyForm == -1" disabled>Escoge
+          un formulario</span>
+        <span *ngIf="selectedForm.idEconomicStudyForm != -1">
+          {{selectedForm.creationDate.getUTCDate()}}/{{selectedForm.creationDate.getUTCMonth()+1}}/{{selectedForm.creationDate.getUTCFullYear()}}
+        </span>
+      </p>
+      <!-- <p class="black-20 fw-700">Sin Formularios</p> -->
     </div>
-    <div class="col-sm-4 col-12">
-      <p class="black-16"><span class="fw-700">Enfermedad que imposibilida trabajar:</span> Si</p>
-      <p class="black-16"><span class="fw-700">Tipo de enfermedad:</span>Diabetis, tiroides</p>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-sm-4 col-12">
-      <p class="black-16"><span class="fw-700">Domicilio:</span> Monte Everest 12345 Quintas Carolinas</p>
-      <p class="black-16"><span class="fw-700">CURP:</span>SKDU6F56FDC56</p>
-      <p class="black-16"><span class="fw-700">RFC:</span>SKDU6F56FDC56</p>
-      <p class="black-16"><span class="fw-700">Ingreso Mensual:</span>$1600</p>
-      <p class="black-16"><span class="fw-700">Ingreso Mensual Familiar:</span>$1600</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-4 col-12">
-      <p class="black-18 fw-700">Gastos mensuales</p>
-      <p class="black-16"><span class="fw-700">Alimentación:</span>$1600</p>
-      <p class="black-16"><span class="fw-700">Teléfono:</span>$1600</p>
-      <p class="black-16"><span class="fw-700">Internet:</span>$1600</p>
-      <p class="black-16"><span class="fw-700">Gasolina:</span>$1600</p>
-      <p class="black-16"><span class="fw-700">Renta:</span>$1600</p>
-      <p class="black-16"><span class="fw-700">abonos:</span>$1600</p>
-    </div>
-    <div class="col-sm-4 col-12">
-      <p class="black-16"><span class="fw-700">Luz:</span>$1600</p>
-      <p class="black-16"><span class="fw-700">Predial:</span>$1600</p>
-      <p class="black-16"><span class="fw-700">Educación:</span>$1600</p>
-      <p class="black-16"><span class="fw-700">Transporte:</span>$1600</p>
-      <p class="black-16"><span class="fw-700">Agua:</span>$1600</p>
-      <p class="black-16"><span class="fw-700">Gas:</span>$1600</p>
-    </div>
-    <div class="col-sm-4 col-12">
-      <p class="black-16"><span class="fw-700">Gastos médicos:</span>$1600</p>
-      <p class="black-16"><span class="fw-700">Cable TV:</span>$1600</p>
-      <p class="black-16"><span class="fw-700">Vestido:</span>$1600</p>
-      <p class="black-16"><span class="fw-700">Otros:</span>$1600</p>
-    </div>
-  </div>
-  <div class="p-t-20">
-    <p class="black-18 fw-700">Familiares</p>
-  </div>
-  <div>
-    <div class="table-responsive">
-      <table class="table">
-        <tr>
-          <th scope="row">Nombre</th>
-          <th>Edad</th>
-          <th>Año de nacimiento</th>
-          <th>Sexo</th>
-          <th>Escolaridad</th>
-          <th>Estado civil</th>
-          <th>Ocupación</th>
-          <th>Parentesco</th>
-          <th>Aportación</th>
-        </tr>
-        <tr>
-          <td>Maria</td>
-          <td>15</td>
-          <td>19/08/2005</td>
-          <td>Femenino</td>
-          <td>Secundaria</td>
-          <td>Soltera</td>
-          <td>Estudiante</td>
-          <td>Hija</td>
-          <td>Ninguna</td>
-        </tr>
-      </table>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-4 col-12">
-      <p class="black-18 fw-700">Bienes familiares</p>
-      <p><span><i class="fas fa-check p-r-5"></i></span>Estuda o parrilla eléctrica</p>
-      <p><span><i class="fas fa-times p-r-5"></i></span>Refrigerador</p>
-      <p><span><i class="fas fa-times p-r-5"></i></span>Horno de microondas</p>
-      <p><span><i class="fas fa-times p-r-5"></i></span>Lavadora</p>
-      <p><span><i class="fas fa-check p-r-5"></i></span>Automóvil</p>
-      <p><span><i class="fas fa-check p-r-5"></i></span>Computadora</p>
-      <p><span><i class="fas fa-times p-r-5"></i></span>Televisión</p>
-      <p><span><i class="fas fa-check p-r-5"></i></span>Aire acondicionado</p>
-    </div>
-    <div class="col-sm-4 col-12">
-      <p class="black-16"><span class="fw-700">Tipo de vivienda:</span>Propia</p>
-      <p class="black-16"><span class="fw-700">Número de cuartos:</span>2</p>
-      <p class="black-16"><span class="fw-700">Número de baños:</span>1</p>
-      <p class="black-16"><span class="fw-700">Número de recamaras:</span>1</p>
-      <p class="black-16"><span class="fw-700">Tiempo de vivir en la vivienda:</span>1 año</p>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-sm-4 col-12">
-      <p class="black-18 fw-700">Condiciones de la vivienda</p>
-      <p class="black-16"><span class="fw-700">Muros:</span>Ladrillos</p>
-      <p class="black-16"><span class="fw-700">Piso:</span>Tierra</p>
-      <p class="black-16"><span class="fw-700">Techo:</span>Losa</p>
-      <p class="black-16"><span class="fw-700">Condiciones de los muebles:</span>Regular</p>
-    </div>
-    <div class="col-sm-8 col-12">
-      <p class="black-16 fw-700"><i class="fas fa-house-user p-r-5"></i> Descripción de la casa</p>
-      <p class="black-14">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pretium at sem ut euismod.
-        Aenean venenatis sed lacus in iaculis. Vestibulum non nisl id magna blandit fermentum et ut dolor. Proin
-        placerat, orci sit amet tempus accumsan, libero mi pharetra est, at venenatis turpis lorem ultrices sem. </p>
-    </div>
-  </div>
-  <div class="p-t-20">
-    <div class="accordion" id="accordionExample">
-      <div class="card">
-        <div class="card-header" id="headingTwo">
-          <h2 class="mb-0">
-            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
-              data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              <i class="fas fa-folder"></i> Diagnostico de estudio socio economico
-            </button>
-          </h2>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-          <div class="card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
-            officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3
-            wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-            Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-            excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt
-            you probably haven't heard of them accusamus labore sustainable VHS.
+    <div class="col-sm-6 col-12 just-flexend alitems-center btn-crud">
+
+      <div class="p-r-10">
+        <button class="edit-btn" routerLink="/dashboard/add-exp">
+          Añadir nuevo formulario<i class="fas fa-edit"></i>
+        </button>
+      </div>
+
+      <div class="p-r-10">
+
+        <div ngbDropdown placement="bottom-right" class="d-inline-block">
+          <button class="edit-btn" id="dropdownBasic1" ngbDropdownToggle>
+            <span style="color: whitesmoke;" ngbDropdownItem *ngIf="selectedForm.idEconomicStudyForm == -1"
+              disabled>Escoge un formulario</span>
+            <span style="color: whitesmoke;" ngbDropdownItem *ngIf="selectedForm.idEconomicStudyForm != -1">
+              {{selectedForm.creationDate.getUTCDate()}}/{{selectedForm.creationDate.getUTCMonth()+1}}/{{selectedForm.creationDate.getUTCFullYear()}}
+            </span>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <option ngbDropdownItem disabled>Escoge un formulario</option>
+            <option *ngFor="let form of dataSessionService.actualForms; let i = index" ngbDropdownItem
+              (click)="selectedForm = form">
+              {{form.creationDate.getUTCDate()}}/{{form.creationDate.getUTCMonth()+1}}/{{form.creationDate.getUTCFullYear()}}
+            </option>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div *ngIf="selectedForm.idEconomicStudyForm == -1">
+    Sin formulario seleccionado
+  </div>
+  <div *ngIf="selectedForm.idEconomicStudyForm != -1">
+    <div class="row">
+      <div class="col-sm-4 col-12">
+        <p class="black-16"><span class="fw-700">Servicio médico:</span>
+          <span *ngIf="selectedForm.medicalService == -1" disabled>Sin Selección</span>
+          <span *ngIf="selectedForm.medicalService == 0">IMSS</span>
+          <span *ngIf="selectedForm.medicalService == 1">ISSSTE</span>
+          <span *ngIf="selectedForm.medicalService == 2">INSABI</span>
+          <span *ngIf="selectedForm.medicalService == 3">IMPEr</span>
+          <span *ngIf="selectedForm.medicalService == 4">ICHISA</span>
+          <span *ngIf="selectedForm.medicalService == 5">Ninguno</span>
+        </p>
+        <p class="black-16"><span class="fw-700">Enfermedades crónicas:</span>
+          <span *ngIf="selectedForm.haveChronicDisease == true">Si ,
+            <span *ngIf="selectedForm.chronicDiseaseType == -1" disabled>Sin Selección</span>
+            <span *ngIf="selectedForm.chronicDiseaseType == 0">Cáncer</span>
+            <span *ngIf="selectedForm.chronicDiseaseType == 1">Diabetes</span>
+            <span *ngIf="selectedForm.chronicDiseaseType == 2">Hipertensión</span>
+            <span *ngIf="selectedForm.chronicDiseaseType == 3">Epilepsia</span>
+            <span *ngIf="selectedForm.chronicDiseaseType == 4">Esquizofrenia</span>
+            <span *ngIf="selectedForm.chronicDiseaseType == 5">Otro</span>
+          </span>
+          <span *ngIf="selectedForm.haveChronicDisease == false">No</span>
+
+        </p>
+        <p class="black-16"><span class="fw-700">Persona con capacidades diferentes:</span>
+          <span *ngIf="selectedForm.haveDisability == true">Si</span>
+          <span *ngIf="selectedForm.haveDisability == false">No</span>
+        </p>
+        <p class="black-16"><span class="fw-700">Causa de discapacidad:</span>
+          {{selectedForm.causeDisability}}
+        </p>
+      </div>
+      <div class="col-sm-4 col-12">
+        <p class="black-16"><span class="fw-700">Enfermedad crónica:</span>
+          <span *ngIf="selectedForm.haveChronicDisease == true">Si</span>
+          <span *ngIf="selectedForm.haveChronicDisease == false">No</span>
+        </p>
+        <p class="black-16"><span class="fw-700">Tipo de enfermedad:</span>
+          <span *ngIf="selectedForm.chronicDiseaseType == -1" disabled>Sin escoger</span>
+          <span *ngIf="selectedForm.chronicDiseaseType == 0">Cáncer</span>
+          <span *ngIf="selectedForm.chronicDiseaseType == 1">Diabetes</span>
+          <span *ngIf="selectedForm.chronicDiseaseType == 2">Hipertensión</span>
+          <span *ngIf="selectedForm.chronicDiseaseType == 3">Epilepsia</span>
+          <span *ngIf="selectedForm.chronicDiseaseType == 4">Esquizofrenia</span>
+          <span *ngIf="selectedForm.chronicDiseaseType == 5">Otro</span>
+        </p>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-4 col-12">
+        <p class="black-16"><span class="fw-700">Domicilio:</span>
+          {{selectedForm.street}} {{selectedForm.number}} {{selectedForm.colony}}
+        </p>
+        <p class="black-16"><span class="fw-700">Ingreso Mensual:</span>
+          $ {{ selectedForm.monthlyIncome | mask : "separator.2"}}
+        </p>
+        <p class="black-16"><span class="fw-700">Ingreso Mensual Familiar:</span>
+          $ {{ selectedForm.monthlyFamilyIncome | mask : "separator.2"}}
+        </p>
+      </div>
+      <div class="col-sm-4 col-12">
+        <div class="tittle">
+          <button class="outline-blu-btn" data-toggle="modal" data-target="#evidence-modal"><i
+              class="fas fa-image p-r-5"></i> Ver evidencias </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 col-12">
+        <p class="black-18 fw-700">Gastos mensuales</p>
+        <p class="black-16"><span class="fw-700">Alimentación:</span>
+          $ {{ selectedForm.feeding | mask : "separator.2"}}
+        </p>
+        <p class="black-16"><span class="fw-700">Teléfono:</span>
+          $ {{ selectedForm.phone | mask : "separator.2"}}</p>
+        <p class="black-16"><span class="fw-700">Internet:</span>
+          $ {{ selectedForm.internet | mask : "separator.2"}}</p>
+        <p class="black-16"><span class="fw-700">Gasolina:</span>
+          $ {{ selectedForm.gasoline | mask : "separator.2"}}
+        </p>
+        <p class="black-16"><span class="fw-700">Renta:</span>
+          $ {{ selectedForm.rent | mask : "separator.2"}}</p>
+        <p class="black-16"><span class="fw-700">Abonos:</span>
+          $ {{ selectedForm.monthlyPasses | mask : "separator.2"}}</p>
+      </div>
+      <div class="col-sm-4 col-12">
+        <p class="black-16"><span class="fw-700">Luz:</span>
+          $ {{ selectedForm.light | mask : "separator.2"}}</p>
+        <p class="black-16"><span class="fw-700">Predial:</span>
+          $ {{ selectedForm.predial | mask : "separator.2"}}</p>
+        <p class="black-16"><span class="fw-700">Educación:</span>
+          $ {{ selectedForm.education | mask : "separator.2"}}</p>
+        <p class="black-16"><span class="fw-700">Transporte:</span>
+          $ {{ selectedForm.transport | mask : "separator.2"}}</p>
+        <p class="black-16"><span class="fw-700">Agua:</span>
+          $ {{ selectedForm.water | mask : "separator.2"}}</p>
+        <p class="black-16"><span class="fw-700">Gas:</span>
+          $ {{ selectedForm.gas | mask : "separator.2"}}</p>
+      </div>
+      <div class="col-sm-4 col-12">
+        <p class="black-16"><span class="fw-700">Gastos médicos:</span>
+          $ {{ selectedForm.medicalExpenses | mask : "separator.2"}}</p>
+        <p class="black-16"><span class="fw-700">Cable TV:</span>
+          $ {{ selectedForm.cableTV | mask : "separator.2"}}</p>
+        <p class="black-16"><span class="fw-700">Vestido:</span>
+          $ {{ selectedForm.dress | mask : "separator.2"}}</p>
+        <p class="black-16"><span class="fw-700">Otros:</span>
+          $ {{ selectedForm.others | mask : "separator.2"}}</p>
+      </div>
+    </div>
+    <div class="p-t-20">
+      <p class="black-18 fw-700">Familiares</p>
+    </div>
+    <div>
+      <div class="table-responsive">
+        <table class="table">
+          <tr>
+            <th scope="row"> Nombre</th>
+            <th>Edad</th>
+            <th>Año de nacimiento</th>
+            <th>Sexo</th>
+            <th>Escolaridad</th>
+            <th>Estado civil</th>
+            <th>Ocupación</th>
+            <th>Parentesco</th>
+            <th>Aportación</th>
+          </tr>
+          <tr *ngIf="selectedForm.family.length == 0">
+            <td>Sin familiares</td>
+          </tr>
+          <tr *ngFor="let family of selectedForm.family; let i = index">
+            <td>{{family.name}}</td>
+            <td>{{utilitiesService.edad(family.birthDay)}}</td>
+            <td>{{family.birthDay.getUTCFullYear()}}</td>
+            <td>
+              <span *ngIf="family.gender == 0">Femenino</span>
+              <span *ngIf="family.gender == 1">Masculino</span>
+            </td>
+            <td>
+              <span *ngIf="family.scholarship == -1">Sin escoger</span>
+              <span *ngIf="family.scholarship == 0">Educación primaria</span>
+              <span *ngIf="family.scholarship == 1">Educación secundaria</span>
+              <span *ngIf="family.scholarship == 2">Educación media superior</span>
+              <span *ngIf="family.scholarship == 3">Educación superior</span>
+            </td>
+            <td>
+              <span *ngIf="family.civilState == -1">Sin escoger</span>
+              <span *ngIf="family.civilState == 0">Soltero/a</span>
+              <span *ngIf="family.civilState == 1">Casado/a</span>
+              <span *ngIf="family.civilState == 2">Viudo/a</span>
+              <span *ngIf="family.civilState == 3">Divorciado/a</span>
+              <span *ngIf="family.civilState == 4">Compromiso</span>
+            </td>
+            <td>
+              {{family.occupation}}
+            </td>
+            <td>
+              <span *ngIf="family.relationship == -1">Sin escoger</span>
+              <span *ngIf="family.relationship == 0">Hijo/a</span>
+              <span *ngIf="family.relationship == 1">Padre</span>
+              <span *ngIf="family.relationship == 2">Madre</span>
+              <span *ngIf="family.relationship == 3">Abuelo/a</span>
+              <span *ngIf="family.relationship == 4">Nieto/a</span>
+              <span *ngIf="family.relationship == 5">Hermano/a</span>
+              <span *ngIf="family.relationship == 6">Suegro/a</span>
+            </td>
+            <td>
+              <span *ngIf="family.input == -1">Sin escoger</span>
+              <span *ngIf="family.input == 0">Hijo/a</span>
+              <span *ngIf="family.input == 1">Padre</span>
+              <span *ngIf="family.input == 2">Madre</span>
+              <span *ngIf="family.input == 3">Abuelo/a</span>
+              <!-- <span *ngIf="family.input == 4">Nieto/a</span>
+            <span *ngIf="family.input == 5">Hermano/a</span>
+            <span *ngIf="family.relationship == 6">Suegro/a</span> -->
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 col-12">
+        <p class="black-18 fw-700">Bienes familiares</p>
+        <p>
+          <span>
+            <i *ngIf="selectedForm.haveStove == false" class="fas fa-times p-r-5"></i>
+            <i *ngIf="selectedForm.haveStove == true" class="fas fa-check p-r-5"></i>
+          </span>Estuda o parrilla eléctrica</p>
+        <p>
+          <span>
+            <i *ngIf="selectedForm.haveFridge == false" class="fas fa-times p-r-5"></i>
+            <i *ngIf="selectedForm.haveFridge == true" class="fas fa-check p-r-5"></i>
+          </span>Refrigerador</p>
+        <p>
+          <span>
+            <i *ngIf="selectedForm.haveMicrowave == false" class="fas fa-times p-r-5"></i>
+            <i *ngIf="selectedForm.haveMicrowave == true" class="fas fa-check p-r-5"></i>
+          </span>Horno de microondas</p>
+        <p>
+          <span>
+            <i *ngIf="selectedForm.haveWashingMachine == false" class="fas fa-times p-r-5"></i>
+            <i *ngIf="selectedForm.haveWashingMachine == true" class="fas fa-check p-r-5"></i>
+          </span>Lavadora</p>
+        <p>
+          <span>
+            <i *ngIf="selectedForm.haveCar == false" class="fas fa-times p-r-5"></i>
+            <i *ngIf="selectedForm.haveCar == true" class="fas fa-check p-r-5"></i>
+          </span>Automóvil</p>
+        <p>
+          <span>
+            <i *ngIf="selectedForm.haveComputer == false" class="fas fa-times p-r-5"></i>
+            <i *ngIf="selectedForm.haveComputer == true" class="fas fa-check p-r-5"></i>
+          </span>Computadora</p>
+        <p>
+          <span>
+            <i *ngIf="selectedForm.haveTelevision == false" class="fas fa-times p-r-5"></i>
+            <i *ngIf="selectedForm.haveTelevision == true" class="fas fa-check p-r-5"></i>
+          </span>Televisión</p>
+        <p>
+          <span>
+            <i *ngIf="selectedForm.haveAirConditioning == false" class="fas fa-times p-r-5"></i>
+            <i *ngIf="selectedForm.haveAirConditioning == true" class="fas fa-check p-r-5"></i>
+          </span>Aire acondicionado</p>
+      </div>
+      <div class="col-sm-4 col-12">
+        <p class="black-16"><span class="fw-700">Tipo de vivienda:</span>
+          <span *ngIf="selectedForm.typeHousing == -1">Escoger estado civil</span>
+          <span *ngIf="selectedForm.typeHousing == 0">Soltero/a</span>
+          <span *ngIf="selectedForm.typeHousing == 1">Casado/a</span>
+          <span *ngIf="selectedForm.typeHousing == 2">Viudo/a</span>
+          <span *ngIf="selectedForm.typeHousing == 3">Divorciado/a</span>
+          <span *ngIf="selectedForm.typeHousing == 4">Compromiso</span>
+        </p>
+        <p class="black-16"><span class="fw-700">Número de cuartos:</span>
+          {{selectedForm.numberRooms}}
+        </p>
+        <p class="black-16"><span class="fw-700">Número de baños:</span>
+          {{selectedForm.numberBathrooms}}
+        </p>
+        <p class="black-16"><span class="fw-700">Número de recamaras:</span>
+          {{selectedForm.numberBedrooms}}
+        </p>
+        <p class="black-16"><span class="fw-700">Tiempo de vivir en la vivienda:</span>
+          <span *ngIf="selectedForm.timeAtHome == -1">Escoger estado civil</span>
+          <span *ngIf="selectedForm.timeAtHome == 0">Soltero/a</span>
+          <span *ngIf="selectedForm.timeAtHome == 1">Casado/a</span>
+          <span *ngIf="selectedForm.timeAtHome == 2">Viudo/a</span>
+          <span *ngIf="selectedForm.timeAtHome == 3">Divorciado/a</span>
+          <span *ngIf="selectedForm.timeAtHome == 4">Compromiso</span>
+        </p>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-4 col-12">
+        <p class="black-18 fw-700">Condiciones de la vivienda</p>
+        <p class="black-16"><span class="fw-700">Muros:</span>
+          <span *ngIf="selectedForm.housingConditions == -1">Escoger estado civil</span>
+          <span *ngIf="selectedForm.housingConditions == 0">Soltero/a</span>
+          <span *ngIf="selectedForm.housingConditions == 1">Casado/a</span>
+          <span *ngIf="selectedForm.housingConditions == 2">Viudo/a</span>
+          <span *ngIf="selectedForm.housingConditions == 3">Divorciado/a</span>
+          <span *ngIf="selectedForm.housingConditions == 4">Compromiso</span>
+        </p>
+        <p class="black-16"><span class="fw-700">Piso:</span>
+          <span *ngIf="selectedForm.floor == -1">Escoger estado civil</span>
+          <span *ngIf="selectedForm.floor == 0">Soltero/a</span>
+          <span *ngIf="selectedForm.floor == 1">Casado/a</span>
+          <span *ngIf="selectedForm.floor == 2">Viudo/a</span>
+          <span *ngIf="selectedForm.floor == 3">Divorciado/a</span>
+          <span *ngIf="selectedForm.floor == 4">Compromiso</span>
+        </p>
+        <p class="black-16"><span class="fw-700">Techo:</span>
+          <span *ngIf="selectedForm.ceiling == -1">Escoger estado civil</span>
+          <span *ngIf="selectedForm.ceiling == 0">Soltero/a</span>
+          <span *ngIf="selectedForm.ceiling == 1">Casado/a</span>
+          <span *ngIf="selectedForm.ceiling == 2">Viudo/a</span>
+          <span *ngIf="selectedForm.ceiling == 3">Divorciado/a</span>
+          <span *ngIf="selectedForm.ceiling == 4">Compromiso</span>
+        </p>
+        <p class="black-16"><span class="fw-700">Condiciones de los muebles:</span>
+          <span *ngIf="selectedForm.termsFurniture == -1">Escoger estado civil</span>
+          <span *ngIf="selectedForm.termsFurniture == 0">Soltero/a</span>
+          <span *ngIf="selectedForm.termsFurniture == 1">Casado/a</span>
+          <span *ngIf="selectedForm.termsFurniture == 2">Viudo/a</span>
+          <span *ngIf="selectedForm.termsFurniture == 3">Divorciado/a</span>
+          <span *ngIf="selectedForm.termsFurniture == 4">Compromiso</span>
+        </p>
+      </div>
+      <div class="col-sm-8 col-12">
+        <p class="black-16 fw-700"><i class="fas fa-house-user p-r-5"></i> Descripción de la casa</p>
+        <p class="black-14">{{selectedForm.houseDescription}}</p>
+      </div>
+    </div>
+    <div class="p-t-20">
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <i class="fas fa-folder"></i> Diagnostico de estudio socio economico
+              </button>
+            </h2>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+              {{selectedForm.diagnostic}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!--delete-modal-->
   <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
-          <h3 class="text-al-center">¿Seguro que deseas eleminar este beneficiario?</h3>
+          <h3 class="text-al-center">¿Seguro que deseas eliminar este beneficiario?</h3>
           <div class="just-center p-t-10">
             <img class="delete-img" src="/assets/images/sad_face.svg">
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="blu-btn">Aceptar</button>
+          <button #btnConfirmDelete type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
+          <button (click)="deleteBeneficiary()" type="button" class="blu-btn">Aceptar</button>
         </div>
       </div>
     </div>
   </div>
+  
   <!--Edit-Modal-->
   <div class="modal fade" id="edit-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -240,33 +493,64 @@
             <div class="col-md-6 col-12">
               <div class="just-center">
                 <div class="img-box p-t-10">
-                  <label for="img" class="fake-btn-img">
-                    <img src="/assets/images/upload-img.svg">
-                    <div class="overlay">
-                      <p class="wht-20">subir foto</p>
+                  <div *ngIf="selectedBeneficiary.haveImage == false" class="input-group mb-3"
+                    style="    justify-content: center;">
+                    <!-- file input, accepts images only. Detect when file has been picked/changed with Angular's native (change) event listener -->
+
+                    <label *ngIf="source.length == 0">
+                      <input (change)="updateSource($event)" type="file" id="img" name="img" accept="image/jpeg"
+                        class="input-box">
+                      <label for="img" class="fake-btn-img">
+                        <img src="/assets/images/upload-img.svg">
+                        <div class="overlay">
+                          <p class="wht-20">subir foto</p>
+                        </div>
+                      </label>
+                    </label>
+
+
+                    <!-- img placeholder when a file has been picked. shows only when 'source' is not empty -->
+                    <label *ngIf="source.length > 0">
+                      <div class="">
+                        <img class="profile-img" *ngIf="source.length > 0" [src]="source">
+                      </div>
+                      <div class="p-t-20 just-center">
+                        <button (click)="cancelImage()" class="delete-btn">
+                          Eliminar</button>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div *ngIf="selectedBeneficiary.haveImage == true" class="input-group mb-3">
+                    <div class="">
+                      <img class="profile-img" [src]="selectedBeneficiary.imageBlob">
                     </div>
-                  </label>
-                  <div class="input-box">
-                    <input type="file" id="img" name="img" accept="image/*">
+                    <div class="p-t-20 just-center">
+                      <button (click)="cancelImage()" class="delete-btn">
+                        Eliminar</button>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="p-t-30">
                 <div class="input-field">
                   <label class="p-t-5" for="first_name">Nombre(s)</label>
-                  <input placeholder="" id="first_name" type="text" class="validate">
+                  <input [(ngModel)]="selectedBeneficiary.name" placeholder="" id="first_name" type="text"
+                    class="validate">
                 </div>
               </div>
               <div>
                 <div class="input-field">
                   <label class="p-t-5" for="paterno">Apellido paterno</label>
-                  <input placeholder="" id="paterno" type="text" class="validate">
+                  <input [(ngModel)]="selectedBeneficiary.lastName" placeholder="" id="paterno" type="text"
+                    class="validate">
                 </div>
               </div>
               <div>
                 <div class="input-field">
                   <label class="p-t-5" for="materno">Apellido materno</label>
-                  <input placeholder="" id="materno" type="text" class="validate">
+                  <input [(ngModel)]="selectedBeneficiary.motherLastName" placeholder="" id="materno" type="text"
+                    class="validate">
                 </div>
               </div>
             </div>
@@ -276,71 +560,95 @@
                 <div class="input-box">
                   <label class="black-16 fw-700">Fecha de nacimiento</label>
                   <div>
-                    <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01"
-                      max="2018-12-31">
+                    <div class="input-group">
+                      <input [(ngModel)]="modelCustomerBirthDay" id="dateOfBirth" class="form-control"
+                        placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" required>
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="dp.toggle();" type="button"><i
+                            class="fa fa-calendar"></i></button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="radio-inputs">
                 <p class="black-16 fw-700">Sexo</p>
-                <div class="display-flex">
-                  <div class="input-box">
-                    <input type="radio" id="huey" name="drone" value="huey" checked>
-                    <label for="huey">Femenino</label>
-                  </div>
-                  <div class="input-box p-l-15">
-                    <input type="radio" id="dewey" name="drone" value="dewey">
-                    <label for="dewey">Masculino</label>
-                  </div>
+                <div class="display-flex" ngbRadioGroup name="radioBasic" [(ngModel)]="selectedBeneficiary.gender">
+                  <label ngbButtonLabel class="input-box">
+                    <input ngbButton type="radio" [value]="0"> Femenino
+                  </label>
+                  <label ngbButtonLabel class="input-box p-l-15">
+                    <input ngbButton type="radio" [value]="1"> Masculino
+                  </label>
                 </div>
               </div>
               <div class="p-t-10">
                 <label class="black-16 fw-700">Estado civil</label>
-                <!--<select class="browser-default">
-                  <option value="" disabled selected>Escoge una opción</option>
-                  <option value="1">Soltero/a</option>
-                  <option value="2">Casado/a</option>
-                  <option value="3">Viudo/a</option>
-                  <option value="4">Divorciado/a</option>
-                  <option value="5">Compromiso</option>
-                </select>-->
-                <ng-multiselect-dropdown [placeholder]="'Buscar estado civil'" [data]="dropdownList"
-                  [(ngModel)]="selectedItems" [settings]="dropdowncivilstateSettings" (onSelect)="onItemSelect($event)"
-                  (onSelectAll)="onSelectAll($event)">
-                </ng-multiselect-dropdown>
+                <div ngbDropdown placement="bottom-right" class="d-inline-block">
+                  <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                    <span ngbDropdownItem *ngIf="selectedBeneficiary.civilStatus == -1" disabled>Escoger estado
+                      civil</span>
+                    <span ngbDropdownItem *ngIf="selectedBeneficiary.civilStatus == 0">Soltero/a</span>
+                    <span ngbDropdownItem *ngIf="selectedBeneficiary.civilStatus == 1">Casado/a</span>
+                    <span ngbDropdownItem *ngIf="selectedBeneficiary.civilStatus == 2">Viudo/a</span>
+                    <span ngbDropdownItem *ngIf="selectedBeneficiary.civilStatus == 3">Divorciado/a</span>
+                    <span ngbDropdownItem *ngIf="selectedBeneficiary.civilStatus == 4">Compromiso</span>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <option ngbDropdownItem (click)="selectedBeneficiary.civilStatus = -1" disabled>Escoger estado civil
+                    </option>
+                    <option ngbDropdownItem (click)="selectedBeneficiary.civilStatus = 0">Soltero/a</option>
+                    <option ngbDropdownItem (click)="selectedBeneficiary.civilStatus = 1">Casado/a</option>
+                    <option ngbDropdownItem (click)="selectedBeneficiary.civilStatus = 2">Viudo/a</option>
+                    <option ngbDropdownItem (click)="selectedBeneficiary.civilStatus = 3">Divorciado/a</option>
+                    <option ngbDropdownItem (click)="selectedBeneficiary.civilStatus = 4">Compromiso</option>
+                  </div>
+                </div>
               </div>
               <div>
                 <div class="input-field">
                   <label class="p-t-5" for="icon_telephone1">Teléfono 1</label>
-                  <input id="icon_telephone1" type="tel" class="validate">
+                  <input [(ngModel)]="selectedBeneficiary.phone1" matInput mask="000-000-0000" id="icon_telephone1"
+                    type="tel" class="validate">
                 </div>
               </div>
               <div>
                 <div class="input-field">
                   <label class="p-t-5" for="icon_telephone">Teléfono 2</label>
-                  <input id="icon_telephone" type="tel" class="validate">
+                  <input [(ngModel)]="selectedBeneficiary.phone2" matInput mask="000-000-0000" id="icon_telephone2"
+                    type="tel" class="validate">
                 </div>
               </div>
               <div>
                 <div>
                   <label class="black-16 fw-700">Activo</label>
                 </div>
-                <div class="alitems-center">
+
+                <!-- <div class="alitems-center">
                   <label class="p-r-5 m-0">No</label>
                   <div class="custom-control custom-switch">
 
                     <input type="checkbox" class="custom-control-input" id="customSwitch1">
                     <label class="custom-control-label" for="customSwitch1">Si</label>
                   </div>
-                </div>
+                </div> -->
 
+                <div class="display-flex" ngbRadioGroup name="radioBasicedit" [(ngModel)]="selectedBeneficiary.active">
+                  <label ngbButtonLabel class="input-box">
+                    <input ngbButton type="radio" [value]="false"> No
+                  </label>
+                  <label ngbButtonLabel class="input-box p-l-15">
+                    <input ngbButton type="radio" [value]="true"> Si
+                  </label>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="blu-btn">Aceptar</button>
+          <button #btnCancelEdit (click)="cancelEdit()" type="button" class="grey-btn"
+            data-dismiss="modal">Cancelar</button>
+          <button (click)="save()" type="button" class="blu-btn">Aceptar</button>
         </div>
       </div>
     </div>
@@ -352,48 +660,46 @@
         <div class="modal-body">
           <h3 class="text-al-center">Evidencias</h3>
           <div class="p-t-10">
-            <!--<select class="browser-default">
-              <option value="" disabled selected>Escoge el tipo de evidencia</option>
-              <option value="1">Fotos del estudio</option>
-              <option value="2">Fotos del beneficiario</option>
-              <option value="3">Fotos de la vivienda </option>
-              <option value="4">Fotos de comprobantes</option>
-            </select>-->
-            <ng-multiselect-dropdown [placeholder]="'Buscar tipo de evidencia'" [data]="dropdownList"
-              [(ngModel)]="selectedItems" [settings]="dropdownevidenceSettings" (onSelect)="onItemSelect($event)"
-              (onSelectAll)="onSelectAll($event)">
-            </ng-multiselect-dropdown>
-          </div>
-          <div class="p-t-20">
-            <p class="black-16">Cantidad de fotos: 3</p>
-          </div>
-          <div class="p-t-20">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-              </ol>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="/assets/images/dummy-profile.svg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="/assets/images/dummy-profile.svg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="/assets/images/dummy-profile.svg" class="d-block w-100" alt="...">
-                </div>
+            <div ngbDropdown placement="bottom-right" class="d-inline-block">
+              <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                <span ngbDropdownItem *ngIf="typeImageSelected == -1" disabled>Escoge el tipo de evidencia</span>
+                <span ngbDropdownItem *ngIf="typeImageSelected == 0">Fotos del estudio</span>
+                <span ngbDropdownItem *ngIf="typeImageSelected == 1">Fotos del beneficiario</span>
+                <span ngbDropdownItem *ngIf="typeImageSelected == 2">Fotos de la vivienda</span>
+                <span ngbDropdownItem *ngIf="typeImageSelected == 3">Fotos de comprobantes</span>
+              </button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <option ngbDropdownItem (click)="typeImageSelected = -1;filterImageByType(typeImageSelected)" disabled>
+                  Escoge el tipo de evidencia</option>
+                <option ngbDropdownItem (click)="typeImageSelected = 0;filterImageByType(typeImageSelected)">Fotos del
+                  estudio</option>
+                <option ngbDropdownItem (click)="typeImageSelected = 1;filterImageByType(typeImageSelected)">Fotos del
+                  beneficiario</option>
+                <option ngbDropdownItem (click)="typeImageSelected = 2;filterImageByType(typeImageSelected)">Fotos de la
+                  vivienda</option>
+                <option ngbDropdownItem (click)="typeImageSelected = 3;filterImageByType(typeImageSelected)">Fotos de
+                  comprobantes</option>
               </div>
-              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
             </div>
+          </div>
+          <div class="p-t-20">
+            <p class="black-16">Cantidad de fotos: {{imagesFiltered.length}}</p>
+          </div>
+          <div class="p-t-20">
+            <p *ngIf="imagesFiltered.length == 0">
+              Sin Evidencias
+            </p>
+            <ngb-carousel class="carousel-inner" *ngIf="imagesFiltered.length != 0">
+              <ng-template *ngFor="let image of imagesFiltered; let i = index" ngbSlide>
+                <div class="picsum-img-wrapper">
+                  <img [src]="image.imageBlob" class="d-block w-100">
+                </div>
+                <!-- <div class="carousel-caption">
+                  <h3>First slide label</h3>
+                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </div> -->
+              </ng-template>
+            </ngb-carousel>
           </div>
         </div>
         <div class="modal-footer">
