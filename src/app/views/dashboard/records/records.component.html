@@ -5,88 +5,25 @@
   <div class="row">
     <div class="col-md-6  col-12">
       <div class="search-input">
-        <input id="box-input" placeholder="Buscar beneficiario..." type="text" class="validate">
+        <input id="box-input" placeholder="Buscar beneficiario..." type="text" class="validate" 
+          [(ngModel)]="searchValue"
+          (ngModelChange)="filterByName($event)">
         <button class="search-btn"><i class="fas fa-search"></i></button>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-3 col-sm-6 col-12 p-t-30">
+    <div *ngFor="let beneficiary of beneficiarysFiltered; let i = index" class="col-md-3 col-sm-6 col-12 p-t-30">
       <div class="record-card">
-        <a class="a-link-black" href="/#/dashboard/profile">
+        <a class="a-link-black" [routerLink]="'/dashboard/profile/'+beneficiary.idBeneficiary">
           <div class="just-center">
-            <img src="/assets/images/dummy-profile.svg">
+            <img *ngIf="beneficiary.haveImage == true" [src]="beneficiary.imageBlob">
+            <img *ngIf="beneficiary.haveImage == false" src="/assets/images/dummy-profile.svg">
           </div>
           <div class="">
-            <p class="black-18 fw-700">Juan Perez Acosta</p>
+            <p class="black-18 fw-700">{{beneficiary.name}} {{beneficiary.lastName}} {{beneficiary.motherLastName}}</p>
             <p class="black-14 fw-700">Folio de beneficiario: </p>
-            <p class="black-14">353535</p>
-            <p class="black-14 fw-700">Folio de estudio: </p>
-            <p class="black-14">353535</p>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="col-md-3 col-sm-6 col-12 p-t-30">
-      <div class="record-card">
-        <a class="a-link-black" href="/#/dashboard/profile">
-          <div class="just-center">
-            <img src="/assets/images/dummy-profile.svg">
-          </div>
-          <div class="">
-            <p class="black-18 fw-700">Juan Perez Acosta</p>
-            <p class="black-14 fw-700">Folio de beneficiario: </p>
-            <p class="black-14">353535</p>
-            <p class="black-14 fw-700">Folio de estudio: </p>
-            <p class="black-14">353535</p>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="col-md-3 col-sm-6 col-12 p-t-30">
-      <div class="record-card">
-        <a class="a-link-black" href="/#/dashboard/profile">
-          <div class="just-center">
-            <img src="/assets/images/dummy-profile.svg">
-          </div>
-          <div class="">
-            <p class="black-18 fw-700">Juan Perez Acosta</p>
-            <p class="black-14 fw-700">Folio de beneficiario: </p>
-            <p class="black-14">353535</p>
-            <p class="black-14 fw-700">Folio de estudio: </p>
-            <p class="black-14">353535</p>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="col-md-3 col-sm-6 col-12 p-t-30">
-      <div class="record-card">
-        <a class="a-link-black" href="/#/dashboard/profile">
-          <div class="just-center">
-            <img src="/assets/images/dummy-profile.svg">
-          </div>
-          <div class="">
-            <p class="black-18 fw-700">Juan Perez Acosta</p>
-            <p class="black-14 fw-700">Folio de beneficiario: </p>
-            <p class="black-14">353535</p>
-            <p class="black-14 fw-700">Folio de estudio: </p>
-            <p class="black-14">353535</p>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="col-md-3 col-sm-6 col-12 p-t-30">
-      <div class="record-card">
-        <a class="a-link-black" href="/#/dashboard/profile">
-          <div class="just-center">
-            <img src="/assets/images/dummy-profile.svg">
-          </div>
-          <div class="">
-            <p class="black-18 fw-700">Juan Perez Acosta</p>
-            <p class="black-14 fw-700">Folio de beneficiario: </p>
-            <p class="black-14">353535</p>
-            <p class="black-14 fw-700">Folio de estudio: </p>
-            <p class="black-14">353535</p>
+            <p class="black-14">{{beneficiary.idBeneficiary}}</p>
           </div>
         </a>
       </div>

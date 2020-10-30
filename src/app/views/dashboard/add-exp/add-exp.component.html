@@ -1,0 +1,936 @@
+<section class="main input-class">
+  <div class="text-al-center p-b-20 ">
+    <p class="black-24 fw-700">Añadir Formulario a {{dataSessionService.openBeneficiary.name}}
+      {{dataSessionService.openBeneficiary.lastName}}</p>
+  </div>
+  <div class="row p-t-20">
+    <div class="col-sm-6 col-12">
+      <p class="black-16 fw-700">Datos de la persona</p>
+      <div class="input-field">
+        <label class="black-16 fw-700 p-t-10">Servicio médico</label>
+        <div ngbDropdown placement="top-right" class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.medicalService == -1" disabled>Escoge el servicio
+              medico</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.medicalService == 0">IMSS</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.medicalService == 1">ISSSTE</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.medicalService == 2">INSABI</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.medicalService == 3">IMPEr</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.medicalService == 4">ICHISA</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.medicalService == 5">Ninguno</span>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <option ngbDropdownItem (click)="newEconomicStudyForm.medicalService = -1" disabled>Escoge el servicio
+              medico </option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.medicalService = 0">IMSS</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.medicalService = 1">ISSSTE</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.medicalService = 2">INSABI</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.medicalService = 3">IMPEr</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.medicalService = 4">ICHISA</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.medicalService = 5">Ninguno</option>
+          </div>
+        </div>
+      </div>
+      <div class="radio-inputs">
+        <p class="black-16 fw-700">Discapacidad</p>
+        <div class="display-flex" ngbRadioGroup name="radioBasic1cc" [(ngModel)]="newEconomicStudyForm.haveDisability">
+          <label ngbButtonLabel class="input-box">
+            <input ngbButton type="radio" [value]="true"> Si
+          </label>
+          <label ngbButtonLabel class="input-box p-l-15">
+            <input ngbButton type="radio" [value]="false"> No
+          </label>
+        </div>
+      </div>
+      <div class="input-field">
+        <label class="p-t-10" for="c-dis">Causa discapacidad</label>
+        <input [(ngModel)]="newEconomicStudyForm.causeDisability" placeholder="" id="c-dis" type="text"
+          class="validate">
+      </div>
+      <div class="input-field">
+        <label class="p-t-10" for="t-dis">Tiempo de discapacidad</label>
+        <input [(ngModel)]="newEconomicStudyForm.disabilityTime" placeholder="" id="t-dis" type="text" class="validate">
+      </div>
+    </div>
+    <div class="col-sm-6 col-12 p-t-20">
+      <div class="radio-inputs">
+        <p class="black-16 fw-700">Enfermedad crónica</p>
+        <div class="display-flex" ngbRadioGroup name="radioBasic2cc"
+          [(ngModel)]="newEconomicStudyForm.haveChronicDisease">
+          <label ngbButtonLabel class="input-box">
+            <input ngbButton type="radio" [value]="true"> Si
+          </label>
+          <label ngbButtonLabel class="input-box p-l-15">
+            <input ngbButton type="radio" [value]="false"> No
+          </label>
+        </div>
+      </div>
+      <div class="input-field">
+        <label class="black-16 fw-700">Tipo de enfermedad crónica</label>
+        <div ngbDropdown placement="top-right" class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.chronicDiseaseType == -1" disabled>Escoge el tipo de
+              enfermedad</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.chronicDiseaseType == 0">Cáncer</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.chronicDiseaseType == 1">Diabetes</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.chronicDiseaseType == 2">Hipertensión</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.chronicDiseaseType == 3">Epilepsia</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.chronicDiseaseType == 4">Esquizofrenia</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.chronicDiseaseType == 5">Otro</span>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <option ngbDropdownItem (click)="newEconomicStudyForm.chronicDiseaseType = -1" disabled>Escoge el tipo de
+              enfermedad
+            </option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.chronicDiseaseType = 0">Cáncer</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.chronicDiseaseType = 1">Diabetes</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.chronicDiseaseType = 2">Hipertensión</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.chronicDiseaseType = 3">Epilepsia</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.chronicDiseaseType = 4">Esquizofrenia</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.chronicDiseaseType = 5">Otro</option>
+          </div>
+        </div>
+      </div>
+      <!--TO DO: En caso de que se seleccioné la opción de otro se debe mostrar este input
+      para que se llené el campo de otro tipo de enfermedad crónica-->
+      <div *ngIf="newEconomicStudyForm.chronicDiseaseType == 5" class="input-field">
+        <label class="p-t-10" for="t-dis">Otro:</label>
+        <input [(ngModel)]="newEconomicStudyForm.other" placeholder="" id="t-dis" type="text" class="validate">
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="row p-t-20">
+    <div class="col-sm-6 col-12">
+      <p class="black-16 fw-700">Domicilio</p>
+      <div class="input-field">
+        <label for="colonia">Colonia</label>
+        <input [(ngModel)]="newEconomicStudyForm.colony" placeholder="" id="colonia" type="text" class="validate">
+      </div>
+      <div class="input-field">
+        <label class="p-t-10" for="calle">Calle</label>
+        <input [(ngModel)]="newEconomicStudyForm.street" placeholder="" id="calle" type="text" class="validate">
+      </div>
+      <div class="input-field">
+        <label class="p-t-10" for="ncasa">Número de casa</label>
+        <input [(ngModel)]="newEconomicStudyForm.number" placeholder="" id="ncasa" type="number" class="validate">
+      </div>
+    </div>
+    <div class="col-sm-6 col-12 p-t-20">
+      <div class="input-field">
+        <label for="c-postal">Código postal</label>
+        <input [(ngModel)]="newEconomicStudyForm.postalCode" placeholder="" id="c-postal" type="number"
+          class="validate">
+      </div>
+      <div class="input-field">
+        <label class="p-t-10" for="ref">Referencias</label>
+        <input [(ngModel)]="newEconomicStudyForm.references" placeholder="" id="ref" type="text" class="validate">
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="p-b-20 p-t-10">
+    <p class="black-16 fw-700 p-b-10">Familiares</p>
+    <button (click)="openAddFamily()" class="outline-blu-btn" data-toggle="modal" data-target="#add-familiar">
+      <i class="fas fa-plus p-r-5"></i>Añadir familiar
+    </button>
+  </div>
+  <div class="table-responsive">
+    <table class="table">
+      <tr>
+        <th></th>
+        <th scope="row"> Nombre</th>
+        <th>Edad</th>
+        <th>Año de nacimiento</th>
+        <th>Sexo</th>
+        <th>Escolaridad</th>
+        <th>Estado civil</th>
+        <th>Ocupación</th>
+        <th>Parentesco</th>
+        <th>Aportación</th>
+      </tr>
+      <tr *ngIf="newEconomicStudyForm.family.length == 0">
+        <td>Sin familiares</td>
+      </tr>
+      <tr *ngFor="let family of newEconomicStudyForm.family; let i = index">
+        <td class="p-5-0"><button (click)="deleteFamily(i)" class="trash-btn"><i class="fas fa-trash"></i></button></td>
+        <td>{{family.name}}</td>
+        <td>{{utilitiesService.edad(family.birthDay)}}</td>
+        <td>{{family.birthDay.getUTCFullYear()}}</td>
+        <td>
+          <span *ngIf="family.gender == 0">Femenino</span>
+          <span *ngIf="family.gender == 1">Masculino</span>
+        </td>
+        <td>
+          <span *ngIf="family.scholarship == -1">Sin escoger</span>
+          <span *ngIf="family.scholarship == 0">Educación primaria</span>
+          <span *ngIf="family.scholarship == 1">Educación secundaria</span>
+          <span *ngIf="family.scholarship == 2">Educación media superior</span>
+          <span *ngIf="family.scholarship == 3">Educación superior</span>
+        </td>
+        <td>
+          <span *ngIf="family.civilState == -1">Sin escoger</span>
+          <span *ngIf="family.civilState == 0">Soltero/a</span>
+          <span *ngIf="family.civilState == 1">Casado/a</span>
+          <span *ngIf="family.civilState == 2">Viudo/a</span>
+          <span *ngIf="family.civilState == 3">Divorciado/a</span>
+          <span *ngIf="family.civilState == 4">Compromiso</span>
+        </td>
+        <td>
+          {{family.occupation}}
+        </td>
+        <td>
+          <span *ngIf="family.relationship == -1">Sin escoger</span>
+          <span *ngIf="family.relationship == 0">Hijo/a</span>
+          <span *ngIf="family.relationship == 1">Padre</span>
+          <span *ngIf="family.relationship == 2">Madre</span>
+          <span *ngIf="family.relationship == 3">Abuelo/a</span>
+          <span *ngIf="family.relationship == 4">Nieto/a</span>
+          <span *ngIf="family.relationship == 5">Hermano/a</span>
+          <span *ngIf="family.relationship == 6">Suegro/a</span>
+        </td>
+        <td>
+          <span *ngIf="family.input == -1">Sin escoger</span>
+          <span *ngIf="family.input == 0">Hijo/a</span>
+          <span *ngIf="family.input == 1">Padre</span>
+          <span *ngIf="family.input == 2">Madre</span>
+          <span *ngIf="family.input == 3">Abuelo/a</span>
+          <!-- <span *ngIf="family.input == 4">Nieto/a</span>
+          <span *ngIf="family.input == 5">Hermano/a</span>
+          <span *ngIf="family.relationship == 6">Suegro/a</span> -->
+        </td>
+      </tr>
+    </table>
+  </div>
+  <hr>
+  <div class="row p-t-20">
+    <div class="col-sm-6 col-12">
+      <p class="black-16 fw-700">Gastos Mensuales</p>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-room">Ingresos mensuales</label>
+          <input [(ngModel)]="newEconomicStudyForm.monthlyIncome" placeholder="" id="n-room" type="number"
+            class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bath">Ingreso mensual familiar</label>
+          <input [(ngModel)]="newEconomicStudyForm.monthlyFamilyIncome" placeholder="" id="n-bath" type="number"
+            class="validate">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-12">
+
+    </div>
+  </div>
+  <hr>
+  <div class="row p-t-20">
+    <div class="col-sm-6 col-12">
+      <p class="black-16 fw-700">Gastos Mensuales</p>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-room">Alimentos</label>
+          <input [(ngModel)]="newEconomicStudyForm.feeding" matInput [allowNegativeNumbers]="false"
+            [specialCharacters]="[ '$' ]" prefix="$" mask="separator.2" thousandSeparator="," placeholder=""
+            id="n-room1" type="text" class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-room">Teléfono</label>
+          <input [(ngModel)]="newEconomicStudyForm.phone" matInput [allowNegativeNumbers]="false"
+            [specialCharacters]="[ '$' ]" prefix="$" mask="separator.2" thousandSeparator="," placeholder=""
+            id="n-room2" type="text" class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bath">Internet</label>
+          <input [(ngModel)]="newEconomicStudyForm.internet" [allowNegativeNumbers]="false"
+            [specialCharacters]="[ '$' ]" prefix="$" mask="separator.2" thousandSeparator="," placeholder=""
+            id="n-bath3" type="text" class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bed">Gasolina</label>
+          <input [(ngModel)]="newEconomicStudyForm.gasoline" [allowNegativeNumbers]="false"
+            [specialCharacters]="[ '$' ]" prefix="$" mask="separator.2" thousandSeparator="," placeholder="" id="n-bed1"
+            type="text" class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bed">Renta</label>
+          <input [(ngModel)]="newEconomicStudyForm.rent" [allowNegativeNumbers]="false" [specialCharacters]="[ '$' ]"
+            prefix="$" mask="separator.2" thousandSeparator="," placeholder="" id="n-bed2" type="text" class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bed">Abonos</label>
+          <input [(ngModel)]="newEconomicStudyForm.monthlyPasses" placeholder="" id="n-bed3" type="text"
+            class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bed">Luz</label>
+          <input [(ngModel)]="newEconomicStudyForm.light" [allowNegativeNumbers]="false" [specialCharacters]="[ '$' ]"
+            prefix="$" mask="separator.2" thousandSeparator="," placeholder="" id="n-bed4" type="text" class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bed">Predial</label>
+          <input [(ngModel)]="newEconomicStudyForm.predial" [allowNegativeNumbers]="false" [specialCharacters]="[ '$' ]"
+            prefix="$" mask="separator.2" thousandSeparator="," placeholder="" id="n-bed7" type="text" class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bed">Educación</label>
+          <input [(ngModel)]="newEconomicStudyForm.education" [allowNegativeNumbers]="false"
+            [specialCharacters]="[ '$' ]" prefix="$" mask="separator.2" thousandSeparator="," placeholder="" id="n-bed5"
+            type="text" class="validate">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-12">
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bed">Transporte</label>
+          <input [(ngModel)]="newEconomicStudyForm.transport" [allowNegativeNumbers]="false"
+            [specialCharacters]="[ '$' ]" prefix="$" mask="separator.2" thousandSeparator="," placeholder="" id="n-bed6"
+            type="text" class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bed">Agua</label>
+          <input [(ngModel)]="newEconomicStudyForm.water" [allowNegativeNumbers]="false" [specialCharacters]="[ '$' ]"
+            prefix="$" mask="separator.2" thousandSeparator="," placeholder="" id="n-bed8" type="text" class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bed">Gas</label>
+          <input [(ngModel)]="newEconomicStudyForm.gas" [allowNegativeNumbers]="false" [specialCharacters]="[ '$' ]"
+            prefix="$" mask="separator.2" thousandSeparator="," placeholder="" id="n-bed9" type="text" class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bed">Gastos medicos</label>
+          <input [(ngModel)]="newEconomicStudyForm.medicalExpenses" [allowNegativeNumbers]="false"
+            [specialCharacters]="[ '$' ]" prefix="$" mask="separator.2" thousandSeparator="," placeholder=""
+            id="n-bed11" type="text" class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bed">Television/Cable</label>
+          <input [(ngModel)]="newEconomicStudyForm.cableTV" [allowNegativeNumbers]="false" [specialCharacters]="[ '$' ]"
+            prefix="$" mask="separator.2" thousandSeparator="," placeholder="" id="n-bed" type="text" class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bed">Vestido</label>
+          <input [(ngModel)]="newEconomicStudyForm.dress" [allowNegativeNumbers]="false" [specialCharacters]="[ '$' ]"
+            prefix="$" mask="separator.2" thousandSeparator="," placeholder="" id="n-bed12" type="text"
+            class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bed">Otro</label>
+          <input [(ngModel)]="newEconomicStudyForm.others" [allowNegativeNumbers]="false" [specialCharacters]="[ '$' ]"
+            prefix="$" mask="separator.2" thousandSeparator="," mask placeholder="" id="n-bed13" type="text"
+            class="validate">
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row p-t-20">
+    <div class="col-sm-6 col-12">
+      <p class="black-16 fw-700">Vivienda</p>
+      <label class="black-16 fw-700">Tipo de vivienda</label>
+      <div ngbDropdown placement="bottom-right" class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == -1" disabled>Escoger estado civil</span>
+          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == 0">Soltero/a</span>
+          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == 1">Casado/a</span>
+          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == 2">Viudo/a</span>
+          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == 3">Divorciado/a</span>
+          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == 4">Compromiso</span>
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = -1" disabled>Escoger estado civil</option>
+          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = 0">Soltero/a</option>
+          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = 1">Casado/a</option>
+          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = 2">Viudo/a</option>
+          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = 3">Divorciado/a</option>
+          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = 4">Compromiso</option>
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-room">Número de cuartos</label>
+          <input [(ngModel)]="newEconomicStudyForm.numberRooms" placeholder="" id="n-room" type="number"
+            class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bath">Número de baños</label>
+          <input [(ngModel)]="newEconomicStudyForm.numberBathrooms" placeholder="" id="n-bath" type="number"
+            class="validate">
+        </div>
+      </div>
+      <div>
+        <div class="input-field">
+          <label class="p-t-10" for="n-bed">Número de recamaras</label>
+          <input [(ngModel)]="newEconomicStudyForm.numberBedrooms" placeholder="" id="n-bed" type="number"
+            class="validate">
+        </div>
+      </div>
+      <div class="p-t-10">
+        <label class="black-16 fw-700">Condiciones de la vivienda</label>
+        <div ngbDropdown placement="bottom-right" class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.housingConditions == -1" disabled>Escoger estado
+              civil</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.housingConditions == 0">Soltero/a</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.housingConditions == 1">Casado/a</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.housingConditions == 2">Viudo/a</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.housingConditions == 3">Divorciado/a</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.housingConditions == 4">Compromiso</span>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <option ngbDropdownItem (click)="newEconomicStudyForm.housingConditions = -1" disabled>Escoger estado civil
+            </option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.housingConditions = 0">Soltero/a</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.housingConditions = 1">Casado/a</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.housingConditions = 2">Viudo/a</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.housingConditions = 3">Divorciado/a</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.housingConditions = 4">Compromiso</option>
+          </div>
+        </div>
+      </div>
+      <div class="p-t-10">
+        <label class="black-16 fw-700">Piso</label>
+        <div ngbDropdown placement="bottom-right" class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == -1" disabled>Escoger estado civil</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == 0">Soltero/a</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == 1">Casado/a</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == 2">Viudo/a</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == 3">Divorciado/a</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == 4">Compromiso</span>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = -1" disabled>Escoger estado civil</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = 0">Soltero/a</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = 1">Casado/a</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = 2">Viudo/a</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = 3">Divorciado/a</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = 4">Compromiso</option>
+          </div>
+        </div>
+      </div>
+      <div class="p-t-10">
+        <label class="black-16 fw-700">Techo</label>
+        <div ngbDropdown placement="bottom-right" class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == -1" disabled>Escoger estado civil</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == 0">Soltero/a</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == 1">Casado/a</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == 2">Viudo/a</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == 3">Divorciado/a</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == 4">Compromiso</span>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = -1" disabled>Escoger estado civil</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = 0">Soltero/a</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = 1">Casado/a</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = 2">Viudo/a</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = 3">Divorciado/a</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = 4">Compromiso</option>
+          </div>
+        </div>
+      </div>
+      <div class="p-t-10">
+        <label class="black-16 fw-700">Condiciones de los muebles</label>
+        <div ngbDropdown placement="bottom-right" class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.termsFurniture == -1" disabled>Escoger estado civil</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.termsFurniture == 0">Soltero/a</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.termsFurniture == 1">Casado/a</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.termsFurniture == 2">Viudo/a</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.termsFurniture == 3">Divorciado/a</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.termsFurniture == 4">Compromiso</span>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <option ngbDropdownItem (click)="newEconomicStudyForm.termsFurniture = -1" disabled>Escoger estado civil
+            </option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.termsFurniture = 0">Soltero/a</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.termsFurniture = 1">Casado/a</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.termsFurniture = 2">Viudo/a</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.termsFurniture = 3">Divorciado/a</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.termsFurniture = 4">Compromiso</option>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-12">
+      <div>
+        <div class="p-t-10">
+          <label class="black-16 fw-700">Tiempo de vivir en el domicilio</label>
+          <div ngbDropdown placement="bottom-right" class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+              <span ngbDropdownItem *ngIf="newEconomicStudyForm.timeAtHome == -1" disabled>Escoger estado civil</span>
+              <span ngbDropdownItem *ngIf="newEconomicStudyForm.timeAtHome == 0">Soltero/a</span>
+              <span ngbDropdownItem *ngIf="newEconomicStudyForm.timeAtHome == 1">Casado/a</span>
+              <span ngbDropdownItem *ngIf="newEconomicStudyForm.timeAtHome == 2">Viudo/a</span>
+              <span ngbDropdownItem *ngIf="newEconomicStudyForm.timeAtHome == 3">Divorciado/a</span>
+              <span ngbDropdownItem *ngIf="newEconomicStudyForm.timeAtHome == 4">Compromiso</span>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <option ngbDropdownItem (click)="newEconomicStudyForm.timeAtHome = -1" disabled>Escoger estado civil
+              </option>
+              <option ngbDropdownItem (click)="newEconomicStudyForm.timeAtHome = 0">Soltero/a</option>
+              <option ngbDropdownItem (click)="newEconomicStudyForm.timeAtHome = 1">Casado/a</option>
+              <option ngbDropdownItem (click)="newEconomicStudyForm.timeAtHome = 2">Viudo/a</option>
+              <option ngbDropdownItem (click)="newEconomicStudyForm.timeAtHome = 3">Divorciado/a</option>
+              <option ngbDropdownItem (click)="newEconomicStudyForm.timeAtHome = 4">Compromiso</option>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="black-16 fw-700">Bienes familiares</p>
+        <div class="radio-inputs">
+          <p class="black-16 fw-700">Estufa o parrilla eléctrica</p>
+          <div class="display-flex" ngbRadioGroup name="radioBasic3cc" [(ngModel)]="newEconomicStudyForm.haveStove">
+            <label ngbButtonLabel class="input-box">
+              <input ngbButton type="radio" [value]="true"> Si
+            </label>
+            <label ngbButtonLabel class="input-box p-l-15">
+              <input ngbButton type="radio" [value]="false"> No
+            </label>
+          </div>
+        </div>
+        <div class="radio-inputs">
+          <p class="black-16 fw-700">Automóvil</p>
+          <div class="display-flex" ngbRadioGroup name="radioBasic4cc" [(ngModel)]="newEconomicStudyForm.haveCar">
+            <label ngbButtonLabel class="input-box">
+              <input ngbButton type="radio" [value]="true"> Si
+            </label>
+            <label ngbButtonLabel class="input-box p-l-15">
+              <input ngbButton type="radio" [value]="false"> No
+            </label>
+          </div>
+        </div>
+        <div class="radio-inputs">
+          <p class="black-16 fw-700">Refrigerador</p>
+          <div class="display-flex" ngbRadioGroup name="radioBasic5cc" [(ngModel)]="newEconomicStudyForm.haveFridge">
+            <label ngbButtonLabel class="input-box">
+              <input ngbButton type="radio" [value]="true"> Si
+            </label>
+            <label ngbButtonLabel class="input-box p-l-15">
+              <input ngbButton type="radio" [value]="false"> No
+            </label>
+          </div>
+        </div>
+        <div class="radio-inputs">
+          <p class="black-16 fw-700">Horno de microondas</p>
+          <div class="display-flex" ngbRadioGroup name="radioBasic6cc" [(ngModel)]="newEconomicStudyForm.haveMicrowave">
+            <label ngbButtonLabel class="input-box">
+              <input ngbButton type="radio" [value]="true"> Si
+            </label>
+            <label ngbButtonLabel class="input-box p-l-15">
+              <input ngbButton type="radio" [value]="false"> No
+            </label>
+          </div>
+        </div>
+        <div class="radio-inputs">
+          <p class="black-16 fw-700">Lavadora</p>
+          <div class="display-flex" ngbRadioGroup name="radioBasic7cc"
+            [(ngModel)]="newEconomicStudyForm.haveWashingMachine">
+            <label ngbButtonLabel class="input-box">
+              <input ngbButton type="radio" [value]="true"> Si
+            </label>
+            <label ngbButtonLabel class="input-box p-l-15">
+              <input ngbButton type="radio" [value]="false"> No
+            </label>
+          </div>
+        </div>
+        <div class="radio-inputs">
+          <p class="black-16 fw-700">Computadora</p>
+          <div class="display-flex" ngbRadioGroup name="radioBasic8cc" [(ngModel)]="newEconomicStudyForm.haveComputer">
+            <label ngbButtonLabel class="input-box">
+              <input ngbButton type="radio" [value]="true"> Si
+            </label>
+            <label ngbButtonLabel class="input-box p-l-15">
+              <input ngbButton type="radio" [value]="false"> No
+            </label>
+          </div>
+        </div>
+        <div class="radio-inputs">
+          <p class="black-16 fw-700">Televisión</p>
+          <div class="display-flex" ngbRadioGroup name="radioBasic9cc"
+            [(ngModel)]="newEconomicStudyForm.haveTelevision">
+            <label ngbButtonLabel class="input-box">
+              <input ngbButton type="radio" [value]="true"> Si
+            </label>
+            <label ngbButtonLabel class="input-box p-l-15">
+              <input ngbButton type="radio" [value]="false"> No
+            </label>
+          </div>
+        </div>
+        <div class="radio-inputs">
+          <p class="black-16 fw-700">Aire acondicionado</p>
+          <div class="display-flex" ngbRadioGroup name="radioBasic11cc"
+            [(ngModel)]="newEconomicStudyForm.haveAirConditioning">
+            <label ngbButtonLabel class="input-box">
+              <input ngbButton type="radio" [value]="true"> Si
+            </label>
+            <label ngbButtonLabel class="input-box p-l-15">
+              <input ngbButton type="radio" [value]="false"> No
+            </label>
+          </div>
+        </div>
+        <div class="input-field">
+          <label for="c-postal">Descripción de la casa</label>
+          <input [(ngModel)]="newEconomicStudyForm.houseDescription" placeholder="" id="c-postal" type="number"
+            class="validate">
+        </div>
+        <div class="input-field">
+          <label class="p-t-10" for="ref">Diagnostico de Estudio Socio económico</label>
+          <input [(ngModel)]="newEconomicStudyForm.diagnostic" placeholder="" id="ref2" type="text" class="validate">
+        </div>
+        <div class="p-t-20">
+          <button #btnOpenModalEvidences class="outline-blu-btn" data-toggle="modal" data-target="#add-evidence">
+            <i class="fas fa-plus p-r-5"></i>Añadir evidencias
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="just-center p-t-20">
+    <button (click)="backClicked()" class="blu-btn fs-20px ">Cancelar</button>
+    <button (click)="save()" class="blu-btn fs-20px ">Guardar</button>
+  </div>
+  <!--Modal Añadir un familiar-->
+  <div class="modal fade" id="add-familiar" tabindex="-1" aria-labelledby="add-familiar" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header just-center">
+          <h5 class="modal-title black-20 fw-700" id="exampleModalLabel">Añadir familiar</h5>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 col-12">
+              <div>
+                <div class="input-field">
+                  <label for="first_name-fam">Nombre(s)</label>
+                  <input [(ngModel)]="newFamily.name" placeholder="" id="first_name-fam" type="text" class="validate">
+                </div>
+              </div>
+              <div>
+                <div class="input-field">
+                  <label for="last_name-fam">Apellido paterno</label>
+                  <input [(ngModel)]="newFamily.lastName" placeholder="" id="last_name-fam" type="text"
+                    class="validate">
+                </div>
+              </div>
+              <div class="radio-inputs">
+                <p class="black-16 fw-700">Sexo</p>
+                <div class="display-flex" ngbRadioGroup name="radioBasic12cc" [(ngModel)]="newFamily.gender">
+                  <label ngbButtonLabel class="input-box">
+                    <input ngbButton type="radio" [value]="0"> Femenino
+                  </label>
+                  <label ngbButtonLabel class="input-box p-l-15">
+                    <input ngbButton type="radio" [value]="1"> Masculino
+                  </label>
+                </div>
+              </div>
+              <div class="input-box p-t-20">
+                <label class="black-16 fw-700">Fecha de nacimiento</label>
+                <div>
+                  <div class="input-group">
+                    <input [(ngModel)]="modelCustomerBirthDay" id="dateOfBirth" class="form-control"
+                      placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" required>
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" (click)="dp.toggle();" type="button"><i
+                          class="fa fa-calendar"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div>
+                <label class="black-16 fw-700">Escolaridad</label>
+
+                <div ngbDropdown placement="bottom-right" class="d-inline-block">
+                  <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                    <span *ngIf="newFamily.scholarship == -1">Sin indicar</span>
+                    <span *ngIf="newFamily.scholarship == 0">Educación primaria</span>
+                    <span *ngIf="newFamily.scholarship == 1">Educación secundaria</span>
+                    <span *ngIf="newFamily.scholarship == 2">Educación media superior</span>
+                    <span *ngIf="newFamily.scholarship == 3">Educación superior</span>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <option ngbDropdownItem (click)="newFamily.scholarship = -1" disabled>Sin indicar</option>
+                    <option ngbDropdownItem (click)="newFamily.scholarship = 0">Educación primaria</option>
+                    <option ngbDropdownItem (click)="newFamily.scholarship = 1">Educación secundaria</option>
+                    <option ngbDropdownItem (click)="newFamily.scholarship = 2">Educación media superior</option>
+                    <option ngbDropdownItem (click)="newFamily.scholarship = 3">Educación superior</option>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="input-field">
+                  <label for="ocupación">Ocupación</label>
+                  <input placeholder="" id="ocupación" type="text" class="validate">
+                </div>
+              </div>
+              <div>
+                <label class="black-16 fw-700">Estado civil</label>
+                <div ngbDropdown placement="bottom-right" class="d-inline-block">
+                  <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                    <span *ngIf="newFamily.civilState == -1">Sin escoger</span>
+                    <span *ngIf="newFamily.civilState == 0">Soltero/a</span>
+                    <span *ngIf="newFamily.civilState == 1">Casado/a</span>
+                    <span *ngIf="newFamily.civilState == 2">Viudo/a</span>
+                    <span *ngIf="newFamily.civilState == 3">Divorciado/a</span>
+                    <span *ngIf="newFamily.civilState == 4">Compromiso</span>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <option ngbDropdownItem (click)="newFamily.civilState = -1" disabled>Sin indicar</option>
+                    <option ngbDropdownItem (click)="newFamily.civilState = 0">Soltero/a</option>
+                    <option ngbDropdownItem (click)="newFamily.civilState = 1">Casado/a</option>
+                    <option ngbDropdownItem (click)="newFamily.civilState = 2">Viudo/a</option>
+                    <option ngbDropdownItem (click)="newFamily.civilState = 3">Divorciado/a</option>
+                    <option ngbDropdownItem (click)="newFamily.civilState = 4">Compromiso</option>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label class="black-16 fw-700">Parentesco</label>
+                <div ngbDropdown placement="bottom-right" class="d-inline-block">
+                  <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                    <span *ngIf="newFamily.relationship == -1">Sin escoger</span>
+                    <span *ngIf="newFamily.relationship == 0">Hijo/a</span>
+                    <span *ngIf="newFamily.relationship == 1">Padre</span>
+                    <span *ngIf="newFamily.relationship == 2">Madre</span>
+                    <span *ngIf="newFamily.relationship == 3">Abuelo/a</span>
+                    <span *ngIf="newFamily.relationship == 4">Nieto/a</span>
+                    <span *ngIf="newFamily.relationship == 5">Hermano/a</span>
+                    <span *ngIf="newFamily.relationship == 6">Suegro/a</span>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <option ngbDropdownItem (click)="newFamily.relationship = -1" disabled>Sin indicar</option>
+                    <option ngbDropdownItem (click)="newFamily.relationship = 0">Hijo/a</option>
+                    <option ngbDropdownItem (click)="newFamily.relationship = 1">Padre</option>
+                    <option ngbDropdownItem (click)="newFamily.relationship = 2">Madre</option>
+                    <option ngbDropdownItem (click)="newFamily.relationship = 3">Abuelo/a</option>
+                    <option ngbDropdownItem (click)="newFamily.relationship = 4">Nieto/a</option>
+                    <option ngbDropdownItem (click)="newFamily.relationship = 5">Hermano/a</option>
+                    <option ngbDropdownItem (click)="newFamily.relationship = 6">Suegro/a</option>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label class="black-16 fw-700">Aportación</label>
+                <div>
+                  <label class="black-16 fw-700">Parentesco</label>
+                  <div ngbDropdown placement="bottom-right" class="d-inline-block">
+                    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                      <span *ngIf="newFamily.input == -1">Sin escoger</span>
+                      <span *ngIf="newFamily.input == 0">Hijo/a</span>
+                      <span *ngIf="newFamily.input == 1">Padre</span>
+                      <span *ngIf="newFamily.input == 2">Madre</span>
+                      <span *ngIf="newFamily.input == 3">Abuelo/a</span>
+                      <span *ngIf="newFamily.input == 4">Nieto/a</span>
+                      <span *ngIf="newFamily.input == 5">Hermano/a</span>
+                      <span *ngIf="newFamily.input == 6">Suegro/a</span>
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <option ngbDropdownItem (click)="newFamily.input = -1" disabled>Sin indicar</option>
+                      <option ngbDropdownItem (click)="newFamily.input = 0">Hijo/a</option>
+                      <option ngbDropdownItem (click)="newFamily.input = 1">Padre</option>
+                      <option ngbDropdownItem (click)="newFamily.input = 2">Madre</option>
+                      <option ngbDropdownItem (click)="newFamily.input = 3">Abuelo/a</option>
+                      <option ngbDropdownItem (click)="newFamily.input = 4">Nieto/a</option>
+                      <option ngbDropdownItem (click)="newFamily.input = 5">Hermano/a</option>
+                      <option ngbDropdownItem (click)="newFamily.input = 6">Suegro/a</option>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button #btnCloseAddFamily type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
+          <button (click)="addFamily()" type="button" class="blu-btn">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Modal add evidence-->
+  <div class="modal fade" id="add-evidence" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header just-center">
+          <h5 class="modal-title  black-20 fw-700" id="exampleModalLabel">Añadir evidencia</h5>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="p-10-0">
+                <p class="black-16 fw-700 p-b-5">Fotos del estudio</p>
+                <div class="upload-img">
+                  <div class="row m-0">
+                    <span *ngFor="let image of newEconomicStudyForm.images; let i = index">
+                      <div *ngIf="image.type == 0" class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                        <div class="img-box">
+                          <img [src]="image.source">
+                          <div class="trash-box">
+                            <button (click)="cancelImage(i)" class="trash-btn">
+                              <i class="fas fa-trash"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                    <div *ngIf="newEconomicStudyForm.images.length == 0" class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        sin imagenes
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-t-20">
+                  <div>
+                    <input (change)="addSource($event,0)" id="img" name="img" accept="image/jpeg" class="upload-input" type="file">
+                  </div>
+                  <!-- <div class="p-t-10">
+                    <button class="purple-btn">Subir foto</button>
+                  </div> -->
+                </div>
+              </div>
+              <div class="p-10-0">
+                <p class="black-16 fw-700 p-b-5">Fotos del beneficiario</p>
+                <div class="upload-img">
+                  <div class="row m-0">
+                    <span *ngFor="let image of newEconomicStudyForm.images; let i = index">
+                      <div *ngIf="image.type == 1" class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                        <div class="img-box">
+                          <img [src]="image.source">
+                          <div class="trash-box">
+                            <button (click)="cancelImage(i)" class="trash-btn">
+                              <i class="fas fa-trash"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                    <div *ngIf="newEconomicStudyForm.images.length == 0" class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        sin imagenes
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-t-20">
+                  <div>
+                    <input (change)="addSource($event,1)" id="img" name="img" accept="image/jpeg" class="upload-input" type="file">
+                  </div>
+                  <!-- <div class="p-t-10">
+                    <button class="purple-btn">Subir foto</button>
+                  </div> -->
+                </div>
+              </div>
+              <div class="p-10-0">
+                <p class="black-16 fw-700 p-b-5">Fotos de la vivienda</p>
+                <div class="upload-img">
+                  <div class="row m-0">
+                    <span *ngFor="let image of newEconomicStudyForm.images; let i = index">
+                      <div *ngIf="image.type == 2" class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                        <div class="img-box">
+                          <img [src]="image.source">
+                          <div class="trash-box">
+                            <button (click)="cancelImage(i)" class="trash-btn">
+                              <i class="fas fa-trash"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                    <div *ngIf="newEconomicStudyForm.images.length == 0" class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        sin imagenes
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-t-20">
+                  <div>
+                    <input (change)="addSource($event,2)" id="img" name="img" accept="image/jpeg" class="upload-input" type="file">
+                  </div>
+                  <!-- <div class="p-t-10">
+                    <button class="purple-btn">Subir foto</button>
+                  </div> -->
+                </div>
+              </div>
+              <div class="p-10-0">
+                <p class="black-16 fw-700 p-b-5">Fotos de los comprobantes</p>
+                <div class="upload-img">
+                  <div class="row m-0">
+                    <span *ngFor="let image of newEconomicStudyForm.images; let i = index">
+                      <div *ngIf="image.type == 3" class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                        <div class="img-box">
+                          <img [src]="image.source">
+                          <div class="trash-box">
+                            <button (click)="cancelImage(i)" class="trash-btn">
+                              <i class="fas fa-trash"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                    <div *ngIf="newEconomicStudyForm.images.length == 0" class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
+                      <div class="img-box">
+                        sin imagenes
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-t-20">
+                  <div>
+                    <input (change)="addSource($event,3)" id="img" name="img" accept="image/jpeg" class="upload-input" type="file">
+                  </div>
+                  <!-- <div class="p-t-10">
+                    <button class="purple-btn">Subir foto</button>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="grey-btn" data-dismiss="modal">Cancelar</button> -->
+          <button type="button" class="blu-btn" data-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

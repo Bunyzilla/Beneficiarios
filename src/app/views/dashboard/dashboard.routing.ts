@@ -1,3 +1,4 @@
+import { AddExpComponent } from './add-exp/add-exp.component';
 import { Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
@@ -36,7 +37,7 @@ export const DashboardRoutes: Routes = [
       }
       ,
       {
-        path: 'profile',
+        path: 'profile/:idBeneficiary',
         component: ProfileComponent,
         data: {
           title: 'perfil',
@@ -49,6 +50,17 @@ export const DashboardRoutes: Routes = [
       {
         path: 'add-profile',
         component: AddProfileComponent,
+        data: {
+          title: 'nuevoperfil',
+          urls: [
+            { title: 'nuevoperfil', url: '/dashboard/add-profile' },
+            { title: 'nuevoperfil'}
+          ]
+        }
+      },
+      {
+        path: 'add-exp',
+        component: AddExpComponent,
         data: {
           title: 'nuevoperfil',
           urls: [

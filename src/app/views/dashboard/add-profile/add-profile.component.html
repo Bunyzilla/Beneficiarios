@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-sm-6 col-12">
       <p class="black-16 fw-700">Datos personales</p>
-      <div class="img-box">
+      <!--       <div class="img-box">
         <label for="img" class="fake-btn-img">
           <img src="/assets/images/upload-img.svg">
           <div class="overlay">
@@ -15,60 +15,133 @@
         <div class="input-box">
           <input type="file" id="img" name="img" accept="image/*">
         </div>
+      </div> -->
+
+      <div class="img-box">
+        <div *ngIf="beneficiary.haveImage == false" class="input-group mb-3" style="    justify-content: center;">
+          <!-- file input, accepts images only. Detect when file has been picked/changed with Angular's native (change) event listener -->
+
+          <label *ngIf="source.length == 0">
+            <input (change)="updateSource($event)" type="file" id="img" name="img" accept="image/jpeg" class="input-box">
+            <label for="img" class="fake-btn-img">
+              <img src="/assets/images/upload-img.svg">
+              <div class="overlay">
+                <p class="wht-20">subir foto</p>
+              </div>
+            </label>
+          </label>
+
+
+          <!-- img placeholder when a file has been picked. shows only when 'source' is not empty -->
+          <label *ngIf="source.length > 0">
+            <div class="">
+              <img class="profile-img" *ngIf="source.length > 0" [src]="source">
+            </div>
+            <div class="p-t-20 just-center">
+              <button (click)="cancelImage()" class="delete-btn">
+                Eliminar</button>
+            </div>
+          </label>
+        </div>
+
+        <div *ngIf="beneficiary.haveImage == true" class="input-group mb-3">
+          <div class="">
+            <img class="profile-img" [src]="beneficiary.imageBlob">
+          </div>
+          <div class="p-t-20 just-center">
+            <button (click)="cancelImage()" class="delete-btn">
+              Eliminar</button>
+          </div>
+        </div>
       </div>
       <div>
         <div class="input-field">
           <label class="p-t-10" for="first_name">Nombre(s)</label>
-          <input placeholder="" id="first_name" type="text" class="validate">
+          <input [(ngModel)]="beneficiary.name" placeholder="" id="first_name" type="text" class="validate">
         </div>
       </div>
       <div>
         <div class="input-field">
           <label class="p-t-10" for="paterno">Apellido paterno</label>
-          <input placeholder="" id="paterno" type="text" class="validate">
+          <input [(ngModel)]="beneficiary.lastName" placeholder="" id="paterno" type="text" class="validate">
         </div>
       </div>
       <div>
         <div class="input-field">
           <label class="p-t-10" for="materno">Apellido materno</label>
-          <input placeholder="" id="materno" type="text" class="validate">
+          <input [(ngModel)]="beneficiary.motherLastName" placeholder="" id="materno" type="text" class="validate">
         </div>
       </div>
       <div class="radio-inputs">
         <p class="black-16 fw-700">Sexo</p>
-        <div class="display-flex">
-          <div class="input-box">
-            <input type="radio" id="huey" name="drone" value="huey" checked>
-            <label for="huey">Femenino</label>
-          </div>
-          <div class="input-box p-l-15">
-            <input type="radio" id="dewey" name="drone" value="dewey">
-            <label for="dewey">Masculino</label>
-          </div>
+        <div class="display-flex" ngbRadioGroup name="radioBasic" [(ngModel)]="beneficiary.gender">
+          <label ngbButtonLabel class="input-box">
+            <input ngbButton type="radio" [value]="0"> Femenino
+          </label>
+          <label ngbButtonLabel class="input-box p-l-15">
+            <input ngbButton type="radio" [value]="1"> Masculino
+          </label>
         </div>
       </div>
       <div class="p-t-10">
         <div class="input-box">
           <label class="black-16 fw-700">Fecha de nacimiento</label>
           <div>
-            <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+            <!-- <div class="input-group">
+              <input [(ngModel)]="modelCustomerBirthDay" id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd"
+                name="dp" ngbDatepicker #dp="ngbDatepicker" required>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="dp.toggle();" type="button"><i
+                    class="fa fa-calendar"></i></button>
+              </div>
+            </div> -->
+
+            <div class="input-group">
+              <input [(ngModel)]="modelCustomerBirthDay" id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd"
+                name="dp" ngbDatepicker #dp="ngbDatepicker" required>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="dp.toggle();" type="button"><i
+                    class="fa fa-calendar"></i></button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div>
         <div class="input-field">
           <label class="p-t-10" for="icon_telephone1">Teléfono 1</label>
-          <input id="icon_telephone1" type="tel" class="validate">
+          <input [(ngModel)]="beneficiary.phone1" matInput mask="000-000-0000" id="icon_telephone1" type="tel"
+            class="validate">
         </div>
       </div>
       <div>
         <div class="input-field">
           <label class="p-t-10" for="icon_telephone">Teléfono 2</label>
-          <input id="icon_telephone" type="tel" class="validate">
+          <input [(ngModel)]="beneficiary.phone2" matInput mask="000-000-0000" id="icon_telephone2" type="tel"
+            class="validate">
         </div>
       </div>
       <div>
         <label class="black-16 fw-700 p-t-10">Estado civil</label>
+        <!-- <div ngbDropdown  placement="bottom-right" class="d-inline-block"> -->
+        <div ngbDropdown placement="top-right" class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+            <span ngbDropdownItem *ngIf="beneficiary.civilStatus == -1" disabled>Escoger estado civil</span>
+            <span ngbDropdownItem *ngIf="beneficiary.civilStatus == 0">Soltero/a</span>
+            <span ngbDropdownItem *ngIf="beneficiary.civilStatus == 1">Casado/a</span>
+            <span ngbDropdownItem *ngIf="beneficiary.civilStatus == 2">Viudo/a</span>
+            <span ngbDropdownItem *ngIf="beneficiary.civilStatus == 3">Divorciado/a</span>
+            <span ngbDropdownItem *ngIf="beneficiary.civilStatus == 4">Compromiso</span>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <option ngbDropdownItem (click)="beneficiary.civilStatus = -1" disabled>Escoger estado civil</option>
+            <option ngbDropdownItem (click)="beneficiary.civilStatus = 0">Soltero/a</option>
+            <option ngbDropdownItem (click)="beneficiary.civilStatus = 1">Casado/a</option>
+            <option ngbDropdownItem (click)="beneficiary.civilStatus = 2">Viudo/a</option>
+            <option ngbDropdownItem (click)="beneficiary.civilStatus = 3">Divorciado/a</option>
+            <option ngbDropdownItem (click)="beneficiary.civilStatus = 4">Compromiso</option>
+          </div>
+        </div>
         <!--<select class="browser-default">
           <option value="" disabled selected>Escoge una opción</option>
           <option value="1">Soltero/a</option>
@@ -77,10 +150,10 @@
           <option value="4">Divorciado/a</option>
           <option value="5">Compromiso</option>
         </select>-->
-        <ng-multiselect-dropdown [placeholder]="'Escoger estado civil'" [data]="dropdownList"
+        <!-- <ng-multiselect-dropdown [placeholder]="'Escoger estado civil'" [data]="dropdownList"
           [(ngModel)]="selectedItems" [settings]="dropdowncivilstateSettings" (onSelect)="onItemSelect($event)"
           (onSelectAll)="onSelectAll($event)">
-        </ng-multiselect-dropdown>
+        </ng-multiselect-dropdown> -->
       </div>
     </div>
 
@@ -88,11 +161,28 @@
       <div class="p-t-20">
         <div class="input-field">
           <label class="p-t-10" for="ocupación">Ocupación</label>
-          <input placeholder="" id="ocupación" type="text" class="validate">
+          <input [(ngModel)]="beneficiary.occupation" placeholder="" id="ocupación" type="text" class="validate">
         </div>
       </div>
       <div>
         <label class="black-16 fw-700 p-t-10">Escolaridad</label>
+        <div ngbDropdown  placement="bottom-right" class="d-inline-block">
+       <!--  <div ngbDropdown placement="top-right" class="d-inline-block"> -->
+          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+            <span ngbDropdownItem *ngIf="beneficiary.scholarship == -1" disabled>Escoger escolaridad</span>
+            <span ngbDropdownItem *ngIf="beneficiary.scholarship == 0">Educación primaria</span>
+            <span ngbDropdownItem *ngIf="beneficiary.scholarship == 1">Educación secundaria</span>
+            <span ngbDropdownItem *ngIf="beneficiary.scholarship == 2">Educación media superior</span>
+            <span ngbDropdownItem *ngIf="beneficiary.scholarship == 3">Educación superior</span>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <option ngbDropdownItem (click)="beneficiary.scholarship = -1" disabled>Escoger escolaridad</option>
+            <option ngbDropdownItem (click)="beneficiary.scholarship = 0">Educación primaria</option>
+            <option ngbDropdownItem (click)="beneficiary.scholarship = 1">Educación secundaria</option>
+            <option ngbDropdownItem (click)="beneficiary.scholarship = 2">Educación media superior</option>
+            <option ngbDropdownItem (click)="beneficiary.scholarship = 3">Educación superior</option>
+          </div>
+        </div>
         <!--<select class="browser-default">
           <option value="" disabled selected>Escoge una opción</option>
           <option value="1">Educación primaria</option>
@@ -100,729 +190,26 @@
           <option value="3">Educación media superior</option>
           <option value="4">Educación superior</option>
         </select>-->
-        <ng-multiselect-dropdown [placeholder]="'Escoger escolaridad'" [data]="dropdownList" [(ngModel)]="selectedItems"
+        <!-- <ng-multiselect-dropdown [placeholder]="'Escoger escolaridad'" [data]="dropdownList" [(ngModel)]="selectedItems"
           [settings]="dropdownscholarSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
-        </ng-multiselect-dropdown>
+        </ng-multiselect-dropdown> -->
       </div>
       <div>
         <div class="input-field">
           <label class="p-t-10" for="curp">CURP</label>
-          <input placeholder="" id="curp" type="text" class="validate">
+          <input [(ngModel)]="beneficiary.curp" placeholder="" id="curp" type="text" class="validate">
         </div>
       </div>
       <div>
         <div class="input-field">
           <label class="p-t-10" for="rfc">RFC</label>
-          <input placeholder="" id="rfc" type="text" class="validate">
-        </div>
-      </div>
-      <div>
-        <label class="black-16 fw-700 p-t-10">Servicio médico</label>
-        <!--<select class="browser-default">
-          <option value="" disabled selected>Escoge una opción</option>
-          <option value="1">IMSS</option>
-          <option value="2">ISSSTE</option>
-          <option value="3">INSABI</option>
-          <option value="4">IMPEr</option>
-          <option value="5">ICHISA</option>
-          <option value="6">Ninguno</option>
-        </select>-->
-        <ng-multiselect-dropdown [placeholder]="'Escoger escolaridad'" [data]="dropdownList" [(ngModel)]="selectedItems"
-          [settings]="dropdownmedicalserviceSettings" (onSelect)="onItemSelect($event)"
-          (onSelectAll)="onSelectAll($event)">
-        </ng-multiselect-dropdown>
-      </div>
-      <div class="radio-inputs">
-        <p class="black-16 fw-700">Discapacidad</p>
-        <div class="display-flex">
-          <div class="input-box">
-            <input type="radio" id="si-disc" name="drone" value="huey" checked>
-            <label for="si-disc">Si</label>
-          </div>
-          <div class="input-box p-l-15">
-            <input type="radio" id="no-disc" name="drone" value="dewey">
-            <label for="no-disc">No</label>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="input-field">
-          <label class="p-t-10" for="c-dis">Causa discapacidad</label>
-          <input placeholder="" id="c-dis" type="text" class="validate">
-        </div>
-      </div>
-      <div>
-        <div class="input-field">
-          <label class="p-t-10" for="t-dis">Tiempo de discapacidad</label>
-          <input placeholder="" id="t-dis" type="text" class="validate">
-        </div>
-      </div>
-      <div class="radio-inputs">
-        <p class="black-16 fw-700">Enfermedad crónica</p>
-        <div class="display-flex">
-          <div class="input-box">
-            <input type="radio" id="si-enfc" name="drone" value="huey" checked>
-            <label for="si-enfc">Si</label>
-          </div>
-          <div class="input-box p-l-15">
-            <input type="radio" id="no-enfc" name="drone" value="dewey">
-            <label for="no-enfc">No</label>
-          </div>
-        </div>
-      </div>
-      <div class="p-t-10">
-        <label class="black-16 fw-700">Tipo de enfermedad crónica</label>
-        <!--<select class="browser-default">
-          <option value="" disabled selected>Escoge una opción</option>
-          <option value="1">Cáncer</option>
-          <option value="2">Diabetes</option>
-          <option value="3">Hipertensión</option>
-          <option value="4">Epilepsia</option>
-          <option value="5">Esquizofrenia</option>
-          <option value="6">Otro</option>
-        </select>-->
-        <ng-multiselect-dropdown [placeholder]="'Escoger escolaridad'" [data]="dropdownList" [(ngModel)]="selectedItems"
-          [settings]="dropdownsicknesSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
-        </ng-multiselect-dropdown>
-      </div>
-      <!--TO DO: En caso de que se seleccioné la opción de otro se debe mostrar este input
-      para que se llené el campo de otro tipo de enfermedad crónica-->
-      <div class="p-t-10">
-        <div class="input-field">
-          <label class="p-t-10" for="t-dis">Otro:</label>
-          <input placeholder="" id="t-dis" type="text" class="validate">
-        </div>
-      </div>
-    </div>
-  </div>
-  <hr>
-  <div class="row p-t-20">
-    <div class="col-sm-6 col-12">
-      <p class="black-16 fw-700">Domicilio</p>
-      <div class="input-field">
-        <label for="colonia">Colonia</label>
-        <input placeholder="" id="colonia" type="text" class="validate">
-      </div>
-      <div class="input-field">
-        <label class="p-t-10" for="calle">Calle</label>
-        <input placeholder="" id="calle" type="text" class="validate">
-      </div>
-      <div class="input-field">
-        <label class="p-t-10" for="ncasa">Número de casa</label>
-        <input placeholder="" id="ncasa" type="number" class="validate">
-      </div>
-    </div>
-    <div class="col-sm-6 col-12 p-t-20">
-      <div class="input-field">
-        <label for="c-postal">Código postal</label>
-        <input placeholder="" id="c-postal" type="number" class="validate">
-      </div>
-      <div class="input-field">
-        <label class="p-t-10" for="ref">Referencias</label>
-        <input placeholder="" id="ref" type="text" class="validate">
-      </div>
-    </div>
-  </div>
-  <hr>
-  <div class="p-b-20 p-t-10">
-    <p class="black-16 fw-700 p-b-10">Familiares</p>
-    <button class="outline-blu-btn" data-toggle="modal" data-target="#add-familiar">
-      <i class="fas fa-plus p-r-5"></i>Añadir familiar
-    </button>
-  </div>
-  <div class="table-responsive">
-    <table class="table">
-      <tr>
-        <th></th>
-        <th scope="row"> Nombre</th>
-        <th>Edad</th>
-        <th>Año de nacimiento</th>
-        <th>Sexo</th>
-        <th>Escolaridad</th>
-        <th>Estado civil</th>
-        <th>Ocupación</th>
-        <th>Parentesco</th>
-        <th>Aportación</th>
-      </tr>
-      <tr>
-        <td class="p-5-0"><button class="trash-btn"><i class="fas fa-trash"></i></button></td>
-        <td>Maria</td>
-        <td>15</td>
-        <td>19/08/2005</td>
-        <td>Femenino</td>
-        <td>Secundaria</td>
-        <td>Soltera</td>
-        <td>Estudiante</td>
-        <td>Hija</td>
-        <td>Ninguna</td>
-      </tr>
-    </table>
-  </div>
-  <hr>
-  <div class="row p-t-20">
-    <div class="col-sm-6 col-12">
-      <p class="black-16 fw-700">Vivienda</p>
-      <label class="black-16 fw-700">Tipo de vivienda</label>
-      <!--<select class="browser-default">
-        <option value="" disabled selected>Escoge una opción</option>
-        <option value="1">Educación primaria</option>
-        <option value="2">Educación secundaria</option>
-        <option value="3">Educación media superior</option>
-        <option value="4">Educación superior</option>
-      </select>-->
-      <ng-multiselect-dropdown [placeholder]="'Escoger escolaridad'" [data]="dropdownList" [(ngModel)]="selectedItems"
-        [settings]="dropdownkindhouseSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
-      </ng-multiselect-dropdown>
-      <div>
-        <div class="input-field">
-          <label class="p-t-10" for="n-room">Número de cuartos</label>
-          <input placeholder="" id="n-room" type="number" class="validate">
-        </div>
-      </div>
-      <div>
-        <div class="input-field">
-          <label class="p-t-10" for="n-bath">Número de baños</label>
-          <input placeholder="" id="n-bath" type="number" class="validate">
-        </div>
-      </div>
-      <div>
-        <div class="input-field">
-          <label class="p-t-10" for="n-bed">Número de recamaras</label>
-          <input placeholder="" id="n-bed" type="number" class="validate">
-        </div>
-      </div>
-      <div class="p-t-10">
-        <label class="black-16 fw-700">Condiciones de la vivienda</label>
-        <!--<select class="browser-default">
-          <option value="" disabled selected>Escoge una opción</option>
-          <option value="1">Educación primaria</option>
-          <option value="2">Educación secundaria</option>
-          <option value="3">Educación media superior</option>
-          <option value="4">Educación superior</option>
-        </select>-->
-        <ng-multiselect-dropdown [placeholder]="'Escoger escolaridad'" [data]="dropdownList" [(ngModel)]="selectedItems"
-          [settings]="dropdownhouseconditionsSettings" (onSelect)="onItemSelect($event)"
-          (onSelectAll)="onSelectAll($event)">
-        </ng-multiselect-dropdown>
-      </div>
-      <div class="p-t-10">
-        <label class="black-16 fw-700">Piso</label>
-        <!--<select class="browser-default">
-          <option value="" disabled selected>Escoge una opción</option>
-          <option value="1">Educación primaria</option>
-          <option value="2">Educación secundaria</option>
-          <option value="3">Educación media superior</option>
-          <option value="4">Educación superior</option>
-        </select>-->
-        <ng-multiselect-dropdown [placeholder]="'Escoger escolaridad'" [data]="dropdownList" [(ngModel)]="selectedItems"
-          [settings]="dropdownkindfloorSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
-        </ng-multiselect-dropdown>
-      </div>
-      <div class="p-t-10">
-        <label class="black-16 fw-700">Techo</label>
-        <!--<select class="browser-default">
-          <option value="" disabled selected>Escoge una opción</option>
-          <option value="1">Educación primaria</option>
-          <option value="2">Educación secundaria</option>
-          <option value="3">Educación media superior</option>
-          <option value="4">Educación superior</option>
-        </select>-->
-        <ng-multiselect-dropdown [placeholder]="'Escoger escolaridad'" [data]="dropdownList" [(ngModel)]="selectedItems"
-          [settings]="dropdownkindroofSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
-        </ng-multiselect-dropdown>
-      </div>
-      <div class="p-t-10">
-        <label class="black-16 fw-700">Condiciones de los muebles</label>
-        <!--<select class="browser-default">
-          <option value="" disabled selected>Escoge una opción</option>
-          <option value="1">Educación primaria</option>
-          <option value="2">Educación secundaria</option>
-          <option value="3">Educación media superior</option>
-          <option value="4">Educación superior</option>
-        </select>-->
-        <ng-multiselect-dropdown [placeholder]="'Escoger escolaridad'" [data]="dropdownList" [(ngModel)]="selectedItems"
-          [settings]="dropdownfurnitureconditionsSettings" (onSelect)="onItemSelect($event)"
-          (onSelectAll)="onSelectAll($event)">
-        </ng-multiselect-dropdown>
-      </div>
-    </div>
-    <div class="col-sm-6 col-12">
-      <div>
-        <div class="p-t-10">
-          <label class="black-16 fw-700">Tiempo de vivir en el domicilio</label>
-          <!--<select class="browser-default">
-            <option value="" disabled selected>Escoge una opción</option>
-            <option value="1">Educación primaria</option>
-            <option value="2">Educación secundaria</option>
-            <option value="3">Educación media superior</option>
-            <option value="4">Educación superior</option>
-          </select>-->
-          <ng-multiselect-dropdown [placeholder]="'Escoger escolaridad'" [data]="dropdownList"
-            [(ngModel)]="selectedItems" [settings]="dropdowntimeSettings" (onSelect)="onItemSelect($event)"
-            (onSelectAll)="onSelectAll($event)">
-          </ng-multiselect-dropdown>
-        </div>
-      </div>
-      <div>
-        <p class="black-16 fw-700">Bienes familiares</p>
-        <div class="radio-inputs">
-          <p class="black-16 fw-700">Estufa o parrilla eléctrica</p>
-          <div class="display-flex">
-            <div class="input-box">
-              <input type="radio" id="b1-si" name="drone" value="huey" checked>
-              <label for="b1-si">Si</label>
-            </div>
-            <div class="input-box p-l-15">
-              <input type="radio" id="b1-no" name="drone" value="dewey">
-              <label for="b1-no">No</label>
-            </div>
-          </div>
-        </div>
-        <div class="radio-inputs">
-          <p class="black-16 fw-700">Automóvil</p>
-          <div class="display-flex">
-            <div class="input-box">
-              <input type="radio" id="b2-si" name="drone" value="huey" checked>
-              <label for="b2-si">Si</label>
-            </div>
-            <div class="input-box p-l-15">
-              <input type="radio" id="b2-no" name="drone" value="dewey">
-              <label for="b2-no">No</label>
-            </div>
-          </div>
-        </div>
-        <div class="radio-inputs">
-          <p class="black-16 fw-700">Refrigerador</p>
-          <div class="display-flex">
-            <div class="input-box">
-              <input type="radio" id="b3-si" name="drone" value="huey" checked>
-              <label for="b3-si">Si</label>
-            </div>
-            <div class="input-box p-l-15">
-              <input type="radio" id="b3-no" name="drone" value="dewey">
-              <label for="b3-no">No</label>
-            </div>
-          </div>
-        </div>
-        <div class="radio-inputs">
-          <p class="black-16 fw-700">Horno de microondas</p>
-          <div class="display-flex">
-            <div class="input-box">
-              <input type="radio" id="b4-si" name="drone" value="huey" checked>
-              <label for="b4-si">Si</label>
-            </div>
-            <div class="input-box p-l-15">
-              <input type="radio" id="b4-no" name="drone" value="dewey">
-              <label for="b4-no">No</label>
-            </div>
-          </div>
-        </div>
-        <div class="radio-inputs">
-          <p class="black-16 fw-700">Lavadora</p>
-          <div class="display-flex">
-            <div class="input-box">
-              <input type="radio" id="b5-si" name="drone" value="huey" checked>
-              <label for="b5-si">Si</label>
-            </div>
-            <div class="input-box p-l-15">
-              <input type="radio" id="b5-no" name="drone" value="dewey">
-              <label for="b5-no">No</label>
-            </div>
-          </div>
-        </div>
-        <div class="radio-inputs">
-          <p class="black-16 fw-700">Computadora</p>
-          <div class="display-flex">
-            <div class="input-box">
-              <input type="radio" id="b6-si" name="drone" value="huey" checked>
-              <label for="b6-si">Si</label>
-            </div>
-            <div class="input-box p-l-15">
-              <input type="radio" id="b6-no" name="drone" value="dewey">
-              <label for="b6-no">No</label>
-            </div>
-          </div>
-        </div>
-        <div class="radio-inputs">
-          <p class="black-16 fw-700">Televisión</p>
-          <div class="display-flex">
-            <div class="input-box">
-              <input type="radio" id="b7-si" name="drone" value="huey" checked>
-              <label for="b7-si">Si</label>
-            </div>
-            <div class="input-box p-l-15">
-              <input type="radio" id="b7-no" name="drone" value="dewey">
-              <label for="b7-no">No</label>
-            </div>
-          </div>
-        </div>
-        <div class="radio-inputs">
-          <p class="black-16 fw-700">Aire acondicionado</p>
-          <div class="display-flex">
-            <div class="input-box">
-              <input type="radio" id="b8-si" name="drone" value="huey" checked>
-              <label for="b8-si">Si</label>
-            </div>
-            <div class="input-box p-l-15">
-              <input type="radio" id="b8-no" name="drone" value="dewey">
-              <label for="b8-no">No</label>
-            </div>
-          </div>
-        </div>
-        <div class="p-t-20">
-          <button class="outline-blu-btn" data-toggle="modal" data-target="#add-evidence">
-            <i class="fas fa-plus p-r-5"></i>Añadir evidencias
-          </button>
+          <input [(ngModel)]="beneficiary.rfc" placeholder="" id="rfc" type="text" class="validate">
         </div>
       </div>
     </div>
   </div>
   <div class="just-center p-t-20">
-    <button class="blu-btn fs-20px ">Guardar</button>
+    <button (click)="save()" class="blu-btn fs-20px ">Guardar</button>
   </div>
   <!--Modal Añadir un familiar-->
-  <div class="modal fade" id="add-familiar" tabindex="-1" aria-labelledby="add-familiar" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header just-center">
-          <h5 class="modal-title black-20 fw-700" id="exampleModalLabel">Añadir familiar</h5>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-6 col-12">
-              <div>
-                <div class="input-field">
-                  <label for="first_name-fam">Nombre(s)</label>
-                  <input placeholder="" id="first_name-fam" type="text" class="validate">
-                </div>
-              </div>
-              <div>
-                <div class="input-field">
-                  <label for="last_name-fam">Apellido paterno</label>
-                  <input placeholder="" id="last_name-fam" type="text" class="validate">
-                </div>
-              </div>
-              <div class="radio-inputs">
-                <p class="black-16 fw-700">Sexo</p>
-                <div class="display-flex">
-                  <div class="input-box">
-                    <input type="radio" id="s-fam-f" name="drone" value="huey" checked>
-                    <label for="s-fam-f">Femenino</label>
-                  </div>
-                  <div class="input-box p-l-15">
-                    <input type="radio" id="s-fam-m" name="drone" value="dewey">
-                    <label for="s-fam-m">Masculino</label>
-                  </div>
-                </div>
-              </div>
-              <div class="input-box p-t-20">
-                <label class="black-16 fw-700">Fecha de nacimiento</label>
-                <div>
-                  <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-12">
-              <div>
-                <div class="input-field">
-                  <label for="ocupación">Ocupación</label>
-                  <input placeholder="" id="ocupación" type="text" class="validate">
-                </div>
-              </div>
-              <div>
-                <label class="black-16 fw-700">Estado civil</label>
-                <!--<select class="browser-default">
-                  <option value="" disabled selected>Escoge una opción</option>
-                  <option value="1">Soltero/a</option>
-                  <option value="2">Casado/a</option>
-                  <option value="3">Viudo/a</option>
-                  <option value="4">Divorciado/a</option>
-                  <option value="5">Compromiso</option>
-                </select>-->
-                <ng-multiselect-dropdown [placeholder]="'Escoger escolaridad'" [data]="dropdownList"
-                  [(ngModel)]="selectedItems" [settings]="dropdownfcivilstateSettings" (onSelect)="onItemSelect($event)"
-                  (onSelectAll)="onSelectAll($event)">
-                </ng-multiselect-dropdown>
-              </div>
-              <div>
-                <label class="black-16 fw-700">Parentesco</label>
-                <!--<select class="browser-default">
-                  <option value="" disabled selected>Escoge una opción</option>
-                  <option value="1">Hijo/a</option>
-                  <option value="2">Padre</option>
-                  <option value="3">Madre</option>
-                  <option value="4">Abuelo/a</option>
-                  <option value="5">Nieto/a</option>
-                  <option value="5">Hermano/a</option>
-                  <option value="5">Suegro/a</option>
-                </select>-->
-                <ng-multiselect-dropdown [placeholder]="'Escoger escolaridad'" [data]="dropdownList"
-                  [(ngModel)]="selectedItems" [settings]="dropdownfrelationshipSettings" (onSelect)="onItemSelect($event)"
-                  (onSelectAll)="onSelectAll($event)">
-                </ng-multiselect-dropdown>
-              </div>
-              <div>
-                <label class="black-16 fw-700">Aportación</label>
-                <!--<select class="browser-default">
-                  <option value="" disabled selected>Escoge una opción</option>
-                  <option value="1">Hijo/a</option>
-                  <option value="2">Padre</option>
-                  <option value="3">Madre</option>
-                  <option value="4">Abuelo/a</option>
-                </select>-->
-                <ng-multiselect-dropdown [placeholder]="'Escoger escolaridad'" [data]="dropdownList"
-                  [(ngModel)]="selectedItems" [settings]="dropdownfinputSettings" (onSelect)="onItemSelect($event)"
-                  (onSelectAll)="onSelectAll($event)">
-                </ng-multiselect-dropdown>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="blu-btn">Guardar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--Modal add evidence-->
-  <div class="modal fade" id="add-evidence" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header just-center">
-          <h5 class="modal-title  black-20 fw-700" id="exampleModalLabel">Añadir evidencia</h5>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-12">
-              <div class="p-10-0">
-                <p class="black-16 fw-700 p-b-5">Fotos del estudio</p>
-                <div class="upload-img">
-                  <div class="row m-0">
-                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
-                      <div class="img-box">
-                        <img src="/assets/images/dummy-profile.svg">
-                        <div class="trash-box">
-                          <button class="trash-btn">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
-                      <div class="img-box">
-                        <img src="/assets/images/dummy-profile.svg">
-                        <div class="trash-box">
-                          <button class="trash-btn">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
-                      <div class="img-box">
-                        <img src="/assets/images/dummy-profile.svg">
-                        <div class="trash-box">
-                          <button class="trash-btn">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
-                      <div class="img-box">
-                        <img src="/assets/images/dummy-profile.svg">
-                        <div class="trash-box">
-                          <button class="trash-btn">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="p-t-20">
-                  <div>
-                    <input class="upload-input" type="file" id="img" name="img" accept="image/*">
-                  </div>
-                  <div class="p-t-10">
-                    <button class="purple-btn">Subir foto</button>
-                  </div>
-                </div>
-              </div>
-              <div class="p-10-0">
-                <p class="black-16 fw-700 p-b-5">Fotos del beneficiario</p>
-                <div class="upload-img">
-                  <div class="row m-0">
-                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
-                      <div class="img-box">
-                        <img src="/assets/images/dummy-profile.svg">
-                        <div class="trash-box">
-                          <button class="trash-btn">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
-                      <div class="img-box">
-                        <img src="/assets/images/dummy-profile.svg">
-                        <div class="trash-box">
-                          <button class="trash-btn">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
-                      <div class="img-box">
-                        <img src="/assets/images/dummy-profile.svg">
-                        <div class="trash-box">
-                          <button class="trash-btn">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
-                      <div class="img-box">
-                        <img src="/assets/images/dummy-profile.svg">
-                        <div class="trash-box">
-                          <button class="trash-btn">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="p-t-20">
-                  <div>
-                    <input class="upload-input" type="file" id="img" name="img" accept="image/*">
-                  </div>
-                  <div class="p-t-10">
-                    <button class="purple-btn">Subir foto</button>
-                  </div>
-                </div>
-              </div>
-              <div class="p-10-0">
-                <p class="black-16 fw-700 p-b-5">Fotos de la vivienda</p>
-                <div class="upload-img">
-                  <div class="row m-0">
-                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
-                      <div class="img-box">
-                        <img src="/assets/images/dummy-profile.svg">
-                        <div class="trash-box">
-                          <button class="trash-btn">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
-                      <div class="img-box">
-                        <img src="/assets/images/dummy-profile.svg">
-                        <div class="trash-box">
-                          <button class="trash-btn">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
-                      <div class="img-box">
-                        <img src="/assets/images/dummy-profile.svg">
-                        <div class="trash-box">
-                          <button class="trash-btn">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
-                      <div class="img-box">
-                        <img src="/assets/images/dummy-profile.svg">
-                        <div class="trash-box">
-                          <button class="trash-btn">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="p-t-20">
-                  <div>
-                    <input class="upload-input" type="file" id="img" name="img" accept="image/*">
-                  </div>
-                  <div class="p-t-10">
-                    <button class="purple-btn">Subir foto</button>
-                  </div>
-                </div>
-              </div>
-              <div class="p-10-0">
-                <p class="black-16 fw-700 p-b-5">Fotos de los comprobantes</p>
-                <div class="upload-img">
-                  <div class="row m-0">
-                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
-                      <div class="img-box">
-                        <img src="/assets/images/dummy-profile.svg">
-                        <div class="trash-box">
-                          <button class="trash-btn">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
-                      <div class="img-box">
-                        <img src="/assets/images/dummy-profile.svg">
-                        <div class="trash-box">
-                          <button class="trash-btn">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
-                      <div class="img-box">
-                        <img src="/assets/images/dummy-profile.svg">
-                        <div class="trash-box">
-                          <button class="trash-btn">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="upload-box col-md-4 col-sm-6 col-12 p-5-0">
-                      <div class="img-box">
-                        <img src="/assets/images/dummy-profile.svg">
-                        <div class="trash-box">
-                          <button class="trash-btn">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class=" p-t-20">
-                  <div>
-                    <input class="upload-input" type="file" id="img" name="img" accept="image/*">
-                  </div>
-                  <div class="p-t-10">
-                    <button class="purple-btn">Subir foto</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="blu-btn">Guardar</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
