@@ -119,18 +119,16 @@
     <div class="col-sm-6 col-12 just-flexend alitems-center btn-crud">
 
       <div class="p-r-10">
-        <button class="edit-btn" routerLink="/dashboard/add-exp">
-          Añadir nuevo formulario<i class="fas fa-edit"></i>
+        <button class="grey-btn" routerLink="/dashboard/add-exp">
+          Añadir nuevo formulario<i class="fas fa-edit p-l-5"></i>
         </button>
       </div>
-
       <div class="p-r-10">
-
         <div ngbDropdown placement="bottom-right" class="d-inline-block">
-          <button class="edit-btn" id="dropdownBasic1" ngbDropdownToggle>
-            <span style="color: whitesmoke;" ngbDropdownItem *ngIf="selectedForm.idEconomicStudyForm == -1"
+          <button class="btn" id="dropdownBasic1" ngbDropdownToggle>
+            <span  ngbDropdownItem *ngIf="selectedForm.idEconomicStudyForm == -1"
               disabled>Escoge un formulario</span>
-            <span style="color: whitesmoke;" ngbDropdownItem *ngIf="selectedForm.idEconomicStudyForm != -1">
+            <span  ngbDropdownItem *ngIf="selectedForm.idEconomicStudyForm != -1">
               {{selectedForm.creationDate.getUTCDate()}}/{{selectedForm.creationDate.getUTCMonth()+1}}/{{selectedForm.creationDate.getUTCFullYear()}}
             </span>
           </button>
@@ -146,7 +144,7 @@
     </div>
   </div>
   <div *ngIf="selectedForm.idEconomicStudyForm == -1">
-    Sin formulario seleccionado
+    No se ha seleccionado un formulario
   </div>
   <div *ngIf="selectedForm.idEconomicStudyForm != -1">
     <div class="row">
@@ -482,7 +480,7 @@
       </div>
     </div>
   </div>
-  
+
   <!--Edit-Modal-->
   <div class="modal fade" id="edit-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

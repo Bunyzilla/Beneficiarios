@@ -107,3 +107,14 @@
 .modal-body{
   padding: 20px 30px;
 }
+
+.grey-btn{
+  padding: 10px 20px;
+  background: #F5F5F5;
+  border:solid 1px #EDECEC;
+  color: black;
+  font-family: "Noto Sans", sans-serif;
+  &:hover{
+    border: solid 1px grey;
+  }
+}

@@ -9,8 +9,8 @@
       <div class="input-field">
         <label class="black-16 fw-700 p-t-10">Servicio médico</label>
         <div ngbDropdown placement="top-right" class="d-inline-block">
-          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.medicalService == -1" disabled>Escoge el servicio
+          <button class="btn " id="dropdownBasic1" ngbDropdownToggle>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.medicalService == -1">Escoge el servicio
               medico</span>
             <span ngbDropdownItem *ngIf="newEconomicStudyForm.medicalService == 0">IMSS</span>
             <span ngbDropdownItem *ngIf="newEconomicStudyForm.medicalService == 1">ISSSTE</span>
@@ -32,6 +32,8 @@
         </div>
       </div>
       <div class="radio-inputs">
+        <!--TO DO: Si se selecciona que si tiene una discapacidad entonces
+        se muestra la causa de discapacidad y el tiempo de discapacidad-->
         <p class="black-16 fw-700">Discapacidad</p>
         <div class="display-flex" ngbRadioGroup name="radioBasic1cc" [(ngModel)]="newEconomicStudyForm.haveDisability">
           <label ngbButtonLabel class="input-box">
@@ -68,8 +70,8 @@
       <div class="input-field">
         <label class="black-16 fw-700">Tipo de enfermedad crónica</label>
         <div ngbDropdown placement="top-right" class="d-inline-block">
-          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.chronicDiseaseType == -1" disabled>Escoge el tipo de
+          <button class="btn " id="dropdownBasic1" ngbDropdownToggle>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.chronicDiseaseType == -1">Escoge el tipo de
               enfermedad</span>
             <span ngbDropdownItem *ngIf="newEconomicStudyForm.chronicDiseaseType == 0">Cáncer</span>
             <span ngbDropdownItem *ngIf="newEconomicStudyForm.chronicDiseaseType == 1">Diabetes</span>
@@ -103,7 +105,7 @@
 
   <div class="row p-t-20">
     <div class="col-sm-6 col-12">
-      <p class="black-16 fw-700">Domicilio</p>
+      <p class="black-16 fw-700 p-b-10">Domicilio</p>
       <div class="input-field">
         <label for="colonia">Colonia</label>
         <input [(ngModel)]="newEconomicStudyForm.colony" placeholder="" id="colonia" type="text" class="validate">
@@ -361,21 +363,21 @@
       <p class="black-16 fw-700">Vivienda</p>
       <label class="black-16 fw-700">Tipo de vivienda</label>
       <div ngbDropdown placement="bottom-right" class="d-inline-block">
-        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == -1" disabled>Escoger estado civil</span>
-          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == 0">Soltero/a</span>
-          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == 1">Casado/a</span>
-          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == 2">Viudo/a</span>
-          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == 3">Divorciado/a</span>
-          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == 4">Compromiso</span>
+        <button class="btn " id="dropdownBasic1" ngbDropdownToggle>
+          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == -1">Escoger tipo de vivienda</span>
+          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == 0">Propia</span>
+          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == 1">Rentada</span>
+          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == 2">Prestada</span>
+          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == 3">Intestada</span>
+          <span ngbDropdownItem *ngIf="newEconomicStudyForm.typeHousing == 4">Otro</span>
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = -1" disabled>Escoger estado civil</option>
-          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = 0">Soltero/a</option>
-          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = 1">Casado/a</option>
-          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = 2">Viudo/a</option>
-          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = 3">Divorciado/a</option>
-          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = 4">Compromiso</option>
+          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = -1" disabled>Escoger tipo de vivienda</option>
+          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = 0">Propia</option>
+          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = 1">Rentada</option>
+          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = 2">Prestada</option>
+          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = 3">Intestada</option>
+          <option ngbDropdownItem (click)="newEconomicStudyForm.typeHousing = 4">Otro</option>
         </div>
       </div>
       <div>
@@ -402,8 +404,8 @@
       <div class="p-t-10">
         <label class="black-16 fw-700">Condiciones de la vivienda</label>
         <div ngbDropdown placement="bottom-right" class="d-inline-block">
-          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.housingConditions == -1" disabled>Escoger estado
+          <button class="btn " id="dropdownBasic1" ngbDropdownToggle>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.housingConditions == -1">Escoger estado
               civil</span>
             <span ngbDropdownItem *ngIf="newEconomicStudyForm.housingConditions == 0">Soltero/a</span>
             <span ngbDropdownItem *ngIf="newEconomicStudyForm.housingConditions == 1">Casado/a</span>
@@ -425,64 +427,62 @@
       <div class="p-t-10">
         <label class="black-16 fw-700">Piso</label>
         <div ngbDropdown placement="bottom-right" class="d-inline-block">
-          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == -1" disabled>Escoger estado civil</span>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == 0">Soltero/a</span>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == 1">Casado/a</span>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == 2">Viudo/a</span>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == 3">Divorciado/a</span>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == 4">Compromiso</span>
+          <button class="btn " id="dropdownBasic1" ngbDropdownToggle>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == -1">Escoger tipo de piso</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == 0">Tierra</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == 1">Cemento</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == 2">Cerámica</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == 3">Alfombra</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == 4">Madera</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.floor == 5">Otro</span>
           </button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = -1" disabled>Escoger estado civil</option>
-            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = 0">Soltero/a</option>
-            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = 1">Casado/a</option>
-            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = 2">Viudo/a</option>
-            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = 3">Divorciado/a</option>
-            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = 4">Compromiso</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = -1" disabled>Escoger tipo de piso</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = 0">Tierra</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = 1">Cemento</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = 2">Cerámica</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = 3">Alfombra</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = 4">Madera</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.floor = 5">Otro</option>
           </div>
         </div>
       </div>
       <div class="p-t-10">
         <label class="black-16 fw-700">Techo</label>
         <div ngbDropdown placement="bottom-right" class="d-inline-block">
-          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == -1" disabled>Escoger estado civil</span>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == 0">Soltero/a</span>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == 1">Casado/a</span>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == 2">Viudo/a</span>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == 3">Divorciado/a</span>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == 4">Compromiso</span>
+          <button class="btn " id="dropdownBasic1" ngbDropdownToggle>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == -1">Escoger tipo de techo</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == 0">Losa</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == 1">Lámina</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == 2">Madera</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == 3">Cartón</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.ceiling == 4">Otro</span>
           </button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = -1" disabled>Escoger estado civil</option>
-            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = 0">Soltero/a</option>
-            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = 1">Casado/a</option>
-            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = 2">Viudo/a</option>
-            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = 3">Divorciado/a</option>
-            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = 4">Compromiso</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = -1" disabled>Escoger tipo de techo</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = 0">Losa</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = 1">Lámina</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = 2">Madera</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = 3">Cartón</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.ceiling = 4">Otro</option>
           </div>
         </div>
       </div>
       <div class="p-t-10">
         <label class="black-16 fw-700">Condiciones de los muebles</label>
         <div ngbDropdown placement="bottom-right" class="d-inline-block">
-          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.termsFurniture == -1" disabled>Escoger estado civil</span>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.termsFurniture == 0">Soltero/a</span>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.termsFurniture == 1">Casado/a</span>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.termsFurniture == 2">Viudo/a</span>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.termsFurniture == 3">Divorciado/a</span>
-            <span ngbDropdownItem *ngIf="newEconomicStudyForm.termsFurniture == 4">Compromiso</span>
+          <button class="btn " id="dropdownBasic1" ngbDropdownToggle>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.termsFurniture == -1">Escoger condición de los muebles</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.termsFurniture == 0">Bueno</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.termsFurniture == 1">Malo</span>
+            <span ngbDropdownItem *ngIf="newEconomicStudyForm.termsFurniture == 2">Regular</span>
           </button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <option ngbDropdownItem (click)="newEconomicStudyForm.termsFurniture = -1" disabled>Escoger estado civil
+            <option ngbDropdownItem (click)="newEconomicStudyForm.termsFurniture = -1" disabled>Escoger condición de los muebles
             </option>
-            <option ngbDropdownItem (click)="newEconomicStudyForm.termsFurniture = 0">Soltero/a</option>
-            <option ngbDropdownItem (click)="newEconomicStudyForm.termsFurniture = 1">Casado/a</option>
-            <option ngbDropdownItem (click)="newEconomicStudyForm.termsFurniture = 2">Viudo/a</option>
-            <option ngbDropdownItem (click)="newEconomicStudyForm.termsFurniture = 3">Divorciado/a</option>
-            <option ngbDropdownItem (click)="newEconomicStudyForm.termsFurniture = 4">Compromiso</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.termsFurniture = 0">Bueno</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.termsFurniture = 1">Malo</option>
+            <option ngbDropdownItem (click)="newEconomicStudyForm.termsFurniture = 2">Regular</option>
           </div>
         </div>
       </div>
@@ -490,10 +490,11 @@
     <div class="col-sm-6 col-12">
       <div>
         <div class="p-t-10">
+          <!--TO DO: Cambiar el dropdown a un input para que se pueda poner el tiempo de vivir-->
           <label class="black-16 fw-700">Tiempo de vivir en el domicilio</label>
           <div ngbDropdown placement="bottom-right" class="d-inline-block">
-            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-              <span ngbDropdownItem *ngIf="newEconomicStudyForm.timeAtHome == -1" disabled>Escoger estado civil</span>
+            <button class="btn " id="dropdownBasic1" ngbDropdownToggle>
+              <span ngbDropdownItem *ngIf="newEconomicStudyForm.timeAtHome == -1">Escoger estado civil</span>
               <span ngbDropdownItem *ngIf="newEconomicStudyForm.timeAtHome == 0">Soltero/a</span>
               <span ngbDropdownItem *ngIf="newEconomicStudyForm.timeAtHome == 1">Casado/a</span>
               <span ngbDropdownItem *ngIf="newEconomicStudyForm.timeAtHome == 2">Viudo/a</span>
@@ -605,26 +606,36 @@
             </label>
           </div>
         </div>
-        <div class="input-field">
-          <label for="c-postal">Descripción de la casa</label>
-          <input [(ngModel)]="newEconomicStudyForm.houseDescription" placeholder="" id="c-postal" type="number"
-            class="validate">
-        </div>
-        <div class="input-field">
-          <label class="p-t-10" for="ref">Diagnostico de Estudio Socio económico</label>
-          <input [(ngModel)]="newEconomicStudyForm.diagnostic" placeholder="" id="ref2" type="text" class="validate">
-        </div>
-        <div class="p-t-20">
-          <button #btnOpenModalEvidences class="outline-blu-btn" data-toggle="modal" data-target="#add-evidence">
-            <i class="fas fa-plus p-r-5"></i>Añadir evidencias
-          </button>
-        </div>
       </div>
     </div>
   </div>
-  <div class="just-center p-t-20">
-    <button (click)="backClicked()" class="blu-btn fs-20px ">Cancelar</button>
-    <button (click)="save()" class="blu-btn fs-20px ">Guardar</button>
+  <div class="row">
+    <div class="col-md-6 col-sm-12 p-t-10">
+      <div class="input-field">
+        <label for="c-postal">Descripción de la casa</label>
+        <textarea [(ngModel)]="newEconomicStudyForm.houseDescription" placeholder="" id="c-postal" type="number"
+          class="validate"></textarea>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <div class="input-field">
+        <label class="p-t-10" for="ref">Diagnostico de Estudio Socio económico</label>
+        <textarea [(ngModel)]="newEconomicStudyForm.diagnostic" placeholder="" id="ref2" type="text" class="validate"></textarea>
+      </div>
+      <div class="p-t-20">
+        <button #btnOpenModalEvidences class="outline-blu-btn" data-toggle="modal" data-target="#add-evidence">
+          <i class="fas fa-plus p-r-5"></i>Añadir evidencias
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="just-center alitems-center p-t-50">
+    <div class="p-r-5">
+      <button (click)="backClicked()" class="grey-btn fs-20px ">Cancelar</button>
+    </div>
+    <div class="p-l-5">
+      <button (click)="save()" class="blu-btn fs-20px ">Guardar</button>
+    </div>
   </div>
   <!--Modal Añadir un familiar-->
   <div class="modal fade" id="add-familiar" tabindex="-1" aria-labelledby="add-familiar" aria-hidden="true">
@@ -679,7 +690,7 @@
                 <label class="black-16 fw-700">Escolaridad</label>
 
                 <div ngbDropdown placement="bottom-right" class="d-inline-block">
-                  <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                  <button class="btn" id="dropdownBasic1" ngbDropdownToggle>
                     <span *ngIf="newFamily.scholarship == -1">Sin indicar</span>
                     <span *ngIf="newFamily.scholarship == 0">Educación primaria</span>
                     <span *ngIf="newFamily.scholarship == 1">Educación secundaria</span>
@@ -704,7 +715,7 @@
               <div>
                 <label class="black-16 fw-700">Estado civil</label>
                 <div ngbDropdown placement="bottom-right" class="d-inline-block">
-                  <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                  <button class="btn " id="dropdownBasic1" ngbDropdownToggle>
                     <span *ngIf="newFamily.civilState == -1">Sin escoger</span>
                     <span *ngIf="newFamily.civilState == 0">Soltero/a</span>
                     <span *ngIf="newFamily.civilState == 1">Casado/a</span>
@@ -725,7 +736,7 @@
               <div>
                 <label class="black-16 fw-700">Parentesco</label>
                 <div ngbDropdown placement="bottom-right" class="d-inline-block">
-                  <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                  <button class="btn " id="dropdownBasic1" ngbDropdownToggle>
                     <span *ngIf="newFamily.relationship == -1">Sin escoger</span>
                     <span *ngIf="newFamily.relationship == 0">Hijo/a</span>
                     <span *ngIf="newFamily.relationship == 1">Padre</span>
@@ -747,33 +758,10 @@
                   </div>
                 </div>
               </div>
-              <div>
+              <div class="input-field">
                 <label class="black-16 fw-700">Aportación</label>
-                <div>
-                  <label class="black-16 fw-700">Parentesco</label>
-                  <div ngbDropdown placement="bottom-right" class="d-inline-block">
-                    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-                      <span *ngIf="newFamily.input == -1">Sin escoger</span>
-                      <span *ngIf="newFamily.input == 0">Hijo/a</span>
-                      <span *ngIf="newFamily.input == 1">Padre</span>
-                      <span *ngIf="newFamily.input == 2">Madre</span>
-                      <span *ngIf="newFamily.input == 3">Abuelo/a</span>
-                      <span *ngIf="newFamily.input == 4">Nieto/a</span>
-                      <span *ngIf="newFamily.input == 5">Hermano/a</span>
-                      <span *ngIf="newFamily.input == 6">Suegro/a</span>
-                    </button>
-                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                      <option ngbDropdownItem (click)="newFamily.input = -1" disabled>Sin indicar</option>
-                      <option ngbDropdownItem (click)="newFamily.input = 0">Hijo/a</option>
-                      <option ngbDropdownItem (click)="newFamily.input = 1">Padre</option>
-                      <option ngbDropdownItem (click)="newFamily.input = 2">Madre</option>
-                      <option ngbDropdownItem (click)="newFamily.input = 3">Abuelo/a</option>
-                      <option ngbDropdownItem (click)="newFamily.input = 4">Nieto/a</option>
-                      <option ngbDropdownItem (click)="newFamily.input = 5">Hermano/a</option>
-                      <option ngbDropdownItem (click)="newFamily.input = 6">Suegro/a</option>
-                    </div>
-                  </div>
-                </div>
+                <!--TO DO: Poner el placeholder de la parte de aportaciones-->
+                <input placeholder="" type=text class="validate">
               </div>
             </div>
           </div>

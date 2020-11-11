@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col-sm-6 col-12">
-      <p class="black-16 fw-700">Datos personales</p>
+      <p class="black-16 fw-700 p-b-10">Datos personales</p>
       <!--       <div class="img-box">
         <label for="img" class="fake-btn-img">
           <img src="/assets/images/upload-img.svg">
@@ -76,7 +76,7 @@
         <p class="black-16 fw-700">Sexo</p>
         <div class="display-flex" ngbRadioGroup name="radioBasic" [(ngModel)]="beneficiary.gender">
           <label ngbButtonLabel class="input-box">
-            <input ngbButton type="radio" [value]="0"> Femenino
+            <input ngbButton type="radio" [value]="0" > Femenino
           </label>
           <label ngbButtonLabel class="input-box p-l-15">
             <input ngbButton type="radio" [value]="1"> Masculino
@@ -107,7 +107,12 @@
           </div>
         </div>
       </div>
-      <div>
+
+
+    </div>
+
+    <div class="col-sm-6 col-12">
+      <div class="p-t-10">
         <div class="input-field">
           <label class="p-t-10" for="icon_telephone1">Teléfono 1</label>
           <input [(ngModel)]="beneficiary.phone1" matInput mask="000-000-0000" id="icon_telephone1" type="tel"
@@ -121,12 +126,12 @@
             class="validate">
         </div>
       </div>
-      <div>
+      <div class="p-t-20">
         <label class="black-16 fw-700 p-t-10">Estado civil</label>
         <!-- <div ngbDropdown  placement="bottom-right" class="d-inline-block"> -->
         <div ngbDropdown placement="top-right" class="d-inline-block">
-          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-            <span ngbDropdownItem *ngIf="beneficiary.civilStatus == -1" disabled>Escoger estado civil</span>
+          <button class="btn" id="dropdownBasic1" ngbDropdownToggle>
+            <span ngbDropdownItem *ngIf="beneficiary.civilStatus == -1" >Escoger estado civil</span>
             <span ngbDropdownItem *ngIf="beneficiary.civilStatus == 0">Soltero/a</span>
             <span ngbDropdownItem *ngIf="beneficiary.civilStatus == 1">Casado/a</span>
             <span ngbDropdownItem *ngIf="beneficiary.civilStatus == 2">Viudo/a</span>
@@ -155,9 +160,6 @@
           (onSelectAll)="onSelectAll($event)">
         </ng-multiselect-dropdown> -->
       </div>
-    </div>
-
-    <div class="col-sm-6 col-12">
       <div class="p-t-20">
         <div class="input-field">
           <label class="p-t-10" for="ocupación">Ocupación</label>
@@ -168,8 +170,8 @@
         <label class="black-16 fw-700 p-t-10">Escolaridad</label>
         <div ngbDropdown  placement="bottom-right" class="d-inline-block">
        <!--  <div ngbDropdown placement="top-right" class="d-inline-block"> -->
-          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-            <span ngbDropdownItem *ngIf="beneficiary.scholarship == -1" disabled>Escoger escolaridad</span>
+          <button class="btn" id="dropdownBasic1" ngbDropdownToggle>
+            <span ngbDropdownItem *ngIf="beneficiary.scholarship == -1">Escoger escolaridad</span>
             <span ngbDropdownItem *ngIf="beneficiary.scholarship == 0">Educación primaria</span>
             <span ngbDropdownItem *ngIf="beneficiary.scholarship == 1">Educación secundaria</span>
             <span ngbDropdownItem *ngIf="beneficiary.scholarship == 2">Educación media superior</span>
@@ -208,7 +210,7 @@
       </div>
     </div>
   </div>
-  <div class="just-center p-t-20">
+  <div class="just-center p-t-50">
     <button (click)="save()" class="blu-btn fs-20px ">Guardar</button>
   </div>
   <!--Modal Añadir un familiar-->
