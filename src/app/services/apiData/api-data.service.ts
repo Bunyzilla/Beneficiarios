@@ -1,3 +1,4 @@
+import { Registry } from './../../classes/register.class';
 import { Beneficiary } from './../../classes/beneficiary.class';
 import { User } from './../../classes/user.class';
 import { Injectable } from '@angular/core';
@@ -197,6 +198,8 @@ export class ApiDataService {
     });
   }
 
+  //Beneficiarios
+
   async createBeneficiary(newBeneficiary: Beneficiary) {
     return new Promise((resolve, reject) => {
       const headers = new HttpHeaders({
@@ -307,6 +310,21 @@ export class ApiDataService {
     });
   }
 
+  async getBeneficiaryListByName(nameForSearch) {
+    return new Promise((resolve, reject) => {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.token
+      })
+
+      this.http.post(this.baseURL + 'beneficiary/beneficiary-name-list', nameForSearch, { headers: headers }).subscribe((response: ServerMessage) => {
+        resolve(response);
+      }, (error) => {
+        reject(error)
+      });
+    })
+  }
+
   //Expedientes o formularios
 
   async createEconomicStudyForm(newEconomicStudyForm: EconomicStudyForm) {
@@ -345,7 +363,36 @@ export class ApiDataService {
         });
     });
   }
+  //Registros
+  async createRegistry(newRegistry: Registry) {
+    return new Promise((resolve, reject) => {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.token,
+      });
 
+      this.http.post(this.baseURL + 'registry/create-registry', newRegistry, { headers: headers }).subscribe((response: ServerMessage) => {
+        resolve(response);
+      }, (error) => {
+        reject(error)
+      });
+    })
+  }
+
+  async getRegistryListByYear(year : number) {
+    return new Promise((resolve, reject) => {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.token
+      })
+
+      this.http.get(this.baseURL + 'registry/registry-list/'+year, { headers: headers }).subscribe((response: ServerMessage) => {
+        resolve(response);
+      }, (error) => {
+        reject(error)
+      });
+    })
+  }
   //EJEMPLO DE USO DEL METODO GET 
   /* async getRespuestas( entidad : string ) {
     return new Promise(async (resolve,reject)=>{

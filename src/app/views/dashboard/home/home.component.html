@@ -6,42 +6,36 @@
     <div class="row p-b-20">
       <div class="col-md-6  col-12">
         <div class="search-input">
-          <input id="box-input" placeholder="Buscar beneficiario..." type="text" class="validate">
+          <input id="box-input" placeholder="Buscar beneficiario..." type="text" class="validate" 
+            [(ngModel)]="searchValueBeneficiaryRecords"
+            (ngModelChange)="filterByName($event)">
           <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
       </div>
       <div class="col-md-2  col-12"></div>
       <div class="col-md-4  col-12 alitems-center just-flexend web-btn">
-        <button class="outline-blu-btn">Generar reporte <i class="fas fa-print p-l-5"></i></button>
+        <button (click)="generatePDF()" class="outline-blu-btn">Generar reporte <i class="fas fa-print p-l-5"></i></button>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 col-12">
         <div class="row">
           <div class="col-md-6 col-12">
-            <!--<select class="browser-default">
-              <option value="" disabled selected>Año</option>
-              <option value="1">2011</option>
-              <option value="2">2012</option>
-              <option value="3">2013</option>
-              <option value="4">2014</option>
-              <option value="5">2015</option>
-              <option value="6">2016</option>
-              <option value="7">2017</option>
-              <option value="8">2018</option>
-              <option value="9">2019</option>
-              <option value="10">2020</option>
-            </select>-->
-            <ng-multiselect-dropdown [placeholder]="'Buscar por año'" [data]="dropdownList"
-              [(ngModel)]="selectedItems" [settings]="dropdownyearSettings" (onSelect)="onItemSelect($event)"
-              (onSelectAll)="onSelectAll($event)">
-            </ng-multiselect-dropdown>
+            <div ngbDropdown placement="button-right" class="d-inline-block">
+              <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>
+                <span ngbDropdownItem>{{selectedYear}}</span>
+              </button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <option ngbDropdownItem *ngFor="let year of opcYears" (click)="changeYear(year)">{{year}}</option>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="col-md-2  col-12"></div>
       <div class="col-md-4  col-12 alitems-center just-flexend web-btn">
-        <button class="blu-btn" data-toggle="modal" data-target="#reg-assi">Registrar asistencia</button>
+        <button (click)="openModalAddRegistry()" class="blu-btn" data-toggle="modal" data-target="#reg-assi">Registrar
+          asistencia</button>
       </div>
     </div>
     <!--VISTA MOVIL-->
@@ -50,11 +44,14 @@
         <button class="outline-blu-btn">Generar reporte <i class="small material-icons p-l-5">print</i></button>
       </div>
       <div class="col-6  alitems-center">
-        <button class="blu-btn" data-toggle="modal" data-target="#reg-assi">Registrar asistencia</button>
+        <button (click)="openModalAddRegistry()" class="blu-btn" data-toggle="modal" data-target="#reg-assi">Registrar
+          asistencia</button>
       </div>
     </div>
     <!--END VISTA MOVIL-->
   </div>
+
+  <!-- TABLA WEB -->
   <div class="p-t-20 web-table-home">
     <div class="table-responsive">
       <table class="table">
@@ -73,108 +70,103 @@
           <td class="text-al-center">11</td>
           <td class="text-al-center">12</td>
         </tr>
-        <tr>
-          <td><a class="a-link-black black-16 alitems-center" routerLink="/dashboard/profile"><i
+        <tr *ngFor="let record of selectedYearRecordsFiltered; let i = index">
+          <td><a class="a-link-black black-16 alitems-center" [routerLink]="'/dashboard/profile/'+record.idBeneficiary"><i
                 class="fas fa-id-card-alt p-r-5"></i>
-              Maria Perez</a></td>
+              {{record.fullName}}</a></td>
           <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-check"></i>
-            </button></td>
+            <!-- 
+Pero si le pusieron que no y no pusieron nada en justificación solo debería salir la tacha
+El círculo debería ser cuando si hay justificacion
+La justificación solo se despliega si le pusieron que no -->
+            <button *ngIf="record.records.enero != undefined" (click)="openModalRegistry(record,record.records.enero)" class="info-modal-btn">
+              <i *ngIf="record.records.enero.pickUpPantry == true" class="fas fa-check"></i>
+              <i *ngIf="record.records.enero.pickUpPantry == false && record.records.enero.justification.length == 0" class="fas fa-times"></i>
+              <i *ngIf="record.records.enero.pickUpPantry == false && record.records.enero.justification.length != 0" class="fas fa-minus-circle"></i>
+            </button>
+          </td>
           <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-times"></i>
-            </button></td>
+            <button *ngIf="record.records.febrero != undefined" (click)="openModalRegistry(record,record.records.febrero)" class="info-modal-btn">
+              <i *ngIf="record.records.febrero.pickUpPantry == true" class="fas fa-check"></i>
+              <i *ngIf="record.records.febrero.pickUpPantry == false && record.records.febrero.justification.length == 0" class="fas fa-times"></i>
+              <i *ngIf="record.records.febrero.pickUpPantry == false && record.records.febrero.justification.length != 0" class="fas fa-minus-circle"></i>
+            </button>
+          </td>
           <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-check"></i>
-            </button></td>
+            <button *ngIf="record.records.marzo != undefined" (click)="openModalRegistry(record,record.records.marzo)" class="info-modal-btn">
+              <i *ngIf="record.records.marzo.pickUpPantry == true" class="fas fa-check"></i>
+              <i *ngIf="record.records.marzo.pickUpPantry == false && record.records.marzo.justification.length == 0" class="fas fa-times"></i>
+              <i *ngIf="record.records.marzo.pickUpPantry == false && record.records.marzo.justification.length != 0" class="fas fa-minus-circle"></i>
+            </button>
+          </td>
           <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-check"></i>
-            </button></td>
+            <button *ngIf="record.records.abril != undefined" (click)="openModalRegistry(record,record.records.abril)" class="info-modal-btn">
+              <i *ngIf="record.records.abril.pickUpPantry == true" class="fas fa-check"></i>
+              <i *ngIf="record.records.abril.pickUpPantry == false && record.records.abril.justification.length == 0" class="fas fa-times"></i>
+              <i *ngIf="record.records.abril.pickUpPantry == false && record.records.abril.justification.length != 0" class="fas fa-minus-circle"></i>
+            </button>
+          </td>
           <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-check"></i>
-            </button></td>
+            <button *ngIf="record.records.mayo != undefined" (click)="openModalRegistry(record,record.records.mayo)" class="info-modal-btn">
+              <i *ngIf="record.records.mayo.pickUpPantry == true" class="fas fa-check"></i>
+              <i *ngIf="record.records.mayo.pickUpPantry == false && record.records.mayo.justification.length == 0" class="fas fa-times"></i>
+              <i *ngIf="record.records.mayo.pickUpPantry == false && record.records.mayo.justification.length != 0" class="fas fa-minus-circle"></i>
+            </button>
+          </td>
           <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-minus-circle"></i>
-            </button></td>
+            <button *ngIf="record.records.junio != undefined" (click)="openModalRegistry(record,record.records.junio)" class="info-modal-btn">
+              <i *ngIf="record.records.junio.pickUpPantry == true" class="fas fa-check"></i>
+              <i *ngIf="record.records.junio.pickUpPantry == false && record.records.junio.justification.length == 0" class="fas fa-times"></i>
+              <i *ngIf="record.records.junio.pickUpPantry == false && record.records.junio.justification.length != 0" class="fas fa-minus-circle"></i>
+            </button>
+          </td>
           <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-check"></i>
-            </button></td>
-        </tr>
-        <tr>
-          <td><a class="a-link-black black-16 alitems-center" routerLink="/dashboard/profile"><i
-                class="fas fa-id-card-alt p-r-5"></i>
-              Maria Perez</a></td>
+            <button *ngIf="record.records.julio != undefined" (click)="openModalRegistry(record,record.records.julio)" class="info-modal-btn">
+              <i *ngIf="record.records.julio.pickUpPantry == true" class="fas fa-check"></i>
+              <i *ngIf="record.records.julio.pickUpPantry == false && record.records.julio.justification.length == 0" class="fas fa-times"></i>
+              <i *ngIf="record.records.julio.pickUpPantry == false && record.records.julio.justification.length != 0" class="fas fa-minus-circle"></i>
+            </button>
+          </td>
           <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-check"></i>
-            </button></td>
+            <button *ngIf="record.records.agosto != undefined" (click)="openModalRegistry(record,record.records.agosto)" class="info-modal-btn">
+              <i *ngIf="record.records.agosto.pickUpPantry == true" class="fas fa-check"></i>
+              <i *ngIf="record.records.agosto.pickUpPantry == false && record.records.agosto.justification.length == 0" class="fas fa-times"></i>
+              <i *ngIf="record.records.agosto.pickUpPantry == false && record.records.agosto.justification.length != 0" class="fas fa-minus-circle"></i>
+            </button>
+          </td>
           <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-times"></i>
-            </button></td>
+            <button *ngIf="record.records.septiembre != undefined" (click)="openModalRegistry(record,record.records.septiembre)" class="info-modal-btn">
+              <i *ngIf="record.records.septiembre.pickUpPantry == true" class="fas fa-check"></i>
+              <i *ngIf="record.records.septiembre.pickUpPantry == false && record.records.septiembre.justification.length == 0" class="fas fa-times"></i>
+              <i *ngIf="record.records.septiembre.pickUpPantry == false && record.records.septiembre.justification.length != 0" class="fas fa-minus-circle"></i>
+            </button>
+          </td>
           <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-check"></i>
-            </button></td>
+            <button *ngIf="record.records.octubre != undefined" (click)="openModalRegistry(record,record.records.octubre)" class="info-modal-btn">
+              <i *ngIf="record.records.octubre.pickUpPantry == true" class="fas fa-check"></i>
+              <i *ngIf="record.records.octubre.pickUpPantry == false && record.records.octubre.justification.length == 0" class="fas fa-times"></i>
+              <i *ngIf="record.records.octubre.pickUpPantry == false && record.records.octubre.justification.length != 0" class="fas fa-minus-circle"></i>
+            </button>
+          </td>
           <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-check"></i>
-            </button></td>
+            <button *ngIf="record.records.noviembre != undefined" (click)="openModalRegistry(record,record.records.noviembre)" class="info-modal-btn">
+              <i *ngIf="record.records.noviembre.pickUpPantry == true" class="fas fa-check"></i>
+              <i *ngIf="record.records.noviembre.pickUpPantry == false && record.records.noviembre.justification.length == 0" class="fas fa-times"></i>
+              <i *ngIf="record.records.noviembre.pickUpPantry == false && record.records.noviembre.justification.length != 0" class="fas fa-minus-circle"></i>
+            </button>
+          </td>
           <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-check"></i>
-            </button></td>
-          <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-minus-circle"></i>
-            </button></td>
-          <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-check"></i>
-            </button></td>
-        </tr>
-        <tr>
-          <td><a class="a-link-black black-16 alitems-center" routerLink="/dashboard/profile"><i
-                class="fas fa-id-card-alt p-r-5"></i>
-              Maria Perez</a></td>
-          <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-check"></i>
-            </button></td>
-          <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-times"></i>
-            </button></td>
-          <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-check"></i>
-            </button></td>
-          <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-check"></i>
-            </button></td>
-          <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-check"></i>
-            </button></td>
-          <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-minus-circle"></i>
-            </button></td>
-          <td>
-            <button class="info-modal-btn">
-              <i class="fas fa-check"></i>
-            </button></td>
+            <button *ngIf="record.records.diciembre != undefined" (click)="openModalRegistry(record,record.records.diciembre)" class="info-modal-btn">
+              <i *ngIf="record.records.diciembre.pickUpPantry == true" class="fas fa-check"></i>
+              <i *ngIf="record.records.diciembre.pickUpPantry == false && record.records.diciembre.justification.length == 0" class="fas fa-times"></i>
+              <i *ngIf="record.records.diciembre.pickUpPantry == false && record.records.diciembre.justification.length != 0" class="fas fa-minus-circle"></i>
+            </button>
+          </td>
         </tr>
       </table>
     </div>
   </div>
+  <!-- MOBIL -->
   <div class="p-t-20 movile-table-home">
     <div>
       <table>
@@ -199,7 +191,7 @@
           </td>
         </tr>
         <tr>
-          <td><a class="a-link-black black-16 alitems-center" routerLink="/dashboard/profile"><i
+          <td><a class="a-link-black black-16 alitems-center" [routerLink]="'/dashboard/profile/'"><i
                 class="fas fa-id-card-alt"></i>
               Maria Perez</a></td>
           <td class="text-al-center">
@@ -231,6 +223,10 @@
       </table>
     </div>
   </div>
+
+  <button #btnOpenModalSeeRegister data-toggle="modal" data-target="#see-reg-assi" style="display: none;">
+  </button>
+
   <!--MODALS-->
   <div class="modal fade" id="reg-assi" tabindex="-1" aria-labelledby="reg-assi" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -240,114 +236,215 @@
         </div>
         <div class="modal-body p-10-30">
           <div class="search-input">
-            <input id="box-input" placeholder="Buscar beneficiario..." type="text" class="validate">
+            <input [(ngModel)]="searchValue" (ngModelChange)="getBeneficiaryCoincidences($event)" id="box-input2"
+              placeholder="Buscar beneficiario..." type="text" class="validate">
             <button class="search-btn"><i class="fas fa-search"></i></button>
           </div>
           <div class="p-t-30">
             <div class="row m-0">
-              <div class="select-ben col-md-6 col-12">
-                <div class="row m-0">
+              <div *ngFor="let beneficiario of foundBeneficiarys" class="select-ben col-md-6 col-12">
+                <div (click)="selectedBeneficiary = beneficiario" class="row m-0">
                   <div class="col-md-4 col-12">
                     <div class="circular-landscape-small">
-                      <img class="modal-img" src="/assets/images/dummy-profile.svg">
+                      <img *ngIf="beneficiario.haveImage == true" class="modal-img" [src]="beneficiario.imageBlob">
+                      <img *ngIf="beneficiario.haveImage == false" class="modal-img"
+                        src="/assets/images/dummy-profile.svg">
                     </div>
                   </div>
                   <div class="col-md-8 col-12">
                     <div class="wd-100p">
-                      <p class="black-16 fw-700">Maria Perez</p>
+                      <p class="black-16 fw-700">{{beneficiario.name}} {{beneficiario.lastName}}
+                        {{beneficiario.motherLastName}}</p>
                     </div>
                     <div class="wd-100p p-t-10">
-                      <p class="black-14">Folio de beneficiario: 353535</p>
+                      <p class="black-14">Folio de beneficiario: {{beneficiario.idBeneficiary}}</p>
                     </div>
-                    <div class="wd-100p">
+                    <!-- <div class="wd-100p">
                       <p class="black-14">Folio de estudio: 0145</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="select-ben col-md-6 col-12">
-                <div class="row m-0">
-                  <div class="col-md-4 col-12">
-                    <div class="circular-landscape-small">
-                      <img class="modal-img" src="/assets/images/dummy-profile.svg">
-                    </div>
-                  </div>
-                  <div class="col-md-8 col-12">
-                    <div class="wd-100p">
-                      <p class="black-16 fw-700">Maria Perez</p>
-                    </div>
-                    <div class="wd-100p p-t-10">
-                      <p class="black-14">Folio de beneficiario: 353535</p>
-                    </div>
-                    <div class="wd-100p">
-                      <p class="black-14">Folio de estudio: 0145</p>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
             </div>
 
           </div>
-          <div class="row p-t-30">
-            <div class="col-md-4 col-12 text-al-center ">
-              <div class="circular-landscape">
-                <img class="modal-img" src="/assets/images/dummy-profile.svg">
-              </div>
+          <span *ngIf="selectedBeneficiary.idBeneficiary == -1">
+            Sin seleccion
+            <div class="modal-footer">
+              <button type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
+              <!-- <button type="button" class="blu-btn p-5-25">Guardar</button> -->
             </div>
-            <div class="col-md-8 col-12 alitems-center flex-wrap">
-              <div class="">
-                <div class="wd-100p">
-                  <p class="black-16 fw-700">Maria Perez</p>
-                </div>
-                <div class="wd-100p p-t-10">
-                  <p class="black-14">Folio de beneficiario: 353535</p>
-                </div>
-                <div class="wd-100p">
-                  <p class="black-14">Folio de estudio: 0145</p>
+          </span>
+          <span *ngIf="selectedBeneficiary.idBeneficiary != -1">
+            <div class="row p-t-30">
+              <div class="col-md-4 col-12 text-al-center ">
+                <div class="circular-landscape">
+                  <img *ngIf="selectedBeneficiary.haveImage == true" class="modal-img"
+                    [src]="selectedBeneficiary.imageBlob">
+                  <img *ngIf="selectedBeneficiary.haveImage == false" class="modal-img"
+                    src="/assets/images/dummy-profile.svg">
                 </div>
               </div>
-            </div>
-          </div>
-          <div>
-            <!--TO DO: Si la persona no asistio a recoger la despensa se debe mostrar el campo de justificación-->
-            <div class="radio-inputs">
-              <p class="black-16 p-b-5">¿Asistió a recoger la despensa?</p>
-              <div class="display-flex">
-                <div class="input-box">
-                  <input type="radio" id="b8-si" name="drone" value="huey" checked>
-                  <label for="b8-si">Si</label>
-                </div>
-                <div class="input-box p-l-15">
-                  <input type="radio" id="b8-no" name="drone" value="dewey">
-                  <label for="b8-no">No</label>
+              <div class="col-md-8 col-12 alitems-center flex-wrap">
+                <div class="">
+                  <div class="wd-100p">
+                    <p class="black-16 fw-700">{{selectedBeneficiary.name}} {{selectedBeneficiary.lastName}}
+                      {{selectedBeneficiary.motherLastName}}</p>
+                  </div>
+                  <div class="wd-100p p-t-10">
+                    <p class="black-14">Folio de beneficiario: {{selectedBeneficiary.idBeneficiary}}</p>
+                  </div>
+                  <!-- <div class="wd-100p">
+                    <p class="black-14">Folio de estudio: 0145</p>
+                  </div> -->
                 </div>
               </div>
             </div>
-          </div>
-          <div class="p-t-20">
-            <p class="black-16 p-b-5">¿Quién recogió la despensa?</p>
-            <!--<select class="browser-default">
-              <option value="" disabled selected>Escoge una persona</option>
-              <option value="1">Maria</option>
-              <option value="2">José</option>
-              <option value="3">Ana</option>
-            </select>-->
-            <ng-multiselect-dropdown [placeholder]="'Buscar persona'" [data]="dropdownList"
-              [(ngModel)]="selectedItems" [settings]="dropdownpersonSettings" (onSelect)="onItemSelect($event)"
-              (onSelectAll)="onSelectAll($event)">
-            </ng-multiselect-dropdown>
-          </div>
-          <div class="p-t-20">
-            <p class="black-16 p-b-5">Añadir justificación</p>
-            <textarea></textarea>
-          </div>
+            <div class="p-t-20">
+              <p class="black-16 p-b-5">Mes</p>
+              <div ngbDropdown placement="button-right" class="d-inline-block">
+                <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>
+                  <span ngbDropdownItem>{{newRegistryMonth.month.toUpperCase()}}</span>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <option ngbDropdownItem *ngFor="
+                    let mes of ['enero','febrero','marzo','abril','mayo','junio',
+                                'julio','agosto','septiembre','octubre','noviembre','diciembre']" (click)="newRegistryMonth.month = mes">{{mes.toUpperCase()}}</option>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="radio-inputs">
+                <p class="black-16 p-b-5">¿Asistió a recoger la despensa?</p>
+                <div class="display-flex" ngbRadioGroup name="radioBasic1cm" [(ngModel)]="newRegistryMonth.pickUpPantry">
+                  <label ngbButtonLabel class="input-box">
+                    <input ngbButton type="radio" [value]="true"> Si
+                  </label>
+                  <label ngbButtonLabel class="input-box p-l-15">
+                    <input ngbButton type="radio" [value]="false"> No
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="p-t-20">
+              <p class="black-16 p-b-5">¿Quién recogió la despensa?</p>
+              <div ngbDropdown placement="button-right" class="d-inline-block">
+                <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>
+                  <span ngbDropdownItem *ngIf="newRegistryMonth.idFamilyBeneficiarys == -1">El mismo</span>
+                  <span *ngFor="let familiar of selectedBeneficiary.family" >
+                    <span ngbDropdownItem *ngIf="newRegistryMonth.idFamilyBeneficiarys == familiar.idFamilyBeneficiarys">{{familiar.name}}</span>
+                  </span>
+                  
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <option ngbDropdownItem (click)="newRegistryMonth.idFamilyBeneficiarys = -1">El mismo</option>
+                  <option ngbDropdownItem *ngFor="let familiar of selectedBeneficiary.family" 
+                    (click)="newRegistryMonth.idFamilyBeneficiarys = familiar.idFamilyBeneficiarys">{{familiar.name}}</option>
+                </div>
+              </div>
+              <!-- <ng-multiselect-dropdown [placeholder]="'Buscar persona'" [data]="dropdownList" [(ngModel)]="selectedItems"
+                [settings]="dropdownpersonSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+              </ng-multiselect-dropdown> -->
+            </div>
+            <div *ngIf="newRegistryMonth.pickUpPantry == false" class="p-t-20">
+              <p class="black-16 p-b-5">Añadir justificación</p>
+              <textarea [(ngModel)]="newRegistryMonth.justification"></textarea>
+            </div>
+            <div class="modal-footer">
+              <button #closeModalBtn type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
+              <button (click)="save()" type="button" class="blu-btn p-5-25">Guardar</button>
+            </div>
+          </span>
+
         </div>
-        <div class="modal-footer">
-          <button type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="blu-btn p-5-25">Guardar</button>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!--MODALS-->
+  <div class="modal fade" id="see-reg-assi" tabindex="-1" aria-labelledby="see-reg-assi" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header just-center">
+          <h5 class="modal-title black-20 fw-700" id="exampleModalLabel">Viendo asistencia</h5>
         </div>
+        <div class="modal-body p-10-30">
+          
+          <span *ngIf="selectedRegistryYear.idBeneficiary == -1">
+            Sin seleccion
+            <div class="modal-footer">
+              <button type="button" class="grey-btn" data-dismiss="modal">Cancelar</button>
+              <!-- <button type="button" class="blu-btn p-5-25">Guardar</button> -->
+            </div>
+          </span>
+          <span *ngIf="selectedRegistryYear.idBeneficiary != -1">
+            <div class="row p-t-30">
+              <div class="col-md-4 col-12 text-al-center ">
+                <div class="circular-landscape">
+                  <img *ngIf="selectedRegistryYear.haveImage == true" class="modal-img"
+                    [src]="selectedRegistryYear.imageBlob">
+                  <img *ngIf="selectedRegistryYear.haveImage == false" class="modal-img"
+                    src="/assets/images/dummy-profile.svg">
+                </div>
+              </div>
+              <div class="col-md-8 col-12 alitems-center flex-wrap">
+                <div class="">
+                  <div class="wd-100p">
+                    <p class="black-16 fw-700">{{selectedRegistryYear.fullName}}</p>
+                  </div>
+                  <div class="wd-100p p-t-10">
+                    <p class="black-14">Folio de beneficiario: {{selectedRegistryYear.idBeneficiary}}</p>
+                  </div>
+                  <!-- <div class="wd-100p">
+                    <p class="black-14">Folio de estudio: 0145</p>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+            <div class="p-t-20">
+              <p class="black-16 p-b-5">Mes : <span>{{selectedRegistryMonth.month.toUpperCase()}}</span></p>
+            </div>
+            <div>
+              <div class="radio-inputs">
+                <p class="black-16 p-b-5">¿Asistió a recoger la despensa?</p>
+                <div class="display-flex" ngbRadioGroup name="radioBasic1cc" [(ngModel)]="selectedRegistryMonth.pickUpPantry">
+                  <label ngbButtonLabel class="input-box">
+                    <input ngbButton type="radio" [value]="true"> Si
+                  </label>
+                  <label ngbButtonLabel class="input-box p-l-15">
+                    <input ngbButton type="radio" [value]="false"> No
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="selectedRegistryMonth.pickUpPantry == true" class="p-t-20">
+              <p class="black-16 p-b-5">¿Quién recogió la despensa?</p>
+              <div class="d-inline-block" *ngIf="selectedRegistryMonth.idFamilyBeneficiarys != -1">
+                {{ selectedRegistryMonth.personPickUpPantry.name}}
+                <!-- {{selectedRegistryMonth.personPickUpPantry.name}} {{selectedRegistryMonth.personPickUpPantry.lastName}} {{selectedRegistryMonth.personPickUpPantry.motherLastName}} -->
+              </div>
+              <div class="d-inline-block" *ngIf="selectedRegistryMonth.idFamilyBeneficiarys == -1">
+                El mismo
+              </div>
+            </div>
+            <div *ngIf="selectedRegistryMonth.pickUpPantry == true" class="p-t-20">
+              <p class="black-16 p-b-5">Justificación</p>
+              <label>{{selectedRegistryMonth.justification}}</label>
+              <label *ngIf="selectedRegistryMonth.justification.length == 0" >No especifico</label>
+            </div>
+            <div class="modal-footer">
+              <button #closeModalBtn type="button" class="grey-btn" data-dismiss="modal">Aceptar</button>
+            </div>
+          </span>
+
+        </div>
+
       </div>
     </div>
   </div>
 
 </section>
+
+
